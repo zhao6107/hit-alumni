@@ -17,8 +17,10 @@ import java.util.Map;
  */
 public class QRCodeUtil {
 
-    public static void create(String content, int size, String filepath) {
-        Map hints = new HashMap();
+    @SuppressWarnings("unchecked")
+	public static void create(String content, int size, String filepath) {
+        @SuppressWarnings("rawtypes")
+		Map hints = new HashMap();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
         hints.put(EncodeHintType.MARGIN, 1);

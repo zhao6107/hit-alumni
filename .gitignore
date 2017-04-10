@@ -13,7 +13,13 @@ hs_err_pid*
 
 
 
+src/test/
+target/
 # ignored when using intellij idea
 .idea/
-target/
+out/
 hit-alumni.iml
+# ignored when using eclipse
+.settings/
+.classpath
+.project
