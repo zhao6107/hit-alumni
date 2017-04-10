@@ -15,13 +15,17 @@ public class QRCodeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
-        return "admin/qrcode";
+        return "admin/qrCode";
     }
 
+    /**
+     * 此方法用于后台生成带有链接（支付二维码或者某个含参数url）的二维码，因为与
+     * @return
+     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create() {
         //二维码生成并返回
-        return "admin/qrcode";
+        return "admin/qrCode";
     }
 
 }

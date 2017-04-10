@@ -1,6 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="zh-CN">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>哈工大校友会</title>
@@ -25,13 +24,19 @@
 <div style="padding-left: 20px;">
     捐款项目：<input type="text" id="itemName"><br>
     捐款金额：<input type="number" id="itemMoney"><br>
-    详细描述：<input type="text" id="itemDetail">
-    <button>提交</button>
+    详细描述：<input type="text" id="itemDetail"><br>
+    <button id="submit-btn">提交</button>
 </div>
 <hr>
 <div id="qrcode" style="padding-left: 20px;"></div>
 <script>
-    jQuery("#qrcode").qrcode("https://github.com/i2it");
+    $("#submit-btn").click(function () {
+        $("#qrcode").text("");
+        var itemName = $("#itemName").val();
+        var itemMoney = $("#itemMoney").val();
+        var itemDetail = $("#itemDetail").val();
+        jQuery("#qrcode").qrcode("http://hit-alumni.tunnel.qydev.com/donate/info?itemName=" + itemName + "&itemMoney=" + itemMoney + "&itemDetail=" + itemDetail);
+    });
 </script>
 </body>
 </html>
