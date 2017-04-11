@@ -15,6 +15,7 @@ hs_err_pid*
 
 src/test/
 target/
+src/main/webapp/WEB-INF/MP_verify_rkHrUZkg16fUIqT2.txt
 # ignored when using intellij idea
 .idea/
 out/

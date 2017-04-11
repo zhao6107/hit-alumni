@@ -8,6 +8,7 @@
     <context:component-scan base-package="net.i2it.hit.hit_alumni.**"></context:component-scan>
 
     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"></mvc:resources>
+    <mvc:resources mapping="/MP_verify_rkHrUZkg16fUIqT2.txt" location="/WEB-INF/MP_verify_rkHrUZkg16fUIqT2.txt"></mvc:resources>
     <mvc:annotation-driven></mvc:annotation-driven>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
