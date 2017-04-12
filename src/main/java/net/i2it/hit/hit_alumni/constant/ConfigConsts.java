@@ -12,6 +12,8 @@ public class ConfigConsts {
 
     // 微信支付的配置信息
     public final static String MCH_ID = "1455797702";
+    public final static String API_SECRET = "76015EF79F37174731055084D8D77005";
+
 
     // 微信调用接口
     public final static String URL_CODE_FROM_WEB = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";

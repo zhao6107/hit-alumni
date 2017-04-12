@@ -1,6 +1,7 @@
 package net.i2it.hit.hit_alumni.controller;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
+import net.i2it.hit.hit_alumni.util.EncryptionUtil;
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +38,7 @@ public class WeChatController {
         for (int i = 0; i < arr.length; i++) {
             tmp.append(arr[i]);
         }
-        String result = toSHA1(tmp.toString());
+        String result = EncryptionUtil.encrypt(tmp.toString(), EncryptionUtil.SHA1);
         // 第三步：加密结果与signature比较，相同时返回参数echostr
         if (result != null && result.equals(signature)) {
             out.print(echostr);
@@ -46,23 +47,6 @@ public class WeChatController {
         }
         out.flush();
         out.close();
-    }
-
-    /**
-     * sha1加密算法
-     *
-     * @param text
-     * @return
-     */
-    private static String toSHA1(String text) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA");
-            digest.update(text.getBytes());
-            return Hex.encodeHexString(digest.digest());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return "";
-        }
     }
 
 }
