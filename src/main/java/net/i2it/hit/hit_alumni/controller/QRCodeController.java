@@ -1,6 +1,8 @@
 package net.i2it.hit.hit_alumni.controller;
 
+import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,17 +16,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class QRCodeController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index() {
+    public String index(ModelMap map) {
+        String targetUrl = ConfigConsts.SERVER_DOMAIN + "/donate/form";
+        String url = ConfigConsts.URL_CODE_FROM_WEB.replace("APPID", ConfigConsts.APP_ID)
+                .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
+        map.put("url", url);
+        map.put("targetUrl", targetUrl);
         return "admin/qrCode";
     }
 
     /**
      * 此方法用于后台生成带有链接（支付二维码或者某个含参数url）的二维码，因为与
+     *
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create() {
-        //二维码生成并返回
+        // 二维码生成并返回
         return "admin/qrCode";
     }
 

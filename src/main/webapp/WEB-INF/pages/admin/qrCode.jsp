@@ -14,17 +14,11 @@
 </head>
 <body>
 <h2 style="padding-left: 20px;">捐款二维码生成器</h2>
-<%--<form action="/qrcode/create" method="post" style="padding-left: 20px;">--%>
-<%--捐款项目：<input type="text" name="itemName"><br>--%>
-<%--捐款金额：<input type="number" name="itemMoney"><br>--%>
-<%--详细描述：<input type="text" name="itemDetail"><br>--%>
-<%--<input type="submit" value="提交">--%>
-<%--</form>--%>
 <hr>
 <div style="padding-left: 20px;">
     捐款项目：<input type="text" id="itemName"><br>
-    捐款金额：<input type="number" id="itemMoney"><br>
     详细描述：<input type="text" id="itemDetail"><br>
+    捐款金额：<input type="number" id="itemMoney"><br>
     <button id="submit-btn">提交</button>
 </div>
 <hr>
@@ -32,10 +26,9 @@
 <script>
     $("#submit-btn").click(function () {
         $("#qrcode").text("");
-        var itemName = $("#itemName").val();
-        var itemMoney = $("#itemMoney").val();
-        var itemDetail = $("#itemDetail").val();
-        jQuery("#qrcode").qrcode("http://hit-alumni.tunnel.qydev.com/donate/form?itemName=" + itemName + "&itemMoney=" + itemMoney + "&itemDetail=" + itemDetail);
+        var targetUrl = "${requestScope.targetUrl}?itemInfo=" + $("#itemName").val() + "+" + $("#itemMoney").val() + "+" + $("#itemDetail").val();
+        alert(encodeURI(targetUrl));
+        jQuery("#qrcode").qrcode("${requestScope.url}".replace("REDIRECT_URI", encodeURI(targetUrl)));
     });
 </script>
 </body>

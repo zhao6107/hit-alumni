@@ -30,7 +30,7 @@ public class WeChatController {
     @RequestMapping(method = RequestMethod.GET, params = {"signature", "timestamp", "nonce", "echostr"})
     public void verify(String signature, String timestamp, String nonce, String echostr, PrintWriter out) {
         // 第一步：对参数token、timestamp、nonce排序
-        String[] arr = new String[]{ConfigConsts.TEST_TOKEN, timestamp, nonce};
+        String[] arr = new String[]{ConfigConsts.TOKEN, timestamp, nonce};
         Arrays.sort(arr);
         //第二步：将排序后的token、timestamp、nonce参数拼接为一个字符串后，进行sha1加密
         StringBuffer tmp = new StringBuffer();
