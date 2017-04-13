@@ -5,6 +5,6 @@ package net.i2it.hit.hit_alumni.constant;
  */
 public class ConfigConsts {
 
-    
+
 
 }

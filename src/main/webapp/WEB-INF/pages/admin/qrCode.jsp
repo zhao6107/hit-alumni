@@ -26,10 +26,31 @@
 <script>
     $("#submit-btn").click(function () {
         $("#qrcode").text("");
-        var targetUrl = "${requestScope.targetUrl}?itemInfo=" + $("#itemName").val() + "+" + $("#itemMoney").val() + "+" + $("#itemDetail").val();
-        alert(encodeURI(targetUrl));
-        jQuery("#qrcode").qrcode("${requestScope.url}".replace("REDIRECT_URI", encodeURI(targetUrl)));
+        var targetUrl = "${requestScope.targetUrl}?itemInfo=" + $("#itemName").val() + "_" + $("#itemMoney").val() + "_" + $("#itemDetail").val();
+        var content = "${requestScope.url}".replace("REDIRECT_URI", targetUrl);
+        jQuery("#qrcode").qrcode(content);
     });
+
+    //用于只将中文内容转为utf-8 --->没用啊！
+    function toUtf8(str) {
+        var out, i, len, c;
+        out = "";
+        len = str.length;
+        for (i = 0; i < len; i++) {
+            c = str.charCodeAt(i);
+            if ((c >= 0x0001) && (c <= 0x007F)) {
+                out += str.charAt(i);
+            } else if (c > 0x07FF) {
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            } else {
+                out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            }
+        }
+        return out;
+    }
 </script>
 </body>
 </html>

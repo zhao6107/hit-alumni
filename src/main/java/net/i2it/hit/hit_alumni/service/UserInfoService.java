@@ -1,9 +1,8 @@
 package net.i2it.hit.hit_alumni.service;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
-import net.i2it.hit.hit_alumni.entity.bo.WebAccessTokenBO;
+import net.i2it.hit.hit_alumni.entity.vo.WebAccessTokenVO;
 import net.i2it.hit.hit_alumni.util.HTTPUtil;
 
 /**
@@ -20,11 +19,11 @@ public class UserInfoService {
      * @param code
      * @return
      */
-    public WebAccessTokenBO getUserInfoFromWeb(String code) {
+    public WebAccessTokenVO getUserInfoFromWeb(String code) {
         String url = ConfigConsts.URL_ACCESS_TOKEN_FROM_WEB.replace("APPID", ConfigConsts.APP_ID)
                 .replace("SECRET", ConfigConsts.APP_SECRET).replace("CODE", code);
         String jsonStr = HTTPUtil.doGet(url);
-        WebAccessTokenBO webAccessToken = JSON.parseObject(jsonStr, WebAccessTokenBO.class);
+        WebAccessTokenVO webAccessToken = JSON.parseObject(jsonStr, WebAccessTokenVO.class);
         return webAccessToken;
     }
 

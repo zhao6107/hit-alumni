@@ -1,10 +1,19 @@
-package net.i2it.hit.hit_alumni.entity.bo;
+package net.i2it.hit.hit_alumni.entity.vo;
 
-public class SimpleOrderInfoBO {
+public class SimpleOrderInfoVO {
 
     private String itemName;
     private String itemDetail;
-    private String itemMoney;
+    private double itemMoney;
+
+    public SimpleOrderInfoVO() {
+    }
+
+    public SimpleOrderInfoVO(String itemName, String itemDetail, double itemMoney) {
+        this.itemName = itemName;
+        this.itemDetail = itemDetail;
+        this.itemMoney = itemMoney;
+    }
 
     public String getItemName() {
         return itemName;
@@ -22,11 +31,11 @@ public class SimpleOrderInfoBO {
         this.itemDetail = itemDetail;
     }
 
-    public String getItemMoney() {
+    public double getItemMoney() {
         return itemMoney;
     }
 
-    public void setItemMoney(String itemMoney) {
+    public void setItemMoney(double itemMoney) {
         this.itemMoney = itemMoney;
     }
 
