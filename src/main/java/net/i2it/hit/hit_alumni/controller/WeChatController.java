@@ -1,16 +1,14 @@
 package net.i2it.hit.hit_alumni.controller;
 
-import net.i2it.hit.hit_alumni.constant.ConfigConsts;
-import net.i2it.hit.hit_alumni.util.EncryptionUtil;
-import org.apache.commons.codec.binary.Hex;
+import java.io.PrintWriter;
+import java.util.Arrays;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+import net.i2it.hit.hit_alumni.constant.ConfigConsts;
+import net.i2it.hit.hit_alumni.util.EncryptionUtil;
 
 /**
  * 处理和微信服务器之间的网络交互操作

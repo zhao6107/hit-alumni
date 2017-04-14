@@ -17,7 +17,7 @@ public class QRCodeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap map) {
-        String targetUrl = ConfigConsts.SERVER_DOMAIN + "/donate/form";
+        String targetUrl = ConfigConsts.SERVER_DOMAIN + "/test/pay";
         String url = ConfigConsts.URL_CODE_FROM_WEB.replace("APPID", ConfigConsts.APP_ID)
                 .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
         map.put("url", url);

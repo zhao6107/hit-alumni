@@ -24,5 +24,6 @@ out/
 hit-alumni.iml
 # ignored when using eclipse
 .settings/
+bin/
 .classpath
 .project
