@@ -18,22 +18,11 @@ public class QRCodeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap map) {
-        String targetUrl = ConfigConsts.SERVER_DOMAIN + "/test/pay";
+        String targetUrl = ConfigConsts.SERVER_DOMAIN + "/test/pay/";
         String url = WeChatApiService.API_WEB_CODE.replace("APPID", ConfigConsts.APP_ID)
                 .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
         map.put("url", url);
         map.put("targetUrl", targetUrl);
-        return "admin/qrCode";
-    }
-
-    /**
-     * 此方法用于后台生成带有链接（支付二维码或者某个含参数url）的二维码，因为与
-     *
-     * @return
-     */
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create() {
-        // 二维码生成并返回
         return "admin/qrCode";
     }
 

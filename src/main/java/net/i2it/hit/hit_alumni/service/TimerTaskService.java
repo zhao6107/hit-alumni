@@ -6,7 +6,7 @@ import net.i2it.hit.hit_alumni.entity.vo.api.response.AppAccessTokenVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.response.JsApiTicketVO;
 
 /**
- * 具体的定时任务逻辑和内容
+ * 具体的定时任务逻辑和内容：主要用于更新access_token和jsapi_ticket
  */
 public class TimerTaskService implements Runnable {
 
@@ -28,7 +28,7 @@ public class TimerTaskService implements Runnable {
                         if (CacheConsts.JS_API_TICKET != lastJsApiTicket) {
                             //更新access_token和jsapi_ticket的更新时间
                             CacheConsts.LAST_REFRESH_TIME = System.currentTimeMillis();
-                            System.out.println(CacheConsts.APP_ACCESS_TOKEN + " " + CacheConsts.JS_API_TICKET);
+                            System.out.println(">>> " + CacheConsts.APP_ACCESS_TOKEN + " " + CacheConsts.JS_API_TICKET);
                         }
                     }
                 }

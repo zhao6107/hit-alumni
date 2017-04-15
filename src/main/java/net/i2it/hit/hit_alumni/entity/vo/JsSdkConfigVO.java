@@ -5,19 +5,21 @@ import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 /**
  * 调用微信的js sdk时进行配置所需的参数
  */
-public class WeChatJsSdkVO {
+public class JsSdkConfigVO {
 
     private boolean debug;
     private String appId;
-    private int timestamp;
+    private long timestamp;
     private String nonceStr;
     private String signature;
     private String jsApiList;
 
-    public WeChatJsSdkVO() {
+    public JsSdkConfigVO() {
+        this.debug = ConfigConsts.DEBUG;
+        this.jsApiList = ConfigConsts.JS_API_LIST;
     }
 
-    public WeChatJsSdkVO(String appId, int timestamp, String nonceStr, String signature) {
+    public JsSdkConfigVO(String appId, int timestamp, String nonceStr, String signature) {
         this.appId = appId;
         this.timestamp = timestamp;
         this.nonceStr = nonceStr;
@@ -42,11 +44,11 @@ public class WeChatJsSdkVO {
         this.appId = appId;
     }
 
-    public int getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(int timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 

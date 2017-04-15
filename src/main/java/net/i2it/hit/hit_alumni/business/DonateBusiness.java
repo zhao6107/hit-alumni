@@ -1,12 +1,17 @@
 package net.i2it.hit.hit_alumni.business;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
+import net.i2it.hit.hit_alumni.entity.vo.JsSdkConfigVO;
 import net.i2it.hit.hit_alumni.entity.vo.PayRequestVO;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.response.UnifiedOrderResultVO;
-import net.i2it.hit.hit_alumni.service.UnifiedOrderService;
+import net.i2it.hit.hit_alumni.service.AppConfigService;
+import net.i2it.hit.hit_alumni.service.PayService;
 import net.i2it.hit.hit_alumni.service.WeChatApiService;
 import net.i2it.hit.hit_alumni.util.ValueGeneratorUtil;
+import net.i2it.hit.hit_alumni.util.WebUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 处理前端控制器传来的参数，进行业务分发和处理
@@ -14,12 +19,10 @@ import net.i2it.hit.hit_alumni.util.ValueGeneratorUtil;
 public class DonateBusiness {
 
     public UnifiedOrderResultVO getUnifiedOrderResult(String code, SimpleOrderInfoVO simpleOrderInfo) {
-        UnifiedOrderService unifiedOrderService = new UnifiedOrderService();
+        PayService payService = new PayService();
         WeChatApiService weChatApiService = new WeChatApiService();
         String openid = weChatApiService.getWebAccessToken(code).getOpenid();
-        System.out.println(openid);
-        String unifiedOrderXmlStr = unifiedOrderService.getOrderInfo(openid, simpleOrderInfo);
-        System.out.println(unifiedOrderXmlStr);
+        String unifiedOrderXmlStr = payService.getOrderInfo(openid, simpleOrderInfo);
         return weChatApiService.getUnifiedOrderResult(unifiedOrderXmlStr);
     }
 
@@ -29,6 +32,12 @@ public class DonateBusiness {
             return new SimpleOrderInfoVO(arr[0], arr[1], Double.parseDouble(arr[2]), arr[3]);
         }
         return null;
+    }
+
+    public JsSdkConfigVO getJsSdkConfig(HttpServletRequest request) {
+        String url = WebUtil.getFullUrl(request);
+        AppConfigService appConfigService = new AppConfigService();
+        return appConfigService.getJsSdkConfig(url);
     }
 
     /**

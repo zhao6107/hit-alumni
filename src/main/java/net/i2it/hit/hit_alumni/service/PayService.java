@@ -11,18 +11,18 @@ import net.i2it.hit.hit_alumni.util.ValueGeneratorUtil;
 import net.i2it.hit.hit_alumni.util.XmlUtil;
 
 /**
- * 定义微信支付统一下单接口所需要参数的生成过程规则，以及构建本应用中提交的参数xml格式对应的实例对象
+ * 定义微信支付相关处理操作
  *
  * @author liuming
  */
-public class UnifiedOrderService {
+public class PayService {
 
     /**
-     * UnifiedOrderVO实体类的实例化和参数赋值，用于生成提交到统一下单接口的xml格式内容
+     * UnifiedOrderVO实体类的实例化和参数赋值，用于生成微信支付统一下单接口的所需的请求参数
      *
      * @param openid
      * @param simpleOrderInfo
-     * @return
+     * @return UnifiedOrderVO实例对象对应的xml格式的字符串
      */
     public String getOrderInfo(String openid, SimpleOrderInfoVO simpleOrderInfo) {
         UnifiedOrderInfoVO orderInfo = new UnifiedOrderInfoVO();
