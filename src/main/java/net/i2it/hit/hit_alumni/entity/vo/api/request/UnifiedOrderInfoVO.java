@@ -1,4 +1,4 @@
-package net.i2it.hit.hit_alumni.entity.vo;
+package net.i2it.hit.hit_alumni.entity.vo.api.request;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 
@@ -21,7 +21,6 @@ public class UnifiedOrderInfoVO {
     private String out_trade_no;
     private String fee_type = "CNY";
     private int total_fee;
-    private String spbill_create_ip;
     private String time_start;
     private String time_expire;
     private String device_info;
@@ -114,14 +113,6 @@ public class UnifiedOrderInfoVO {
 
     public void setTotal_fee(int total_fee) {
         this.total_fee = total_fee;
-    }
-
-    public String getSpbill_create_ip() {
-        return spbill_create_ip;
-    }
-
-    public void setSpbill_create_ip(String spbill_create_ip) {
-        this.spbill_create_ip = spbill_create_ip;
     }
 
     public String getTime_start() {

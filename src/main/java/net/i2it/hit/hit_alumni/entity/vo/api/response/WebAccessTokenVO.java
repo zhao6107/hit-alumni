@@ -1,8 +1,8 @@
-package net.i2it.hit.hit_alumni.entity.vo;
+package net.i2it.hit.hit_alumni.entity.vo.api.response;
 
 /**
- * 网页授权中得到的返回json结果对应的Java类，格式为
- * {"access_token":"ACCESS_TOKEN","expires_in":7200,"refresh_token":"REFRESH_TOKEN","openid":"OPENID","scope":"SCOPE"}
+ * 网页授权中得到的返回json结果对应的Java类，重要的信息有：access_token和openid<br>
+ * 格式为: {"access_token":"ACCESS_TOKEN","expires_in":7200,"refresh_token":"REFRESH_TOKEN","openid":"OPENID","scope":"SCOPE"}
  */
 public class WebAccessTokenVO {
 

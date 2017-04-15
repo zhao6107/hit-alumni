@@ -1,6 +1,7 @@
 package net.i2it.hit.hit_alumni.controller;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
+import net.i2it.hit.hit_alumni.service.WeChatApiService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class QRCodeController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap map) {
         String targetUrl = ConfigConsts.SERVER_DOMAIN + "/test/pay";
-        String url = ConfigConsts.URL_CODE_FROM_WEB.replace("APPID", ConfigConsts.APP_ID)
+        String url = WeChatApiService.API_WEB_CODE.replace("APPID", ConfigConsts.APP_ID)
                 .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
         map.put("url", url);
         map.put("targetUrl", targetUrl);

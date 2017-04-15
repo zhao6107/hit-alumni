@@ -16,7 +16,7 @@ import net.i2it.hit.hit_alumni.constant.ConfigConsts;
  * @author liuming
  * @description 用于构造体教育微信接口的数据结构参数值的构造工具类
  */
-public class FieldGenaratorUtil {
+public class ValueGeneratorUtil {
 
 	/**
 	 * 用于获取只包含数字且指定长度的随机字符串

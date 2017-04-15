@@ -1,4 +1,4 @@
-package net.i2it.hit.hit_alumni.entity.vo;
+package net.i2it.hit.hit_alumni.entity.vo.api.response;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
