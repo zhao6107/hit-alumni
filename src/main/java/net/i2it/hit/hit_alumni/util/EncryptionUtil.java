@@ -2,6 +2,7 @@ package net.i2it.hit.hit_alumni.util;
 
 import org.apache.commons.codec.binary.Hex;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -23,12 +24,14 @@ public class EncryptionUtil {
     public static String encrypt(String msg, String encryptionType) {
         try {
             MessageDigest digest = MessageDigest.getInstance(encryptionType);
-            digest.update(msg.getBytes());
+            digest.update(msg.getBytes("UTF-8"));
             return Hex.encodeHexString(digest.digest());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return "";
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
+        return "";
     }
 
 }

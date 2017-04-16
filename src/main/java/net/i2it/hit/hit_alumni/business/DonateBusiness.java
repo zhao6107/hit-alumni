@@ -5,6 +5,7 @@ import net.i2it.hit.hit_alumni.entity.vo.JsSdkConfigVO;
 import net.i2it.hit.hit_alumni.entity.vo.PayRequestVO;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.response.UnifiedOrderResultVO;
+import net.i2it.hit.hit_alumni.entity.vo.api.response.WebAccessTokenVO;
 import net.i2it.hit.hit_alumni.service.AppConfigService;
 import net.i2it.hit.hit_alumni.service.PayService;
 import net.i2it.hit.hit_alumni.service.WeChatApiService;
@@ -21,9 +22,12 @@ public class DonateBusiness {
     public UnifiedOrderResultVO getUnifiedOrderResult(String code, SimpleOrderInfoVO simpleOrderInfo) {
         PayService payService = new PayService();
         WeChatApiService weChatApiService = new WeChatApiService();
-        String openid = weChatApiService.getWebAccessToken(code).getOpenid();
-        String unifiedOrderXmlStr = payService.getOrderInfo(openid, simpleOrderInfo);
-        return weChatApiService.getUnifiedOrderResult(unifiedOrderXmlStr);
+        WebAccessTokenVO webAccessTokenVO = weChatApiService.getWebAccessToken(code);
+        if (webAccessTokenVO != null) {
+            String unifiedOrderXmlStr = payService.getOrderInfo(webAccessTokenVO.getOpenid(), simpleOrderInfo);
+            return weChatApiService.getUnifiedOrderResult(unifiedOrderXmlStr);
+        }
+        return null;
     }
 
     public SimpleOrderInfoVO getSimpleOrderInfo(String itemInfo) {
@@ -31,6 +35,7 @@ public class DonateBusiness {
         if (arr.length == 4) {
             return new SimpleOrderInfoVO(arr[0], arr[1], Double.parseDouble(arr[2]), arr[3]);
         }
+        System.out.println("[request parameter error]：订单请求参数不合法。");
         return null;
     }
 

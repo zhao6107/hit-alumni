@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author liuming
  */
 @Controller
-@RequestMapping("/qrcode")
+@RequestMapping("/admin")
 public class QRCodeController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/qrcode", method = RequestMethod.GET)
     public String index(ModelMap map) {
         String targetUrl = ConfigConsts.SERVER_DOMAIN + "/test/pay/";
         String url = WeChatApiService.API_WEB_CODE.replace("APPID", ConfigConsts.APP_ID)

@@ -1,14 +1,12 @@
 package net.i2it.hit.hit_alumni.service;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Date;
-
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.UnifiedOrderInfoVO;
 import net.i2it.hit.hit_alumni.util.ValueGeneratorUtil;
 import net.i2it.hit.hit_alumni.util.XmlUtil;
+
+import java.util.Date;
 
 /**
  * 定义微信支付相关处理操作
@@ -28,12 +26,8 @@ public class PayService {
         UnifiedOrderInfoVO orderInfo = new UnifiedOrderInfoVO();
         orderInfo.setOpenid(openid);
         orderInfo.setNonce_str(ValueGeneratorUtil.randomStr(10));
-        try {
-            orderInfo.setBody(URLEncoder.encode(simpleOrderInfo.getItemName(), "UTF-8"));
-            orderInfo.setDetail(URLEncoder.encode(simpleOrderInfo.getItemDetail(), "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        orderInfo.setBody(simpleOrderInfo.getItemName());
+        orderInfo.setDetail(simpleOrderInfo.getItemDetail());
         orderInfo.setTotal_fee((int) (simpleOrderInfo.getItemMoney() * 100));
         // 借助于日期实现的字段
         Date dateTime = new Date();

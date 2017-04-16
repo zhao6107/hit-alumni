@@ -52,6 +52,7 @@ public class WeChatApiService {
             AppAccessTokenVO accessTokenVO = JSON.parseObject(result, AppAccessTokenVO.class);
             return accessTokenVO;
         }
+        System.out.println("[request fail]：获取微信全局access_token失败。");
         return null;
     }
 
@@ -69,6 +70,7 @@ public class WeChatApiService {
         if (result != null && result.contains("access_token")) {
             return JSON.parseObject(result, WebAccessTokenVO.class);
         }
+        System.out.println("[request fail]：微信网页授权获取access_token和openid失败。");
         return null;
     }
 
@@ -84,6 +86,7 @@ public class WeChatApiService {
         if (result != null) {
             return JSON.parseObject(result, JsApiTicketVO.class);
         }
+        System.out.println("[request fail]：微信网页授权获取jsapi_ticket失败。");
         return null;
     }
 
@@ -98,6 +101,7 @@ public class WeChatApiService {
         if (result != null) {
             return (UnifiedOrderResultVO) XmlUtil.xmlStr2Object(result, UnifiedOrderResultVO.class);
         }
+        System.out.println("[request fail]：请求统一下单接口失败，未得到返回结果。");
         return null;
     }
 

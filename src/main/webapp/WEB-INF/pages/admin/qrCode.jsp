@@ -32,7 +32,11 @@
         alert(targetUrl);
         var content = "${requestScope.url}".replace("REDIRECT_URI", targetUrl);
         alert(content);
-        jQuery("#qrcode").qrcode(content);
+        jQuery("#qrcode").qrcode({
+            text: content,
+            correctLevel: 0
+
+        });
     });
 
     //用于只将中文内容转为utf-8 --->没用啊！
