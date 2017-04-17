@@ -35,7 +35,7 @@ public class PayService {
         orderInfo.setTime_start(ValueGeneratorUtil.getTime(dateTime));
         orderInfo.setTime_expire(ValueGeneratorUtil.getTime(new Date(dateTime.getTime() + 10 * 60 * 1000)));// 订单失效时间：10分钟
         orderInfo.setDevice_info(simpleOrderInfo.getOrigin());
-        orderInfo.setNotify_url(ConfigConsts.SERVER_DOMAIN + "/donate/result");
+        orderInfo.setNotify_url(ConfigConsts.SERVER_DOMAIN + "/donate/notify");
         // 最后一步才是设置sign
         orderInfo.setSign(ValueGeneratorUtil.getSign(orderInfo));
         // 转成xml格式

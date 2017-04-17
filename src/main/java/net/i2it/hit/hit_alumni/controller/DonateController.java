@@ -10,7 +10,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * 关于捐助的前端控制器
@@ -37,8 +40,21 @@ public class DonateController {
         return "client/payInfo";
     }
 
-    @RequestMapping(value = "/result")
-    public String notifyResult() {
+    @RequestMapping(value = "/notify")
+    public String notifyResult(HttpServletRequest request) {
+        ServletInputStream in = null;
+        StringBuffer sb = new StringBuffer();
+        try {
+            in = request.getInputStream();
+            byte[] bytes = new byte[1024];
+            int len = -1;
+            while ((len = in.read(bytes)) > 0) {
+                sb.append(new String(bytes, 0, len));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(sb.toString());
         return "client/payResult";
     }
 

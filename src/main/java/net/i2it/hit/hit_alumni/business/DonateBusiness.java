@@ -25,6 +25,7 @@ public class DonateBusiness {
         WebAccessTokenVO webAccessTokenVO = weChatApiService.getWebAccessToken(code);
         if (webAccessTokenVO != null) {
             String unifiedOrderXmlStr = payService.getOrderInfo(webAccessTokenVO.getOpenid(), simpleOrderInfo);
+            System.out.println(unifiedOrderXmlStr);
             return weChatApiService.getUnifiedOrderResult(unifiedOrderXmlStr);
         }
         return null;

@@ -13,13 +13,6 @@ public class User {
     public User() {
     }
 
-    public User(String id, String name, boolean sex, int age) {
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.age = age;
-    }
-
     public String getId() {
         return id;
     }
