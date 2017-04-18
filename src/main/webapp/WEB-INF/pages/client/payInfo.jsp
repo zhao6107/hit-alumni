@@ -14,7 +14,7 @@
     详细描述：<input type="text" name="itemDetail" readonly="readonly" value="${requestScope.simpleOrder.itemDetail}"><br>
     <button onclick="payReady()">捐赠</button>
 </div>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"/>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     wx.config({
         debug: ${requestScope.jsSdkConfig.debug},

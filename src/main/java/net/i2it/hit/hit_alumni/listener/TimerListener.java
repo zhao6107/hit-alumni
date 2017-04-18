@@ -1,6 +1,6 @@
 package net.i2it.hit.hit_alumni.listener;
 
-import net.i2it.hit.hit_alumni.service.TimerTaskService;
+import net.i2it.hit.hit_alumni.service.function.RefreshTimer;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -11,7 +11,7 @@ import javax.servlet.ServletContextListener;
 public class TimerListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        new Thread(new TimerTaskService()).start();
+        new Thread(new RefreshTimer()).start();
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
