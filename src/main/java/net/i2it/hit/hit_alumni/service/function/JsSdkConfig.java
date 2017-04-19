@@ -2,7 +2,7 @@ package net.i2it.hit.hit_alumni.service.function;
 
 import net.i2it.hit.hit_alumni.constant.CacheConsts;
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
-import net.i2it.hit.hit_alumni.entity.vo.JsSdkConfigVO;
+import net.i2it.hit.hit_alumni.entity.vo.api.request.JsSdkConfigVO;
 import net.i2it.hit.hit_alumni.util.EncryptionUtil;
 import net.i2it.hit.hit_alumni.util.ValueGeneratorUtil;
 

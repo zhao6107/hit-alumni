@@ -23,4 +23,5 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="net.i2it.hit.hit_alumni.dao"/>
     </bean>
+
 </beans>

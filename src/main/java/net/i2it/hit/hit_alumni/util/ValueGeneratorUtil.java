@@ -3,20 +3,24 @@
  */
 package net.i2it.hit.hit_alumni.util;
 
+import net.i2it.hit.hit_alumni.constant.ConfigConsts;
+
 import java.lang.reflect.Field;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.i2it.hit.hit_alumni.constant.ConfigConsts;
-
 /**
  * @author liuming
  * @description 用于构造体教育微信接口的数据结构参数值的构造工具类
  */
 public class ValueGeneratorUtil {
+
+    public static final String DATE_FORMAT_PATTERN = "yyyyMMddHHmmss";
+    public static final String DATE_FORMAT_PATTERN2 = "yyyy-MM-dd HH:mm:ss";
 
     /**
      * 用于获取只包含数字且指定长度的随机字符串
@@ -75,9 +79,19 @@ public class ValueGeneratorUtil {
      * @param dateTime
      * @return
      */
-    public static String getTime(Date dateTime) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+    public static String date2Str(Date dateTime, String dateFormatPattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
         return dateFormat.format(dateTime);
+    }
+
+    public static Date str2Date(String dateStr, String dateFormatPattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
+        try {
+            return dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

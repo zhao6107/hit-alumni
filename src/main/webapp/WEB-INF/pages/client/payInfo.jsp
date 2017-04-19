@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
+    <link href="http://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <h2 style="padding-left: 20px;">捐款信息表单</h2>
