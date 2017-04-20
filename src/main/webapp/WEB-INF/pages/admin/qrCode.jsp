@@ -27,9 +27,7 @@
     $("#submit-btn").click(function () {
         $("#qrcode").text("");
         var targetUrl = "${requestScope.targetUrl}?itemInfo=" + $("#itemName").val() + "_" + $("#itemDetail").val() + "_" + $("#itemMoney").val() + "_qrcode";
-        alert(targetUrl);
         targetUrl = encodeURI(targetUrl);
-        alert(targetUrl);
         var content = "${requestScope.url}".replace("REDIRECT_URI", targetUrl);
         alert(content);
         jQuery("#qrcode").qrcode({

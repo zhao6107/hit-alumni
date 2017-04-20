@@ -67,6 +67,7 @@ public class WeChatApi {
         String url = API_WEB_ACCESS_TOKEN.replace("APPID", ConfigConsts.APP_ID)
                 .replace("SECRET", ConfigConsts.APP_SECRET).replace("CODE", code);
         String result = HTTPUtil.doGet(url);
+        System.out.println(result);
         if (result != null && result.contains("access_token")) {
             return JSON.parseObject(result, WebAccessTokenVO.class);
         }
@@ -97,7 +98,9 @@ public class WeChatApi {
      * @return
      */
     public UnifiedOrderResultVO getUnifiedOrderResult(String unifiedOrderXmlStr) {
+        System.out.println(unifiedOrderXmlStr);
         String result = HTTPUtil.doPost(API_PAY_UNIFIED_ORDER, unifiedOrderXmlStr);
+        System.out.println(result);
         if (result != null) {
             return (UnifiedOrderResultVO) XmlUtil.xmlStr2Object(result, UnifiedOrderResultVO.class);
         }

@@ -11,7 +11,7 @@ import javax.servlet.ServletContextListener;
 public class TimerListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        new Thread(new RefreshTimer()).start();
+//        new Thread(new RefreshTimer()).start();
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
