@@ -84,31 +84,20 @@ public class HTTPUtil {
      * post请求发送XML内容实体
      *
      * @param url
-     * @param xmlStr
+     * @param paramStr
      * @return
      */
-    public static String doPost(String url, String xmlStr) {
-        HttpPost httpPost = new HttpPost(url);
-        httpPost.addHeader("Content-Type", "application/xml");
-        StringEntity entity = null;
-        try {
-            entity = new StringEntity(xmlStr, "UTF-8");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        httpPost.setEntity(entity);
-        return sendHttpPost(httpPost);
-    }
-
-    private static String sendHttpPost(HttpPost httpPost) {
+    public static String doPost(String url, String paramStr) {
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse response = null;
         String result = null;
+        HttpPost httpPost = new HttpPost(url);
+//        httpPost.addHeader("Content-Type", "application/xml");
         try {
             httpClient = HttpClients.createDefault();
+            httpPost.setEntity(new StringEntity(paramStr, "UTF-8"));
             response = httpClient.execute(httpPost);
-            HttpEntity entity = response.getEntity();
-            result = EntityUtils.toString(entity, "UTF-8");
+            result = EntityUtils.toString(response.getEntity(), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

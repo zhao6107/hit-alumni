@@ -28,7 +28,7 @@ public class RefreshTimer implements Runnable {
                         if (CacheConsts.JS_API_TICKET != lastJsApiTicket) {
                             //更新access_token和jsapi_ticket的更新时间
                             CacheConsts.LAST_REFRESH_TIME = System.currentTimeMillis();
-                            System.out.println(">>> " + CacheConsts.APP_ACCESS_TOKEN + " " + CacheConsts.JS_API_TICKET);
+                            System.out.println(">>> " + CacheConsts.APP_ACCESS_TOKEN + "   " + CacheConsts.JS_API_TICKET);
                         }
                     }
                 }

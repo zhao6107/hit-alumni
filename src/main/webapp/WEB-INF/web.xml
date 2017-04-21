@@ -13,6 +13,9 @@
         <listener-class>net.i2it.hit.hit_alumni.listener.TimerListener</listener-class>
     </listener>
     <listener>
+        <listener-class>net.i2it.hit.hit_alumni.listener.WebInitListener</listener-class>
+    </listener>
+    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 

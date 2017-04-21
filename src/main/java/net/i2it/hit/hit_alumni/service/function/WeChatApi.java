@@ -1,6 +1,7 @@
 package net.i2it.hit.hit_alumni.service.function;
 
 import com.alibaba.fastjson.JSON;
+import net.i2it.hit.hit_alumni.constant.CacheConsts;
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.entity.vo.api.response.AppAccessTokenVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.response.JsApiTicketVO;
@@ -19,7 +20,7 @@ public class WeChatApi {
     /**
      * 全局access_token请求接口
      */
-    public final static String API_APP_ACCESS_TOKEN = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+    private final static String API_APP_ACCESS_TOKEN = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
     /**
      * 微信网页开发：在微信网页中获取用于置换access_token（在网页中使用）的code
      */
@@ -27,15 +28,19 @@ public class WeChatApi {
     /**
      * 微信网页开发：获取在微信网页中使用的access_token
      */
-    public final static String API_WEB_ACCESS_TOKEN = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+    private final static String API_WEB_ACCESS_TOKEN = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
     /**
      * 微信网页开发：使用js-sdk进行配置的时候，需要的签名生成需要使用jsapi_ticket，这为jsapi_ticket的请求接口
      */
-    public final static String API_WEB_JSAPI_TICKET = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
+    private final static String API_WEB_JSAPI_TICKET = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
     /**
      * 微信支付：统一下单接口，返回结果中最为重要的是prepay_id
      */
-    public final static String API_PAY_UNIFIED_ORDER = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+    private final static String API_PAY_UNIFIED_ORDER = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+    /**
+     * 微信菜单：创建微信菜单的接口
+     */
+    private final static String API_MENU_CREATE = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
 
 
     /**
@@ -67,7 +72,6 @@ public class WeChatApi {
         String url = API_WEB_ACCESS_TOKEN.replace("APPID", ConfigConsts.APP_ID)
                 .replace("SECRET", ConfigConsts.APP_SECRET).replace("CODE", code);
         String result = HTTPUtil.doGet(url);
-        System.out.println(result);
         if (result != null && result.contains("access_token")) {
             return JSON.parseObject(result, WebAccessTokenVO.class);
         }
@@ -98,14 +102,27 @@ public class WeChatApi {
      * @return
      */
     public UnifiedOrderResultVO getUnifiedOrderResult(String unifiedOrderXmlStr) {
-        System.out.println(unifiedOrderXmlStr);
         String result = HTTPUtil.doPost(API_PAY_UNIFIED_ORDER, unifiedOrderXmlStr);
-        System.out.println(result);
         if (result != null) {
             return (UnifiedOrderResultVO) XmlUtil.xmlStr2Object(result, UnifiedOrderResultVO.class);
         }
         System.out.println("[request fail]：请求统一下单接口失败，未得到返回结果。");
         return null;
+    }
+
+    /**
+     * 创建微信菜单接口
+     *
+     * @param menuStr
+     * @return 是否成功创建菜单
+     */
+    public boolean createMenu(String menuStr) {
+        String url = API_MENU_CREATE.replace("ACCESS_TOKEN", CacheConsts.APP_ACCESS_TOKEN);
+        String result = HTTPUtil.doPost(url, menuStr);
+        if (result != null && result.contains("\"errcode\":0,")) {
+            return true;
+        }
+        return false;
     }
 
 }

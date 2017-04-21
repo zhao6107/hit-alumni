@@ -1,5 +1,6 @@
 package net.i2it.hit.hit_alumni.listener;
 
+import net.i2it.hit.hit_alumni.service.function.MenuOption;
 import net.i2it.hit.hit_alumni.service.function.RefreshTimer;
 
 import javax.servlet.ServletContextEvent;
@@ -11,7 +12,8 @@ import javax.servlet.ServletContextListener;
 public class TimerListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-//        new Thread(new RefreshTimer()).start();
+        // 这是系统后台运行的用于定时刷新access_token和jsapi_ticket的
+        new Thread(new RefreshTimer()).start();
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {

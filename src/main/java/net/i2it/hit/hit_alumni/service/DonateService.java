@@ -42,6 +42,8 @@ public class DonateService {
                     .getUnifiedOrderInfo(webAccessTokenVO.getOpenid(), simpleOrderInfo);
             //将统一下单接口接收的参数转为字符串类型的xml
             UnifiedOrderInfoVO unifiedOrderInfoVO = (UnifiedOrderInfoVO) map.get("order_info");
+            //todo 这里正式上线需要将金额进行转换（以元为单位-->以分为单位）
+//            unifiedOrderInfoVO.setTotal_fee(unifiedOrderInfoVO.getTotal_fee() * 100);
             String unifiedOrderXmlStr = XmlUtil.object2XmlStr(unifiedOrderInfoVO);
             //获取统一下单结果
             UnifiedOrderResultVO unifiedOrderResult = weChatApi.getUnifiedOrderResult(unifiedOrderXmlStr);

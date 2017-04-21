@@ -57,71 +57,43 @@
     });
 
     $("#btn-sbt").click(function () {
-        var _trueName = "匿名";
-        if ($("#isAnonymous").val() == 0) {
-        _trueName = $("#trueName").val();
-        }
-        $.ajax({
-            async: false,
-            type: "POST",
-            url: "${requestScope.serverUrl}/donate/donator-info",
-            data: {
-                "out_trade_no": "${requestScope.out_trade_no}",
-                "comment": $("#comment").val(),
-                "trueName": _trueName,
-                "phone": $("#phone").val(),
-                "classNO": $("#classNO").val(),
-                "entryYear": $("#entryYear").val(),
-                "major": $("#major").val(),
-                "mailAddr": $("#mailAddr").val(),
-                "company": $("#company").val(),
-                "job": $("#job").val()
-            },
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (result) {
-                if(result=="1"){
-                    window.location.href = "${requestScope.serverUrl}/donate/result?out_trade_no=${requestScope.out_trade_no}";
+        wx.chooseWXPay({
+            timestamp: ${requestScope.payInfo.timeStamp},
+            nonceStr: '${requestScope.payInfo.nonceStr}',
+            package: '${requestScope.payInfo.packageStr}',
+            signType: '${requestScope.payInfo.signType}',
+            paySign: '${requestScope.payInfo.paySign}',
+            success: function () {
+                var _trueName = "匿名";
+                if ($("#isAnonymous").val() == 0) {
+                    _trueName = $("#trueName").val();
                 }
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: "${requestScope.serverUrl}/donate/donator-info",
+                    data: {
+                        "out_trade_no": "${requestScope.out_trade_no}",
+                        "comment": $("#comment").val(),
+                        "trueName": _trueName,
+                        "phone": $("#phone").val(),
+                        "classNO": $("#classNO").val(),
+                        "entryYear": $("#entryYear").val(),
+                        "major": $("#major").val(),
+                        "mailAddr": $("#mailAddr").val(),
+                        "company": $("#company").val(),
+                        "job": $("#job").val()
+                    },
+                    dataType: "json",
+                    contentType: "application/x-www-form-urlencoded",
+                    success: function (result) {
+                        if (result == "1") {
+                            window.location.href = "${requestScope.serverUrl}/donate/result?out_trade_no=${requestScope.out_trade_no}";
+                        }
+                    }
+                });
             }
         });
-
-        <%--wx.chooseWXPay({--%>
-            <%--timestamp: ${requestScope.payInfo.timeStamp},--%>
-            <%--nonceStr: '${requestScope.payInfo.nonceStr}',--%>
-            <%--package: '${requestScope.payInfo.packageStr}',--%>
-            <%--signType: '${requestScope.payInfo.signType}',--%>
-            <%--paySign: '${requestScope.payInfo.paySign}',--%>
-            <%--success: function () {--%>
-                <%--var _trueName = "匿名";--%>
-                <%--if ($("#isAnonymous").val() == 0) {--%>
-                    <%--_trueName = $("#trueName").val();--%>
-                <%--}--%>
-                <%--$.ajax({--%>
-                    <%--async: false,--%>
-                    <%--type: "POST",--%>
-                    <%--url: "${requestScope.serverUrl}/donate/donator-info",--%>
-                    <%--data: {--%>
-                        <%--"out_trade_no": "${requestScope.out_trade_no}",--%>
-                        <%--"comment": $("#comment").val(),--%>
-                        <%--"trueName": _trueName,--%>
-                        <%--"phone": $("#phone").val(),--%>
-                        <%--"classNO": $("#classNO").val(),--%>
-                        <%--"entryYear": $("#entryYear").val(),--%>
-                        <%--"major": $("#major").val(),--%>
-                        <%--"mailAddr": $("#mailAddr").val(),--%>
-                        <%--"company": $("#company").val(),--%>
-                        <%--"job": $("#job").val()--%>
-                    <%--},--%>
-                    <%--dataType: "json",--%>
-                    <%--contentType: "application/x-www-form-urlencoded",--%>
-                    <%--success: function () {--%>
-                        <%--alert("123");--%>
-                        <%--window.location.href = "${requestScope.serverUrl}/donate/result?out_trade_no=${requestScope.out_trade_no}";--%>
-                    <%--}--%>
-                <%--});--%>
-            <%--}--%>
-        <%--});--%>
     });
 </script>
 </body>

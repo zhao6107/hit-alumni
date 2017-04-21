@@ -1,4 +1,4 @@
-package net.i2it.hit.hit_alumni.entity.vo.po;
+package net.i2it.hit.hit_alumni.entity.po;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -17,9 +17,15 @@ public class DonatePO implements Serializable {
     private String origin;
     private Date time_end;
     private int state;
-    private String true_name;
     private String comment;
+    private String true_name;
     private String phone;
+    private String class_no;
+    private String entry_year;
+    private String major;
+    private String mail_addr;
+    private String company;
+    private String job;
 
     public String getOut_trade_no() {
         return out_trade_no;
@@ -85,14 +91,6 @@ public class DonatePO implements Serializable {
         this.state = state;
     }
 
-    public String getTrue_name() {
-        return true_name;
-    }
-
-    public void setTrue_name(String true_name) {
-        this.true_name = true_name;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -101,12 +99,68 @@ public class DonatePO implements Serializable {
         this.comment = comment;
     }
 
+    public String getTrue_name() {
+        return true_name;
+    }
+
+    public void setTrue_name(String true_name) {
+        this.true_name = true_name;
+    }
+
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getClass_no() {
+        return class_no;
+    }
+
+    public void setClass_no(String class_no) {
+        this.class_no = class_no;
+    }
+
+    public String getEntry_year() {
+        return entry_year;
+    }
+
+    public void setEntry_year(String entry_year) {
+        this.entry_year = entry_year;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getMail_addr() {
+        return mail_addr;
+    }
+
+    public void setMail_addr(String mail_addr) {
+        this.mail_addr = mail_addr;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 
 }
