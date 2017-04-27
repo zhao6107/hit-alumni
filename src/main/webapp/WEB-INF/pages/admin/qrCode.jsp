@@ -16,7 +16,7 @@
 <h2 style="padding-left: 20px;">捐款二维码生成器</h2>
 <hr>
 <div style="padding-left: 20px;">
-    捐款项目：<input type="text" id="itemName"><br>
+    捐款项目：<input type="text" id="itemBody"><br>
     详细描述：<input type="text" id="itemDetail"><br>
     捐款金额：<input type="number" id="itemMoney"><br>
     <button id="submit-btn">提交</button>
@@ -26,7 +26,7 @@
 <script>
     $("#submit-btn").click(function () {
         $("#qrcode").text("");
-        var targetUrl = "${requestScope.targetUrl}?itemInfo=" + $("#itemName").val() + "_" + $("#itemDetail").val() + "_" + $("#itemMoney").val() + "_qrcode";
+        var targetUrl = "${requestScope.targetUrl}?itemInfo=" + $("#itemBody").val() + "_" + $("#itemDetail").val() + "_" + $("#itemMoney").val() + "_qrcode";
         targetUrl = encodeURI(targetUrl);
         var content = "${requestScope.url}".replace("REDIRECT_URI", targetUrl);
         alert(content);

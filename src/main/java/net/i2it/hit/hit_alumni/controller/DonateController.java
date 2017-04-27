@@ -1,16 +1,19 @@
 package net.i2it.hit.hit_alumni.controller;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
+import net.i2it.hit.hit_alumni.entity.po.ItemPO;
 import net.i2it.hit.hit_alumni.entity.vo.DonatorVO;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.JsSdkConfigVO;
+import net.i2it.hit.hit_alumni.service.AdminService;
 import net.i2it.hit.hit_alumni.service.DonateService;
+import net.i2it.hit.hit_alumni.service.function.WeChatApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +33,18 @@ public class DonateController {
 
     @Autowired
     private DonateService donateService;
+    @Autowired
+    private AdminService adminService;
 
+    /**
+     * 对应着直接信息填写支付页面
+     *
+     * @param request
+     * @param itemInfo
+     * @param code
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value = "/pay", method = RequestMethod.GET)
     public String pay(HttpServletRequest request, String itemInfo, String code, ModelMap modelMap) {
         SimpleOrderInfoVO simpleOrderInfo = donateService.getSimpleOrderInfo(itemInfo);
@@ -41,9 +55,15 @@ public class DonateController {
         modelMap.put("jsSdkConfig", jsSdkConfigVO);
         modelMap.put("out_trade_no", map.get("out_trade_no"));
         modelMap.put("serverUrl", ConfigConsts.SERVER_DOMAIN);
-        return "client/payInfo";
+        return "client/payAction";
     }
 
+    /**
+     * 支付成功后微信服务器通知地址
+     *
+     * @param request
+     * @param response
+     */
     @RequestMapping(value = "/notify")
     public void notifyResult(HttpServletRequest request, HttpServletResponse response) {
         //获取支付成功后微信服务器返回的支付成功通知
@@ -70,17 +90,44 @@ public class DonateController {
         }
     }
 
-    @ResponseBody
+    @RequestMapping(value = "/donator-info", method = RequestMethod.GET)
+    public String updateDonatorInfo(String out_trade_no, ModelMap map) {
+        map.put("out_trade_no", out_trade_no);
+        return "client/donatorInfo";
+    }
+
     @RequestMapping(value = "/donator-info", method = RequestMethod.POST)
     public String updateDonatorInfo(String out_trade_no, String comment, DonatorVO donatorVO) {
         donateService.updateDonatorInfo(out_trade_no, comment, donatorVO);
-        return "1";
+        return "client/payResult";
     }
 
+    /**
+     * 支付成功后，自定义的跳转页面
+     *
+     * @param out_trade_no
+     * @return
+     */
     @RequestMapping(value = "/result", method = RequestMethod.GET)
     public String donateResult(String out_trade_no) {
         System.out.println(out_trade_no);
-        return "client/payResult";
+        return "client/donatorInfo";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String listItems(ModelMap map) {
+        map.put("items", adminService.listNotExpiredItems());
+        return "client/allItems";
+    }
+
+    @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
+    public String listItems(@PathVariable int id, ModelMap map) {
+        ItemPO item = adminService.getItem(id);
+        map.put("item", item);
+        map.put("redirectUrl", ConfigConsts.PAY_URL);
+        map.put("targetUrl", WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.APP_ID)
+                .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni"));
+        return "client/payForm";
     }
 
 }

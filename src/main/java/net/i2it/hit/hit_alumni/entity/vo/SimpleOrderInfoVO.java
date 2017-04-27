@@ -2,7 +2,7 @@ package net.i2it.hit.hit_alumni.entity.vo;
 
 public class SimpleOrderInfoVO {
 
-    private String itemName;
+    private String itemBody;
     private String itemDetail;
     private double itemMoney;
     private String origin;
@@ -10,21 +10,21 @@ public class SimpleOrderInfoVO {
     public SimpleOrderInfoVO() {
     }
 
-    public SimpleOrderInfoVO(String itemName, String itemDetail, double itemMoney, String origin) {
+    public SimpleOrderInfoVO(String itemBody, String itemDetail, double itemMoney, String origin) {
 
-        this.itemName = itemName;
+        this.itemBody = itemBody;
         this.itemDetail = itemDetail;
         this.itemMoney = itemMoney;
         this.origin = origin;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getItemBody() {
+        return itemBody;
     }
 
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setItemBody(String itemBody) {
+        this.itemBody = itemBody;
     }
 
     public String getItemDetail() {

@@ -28,7 +28,7 @@ public class UnifiedOrder {
         UnifiedOrderInfoVO orderInfo = new UnifiedOrderInfoVO();
         orderInfo.setOpenid(openid);
         orderInfo.setNonce_str(ValueGeneratorUtil.randomStr(10));
-        orderInfo.setBody(simpleOrderInfo.getItemName());
+        orderInfo.setBody(simpleOrderInfo.getItemBody());
         orderInfo.setDetail(simpleOrderInfo.getItemDetail());
         //todo 这里正式上线时，需要将<*100>去掉，同时前台限制最小捐助为1元，不可有小数
         orderInfo.setTotal_fee((int) (simpleOrderInfo.getItemMoney() * 100));

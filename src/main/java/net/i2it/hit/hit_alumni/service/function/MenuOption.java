@@ -1,6 +1,7 @@
 package net.i2it.hit.hit_alumni.service.function;
 
 import com.alibaba.fastjson.JSON;
+import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.MenuVO;
 
 /**
@@ -42,7 +43,7 @@ public class MenuOption {
 
         button20.setName("校友捐赠");
         button20.setType("view");
-        button20.setUrl("http://alumni.hit.edu.cn");
+        button20.setUrl(ConfigConsts.SERVER_DOMAIN + "/donate/list");
         button2.setName("校友捐赠");
         button2.setSub_button(new MenuVO.Button[]{button20});
 

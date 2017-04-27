@@ -2,7 +2,9 @@ package net.i2it.hit.hit_alumni.service;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.dao.DonateDao;
+import net.i2it.hit.hit_alumni.entity.po.ItemPO;
 import net.i2it.hit.hit_alumni.entity.vo.DonatorVO;
+import net.i2it.hit.hit_alumni.entity.vo.PageItemVO;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.JsSdkConfigVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.PayRequestVO;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -123,4 +126,9 @@ public class DonateService {
     public void updateDonatorInfo(String out_trade_no, String comment, DonatorVO donatorVO) {
         donateDao.updateDonatorInfo(out_trade_no, comment, donatorVO);
     }
+
+    public List<PageItemVO> listNotExpiredItems() {
+        return null;
+    }
+
 }
