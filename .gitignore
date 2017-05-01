@@ -15,8 +15,10 @@ hs_err_pid*
 
 src/test/
 target/
+libs/
 src/main/java/net/i2it/hit/hit_alumni/constant/ConfigConsts.java
 src/main/resources/MP_verify_rkHrUZkg16fUIqT2.txt
+src/main/resources/donate-cer.pdf
 # ignored when using intellij idea
 .idea/
 out/

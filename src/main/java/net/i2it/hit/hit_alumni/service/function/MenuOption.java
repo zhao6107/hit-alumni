@@ -28,16 +28,16 @@ public class MenuOption {
 
         button00.setName("联系我们");
         button00.setType("view");
-        button00.setUrl("http://alumni.hit.edu.cn");
+        button00.setUrl("http://alumni.hit.edu.cn:8080/hitaa/aastaff.php");
         button01.setName("校友刊物");
         button01.setType("view");
-        button01.setUrl("http://alumni.hit.edu.cn");
+        button01.setUrl("http://alumni.hit.edu.cn:8080/hitaa/hitren1.php");
         button0.setName("校友总会");
         button0.setSub_button(new MenuVO.Button[]{button00, button01});
 
         button10.setName("校友返校");
         button10.setType("view");
-        button10.setUrl("http://alumni.hit.edu.cn");
+        button10.setUrl(ConfigConsts.SERVER_DOMAIN + "/alumni/back-school");
         button1.setName("校友服务");
         button1.setSub_button(new MenuVO.Button[]{button10});
 

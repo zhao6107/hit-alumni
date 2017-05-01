@@ -8,7 +8,6 @@ public class DonatorVO {
 
     private String trueName;
     private String phone;
-    private String classNO;
     private String entryYear;
     private String major;
     private String mailAddr;
@@ -29,14 +28,6 @@ public class DonatorVO {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getClassNO() {
-        return classNO;
-    }
-
-    public void setClassNO(String classNO) {
-        this.classNO = classNO;
     }
 
     public String getEntryYear() {
@@ -84,7 +75,6 @@ public class DonatorVO {
         return "DonatorVO{" +
                 "trueName='" + trueName + '\'' +
                 ", phone='" + phone + '\'' +
-                ", classNO='" + classNO + '\'' +
                 ", entryYear=" + entryYear +
                 ", major='" + major + '\'' +
                 ", mailAddr='" + mailAddr + '\'' +

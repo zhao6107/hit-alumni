@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
+    <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/common.css">
 </head>
 <body>
-<p style="padding-left: 8px;">正在跳转中...</p>
+<div class="weui-loadmore bd-m-t">
+    <i class="weui-loading"></i>
+    <span class="weui-loadmore__tips">正在跳转</span>
+</div>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     var time = 3;
@@ -37,7 +42,7 @@
             signType: '${requestScope.payInfo.signType}',
             paySign: '${requestScope.payInfo.paySign}',
             success: function () {
-                window.location.href = "/donate/donator-info?out_trade_no=${out_trade_no}"
+                window.location.href = "/donate/donator-info?item_no=${item_no}&out_trade_no=${out_trade_no}"
             }
         });
     }

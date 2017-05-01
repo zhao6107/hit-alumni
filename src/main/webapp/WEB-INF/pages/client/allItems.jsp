@@ -6,37 +6,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
-    <style type="text/css" rel="stylesheet">
-        table, tr, td {
-            border: 2px solid #cccccc;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/common.css">
 </head>
 <body>
-<div style="padding-left: 8px;">
-    <h2>募捐项目</h2>
-    <table>
-        <tr>
-            <th>编号</th>
-            <th>发起时间</th>
-            <th>募捐项目名称</th>
-            <th>募捐项目描述</th>
-            <th>目标筹集资金</th>
-            <th>已筹集资金</th>
-            <th>捐助</th>
-        </tr>
-        <c:forEach items="${items}" var="item">
-            <tr>
-                <td>${item.id}</td>
-                <td><fmt:formatDate value="${item.time_begin}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                <td>${item.body}</td>
-                <td>${item.detail}</td>
-                <td>${item.targetFund}元</td>
-                <td>${item.raisedFund}元</td>
-                <td><a href="/donate/item/${item.id}">去捐助</a></td>
-            </tr>
-        </c:forEach>
-    </table>
+<div class="container js_container">
+    <div class="hd">筹款项目列表</div>
+    <div class="weui-panel bd-m-t">
+        <div class="weui-panel__hd">正在进行的筹款项目</div>
+        <div class="weui-panel__bd">
+            <c:forEach items="${items}" var="item">
+                <a class="weui-media-box weui-media-box_text" style="display: block;" href="/donate/item/${item.id}">
+                    <h4 class="weui-media-box__title">${item.body}</h4>
+                    <p class="weui-media-box__desc">${item.detail}</p>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">已筹${item.raisedFund}元</li>
+                        <li class="weui-media-box__info__meta">目标${item.targetFund}元</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                            <fmt:formatDate value="${item.time_begin}" pattern="yyyy-MM-dd"/>
+                        </li>
+                    </ul>
+                </a>
+            </c:forEach>
+            <!-- 当没有数据的时候 -->
+            <c:if test="${empty items}">
+                <div class="weui-loadmore weui-loadmore_line">
+                    <span class="weui-loadmore__tips">暂无数据</span>
+                </div>
+            </c:if>
+        </div>
+    </div>
 </div>
 </body>
 </html>
+

@@ -11,8 +11,8 @@ public class ItemPO {
     private int id;
     private String body;
     private String detail;
-    private int raisedFund;
-    private int targetFund;
+    private double raisedFund;
+    private double targetFund;
     private Date time_begin;
     private Date time_end;
 
@@ -40,19 +40,19 @@ public class ItemPO {
         this.detail = detail;
     }
 
-    public int getRaisedFund() {
+    public double getRaisedFund() {
         return raisedFund;
     }
 
-    public void setRaisedFund(int raisedFund) {
+    public void setRaisedFund(double raisedFund) {
         this.raisedFund = raisedFund;
     }
 
-    public int getTargetFund() {
+    public double getTargetFund() {
         return targetFund;
     }
 
-    public void setTargetFund(int targetFund) {
+    public void setTargetFund(double targetFund) {
         this.targetFund = targetFund;
     }
 

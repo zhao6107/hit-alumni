@@ -13,14 +13,13 @@ public class DonatePO implements Serializable {
     private String openid;
     private String body;
     private String detail;
-    private int total_fee;
+    private double total_fee;
     private String origin;
     private Date time_end;
     private int state;
     private String comment;
     private String true_name;
     private String phone;
-    private String class_no;
     private String entry_year;
     private String major;
     private String mail_addr;
@@ -59,11 +58,11 @@ public class DonatePO implements Serializable {
         this.detail = detail;
     }
 
-    public int getTotal_fee() {
+    public double getTotal_fee() {
         return total_fee;
     }
 
-    public void setTotal_fee(int total_fee) {
+    public void setTotal_fee(double total_fee) {
         this.total_fee = total_fee;
     }
 
@@ -113,14 +112,6 @@ public class DonatePO implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getClass_no() {
-        return class_no;
-    }
-
-    public void setClass_no(String class_no) {
-        this.class_no = class_no;
     }
 
     public String getEntry_year() {

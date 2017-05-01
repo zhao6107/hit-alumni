@@ -50,7 +50,7 @@ public class DonateController {
         SimpleOrderInfoVO simpleOrderInfo = donateService.getSimpleOrderInfo(itemInfo);
         Map<String, Object> map = donateService.getPayRequestInfo(code, simpleOrderInfo);
         JsSdkConfigVO jsSdkConfigVO = donateService.getJsSdkConfig(request);
-        modelMap.put("simpleOrder", simpleOrderInfo);
+        modelMap.put("item_no", simpleOrderInfo.getItemId());
         modelMap.put("payInfo", map.get("payRequestVO"));
         modelMap.put("jsSdkConfig", jsSdkConfigVO);
         modelMap.put("out_trade_no", map.get("out_trade_no"));
@@ -91,9 +91,10 @@ public class DonateController {
     }
 
     @RequestMapping(value = "/donator-info", method = RequestMethod.GET)
-    public String updateDonatorInfo(String out_trade_no, ModelMap map) {
+    public String updateDonatorInfo(String item_no, String out_trade_no, ModelMap map) {
+        donateService.updateRaisedFund(item_no, out_trade_no);
         map.put("out_trade_no", out_trade_no);
-        return "client/donatorInfo";
+        return "client/donatorForm";
     }
 
     @RequestMapping(value = "/donator-info", method = RequestMethod.POST)
@@ -111,7 +112,7 @@ public class DonateController {
     @RequestMapping(value = "/result", method = RequestMethod.GET)
     public String donateResult(String out_trade_no) {
         System.out.println(out_trade_no);
-        return "client/donatorInfo";
+        return "client/donatorForm";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

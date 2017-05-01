@@ -6,6 +6,15 @@ public class SimpleOrderInfoVO {
     private String itemDetail;
     private double itemMoney;
     private String origin;
+    private int itemId;
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
 
     public SimpleOrderInfoVO() {
     }
@@ -16,6 +25,14 @@ public class SimpleOrderInfoVO {
         this.itemDetail = itemDetail;
         this.itemMoney = itemMoney;
         this.origin = origin;
+    }
+
+    public SimpleOrderInfoVO(String itemBody, String itemDetail, double itemMoney, String origin, int itemId) {
+        this.itemBody = itemBody;
+        this.itemDetail = itemDetail;
+        this.itemMoney = itemMoney;
+        this.origin = origin;
+        this.itemId = itemId;
     }
 
     public String getItemBody() {

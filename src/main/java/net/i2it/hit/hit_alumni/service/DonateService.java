@@ -2,7 +2,7 @@ package net.i2it.hit.hit_alumni.service;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.dao.DonateDao;
-import net.i2it.hit.hit_alumni.entity.po.ItemPO;
+import net.i2it.hit.hit_alumni.dao.ItemDao;
 import net.i2it.hit.hit_alumni.entity.vo.DonatorVO;
 import net.i2it.hit.hit_alumni.entity.vo.PageItemVO;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
@@ -18,6 +18,7 @@ import net.i2it.hit.hit_alumni.service.function.WeChatApi;
 import net.i2it.hit.hit_alumni.util.ValueGeneratorUtil;
 import net.i2it.hit.hit_alumni.util.WebUtil;
 import net.i2it.hit.hit_alumni.util.XmlUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,8 @@ public class DonateService {
 
     @Autowired
     private DonateDao donateDao;
+    @Autowired
+    private ItemDao itemDao;
 
     private Map<String, Object> getUnifiedOrderResult(String code, SimpleOrderInfoVO simpleOrderInfo) {
         WeChatApi weChatApi = new WeChatApi();
@@ -44,12 +47,12 @@ public class DonateService {
             Map<String, Object> map = new UnifiedOrder()
                     .getUnifiedOrderInfo(webAccessTokenVO.getOpenid(), simpleOrderInfo);
             //将统一下单接口接收的参数转为字符串类型的xml
-            UnifiedOrderInfoVO unifiedOrderInfoVO = (UnifiedOrderInfoVO) map.get("order_info");
-            //todo 这里正式上线需要将金额进行转换（以元为单位-->以分为单位）
-//            unifiedOrderInfoVO.setTotal_fee(unifiedOrderInfoVO.getTotal_fee() * 100);
+            UnifiedOrderInfoVO unifiedOrderInfoVO = (UnifiedOrderInfoVO) map.get("order_info");//得到的对象中的金额是以单位分记的
             String unifiedOrderXmlStr = XmlUtil.object2XmlStr(unifiedOrderInfoVO);
             //获取统一下单结果
             UnifiedOrderResultVO unifiedOrderResult = weChatApi.getUnifiedOrderResult(unifiedOrderXmlStr);
+            double totalFee = simpleOrderInfo.getItemMoney();//这个对象中的金额是以单位元记的
+            map.put("total_fee", totalFee);
             //todo   donateDao.save(map)库操作可能会抛出异常
             if (unifiedOrderResult != null && donateDao.save(map) == 1) {
                 map.clear();
@@ -71,6 +74,8 @@ public class DonateService {
         String[] arr = itemInfo.split("_");
         if (arr.length == 4) {
             return new SimpleOrderInfoVO(arr[0], arr[1], Double.parseDouble(arr[2]), arr[3]);
+        } else if (arr.length == 5) {
+            return new SimpleOrderInfoVO(arr[0], arr[1], Double.parseDouble(arr[2]), arr[3], Integer.parseInt(arr[4]));
         }
         System.out.println("[request parameter error]：订单请求参数不合法。");
         return null;
@@ -127,8 +132,11 @@ public class DonateService {
         donateDao.updateDonatorInfo(out_trade_no, comment, donatorVO);
     }
 
-    public List<PageItemVO> listNotExpiredItems() {
-        return null;
+    public boolean updateRaisedFund(String itemId, String out_trade_no) {
+        if (itemDao.updateRaisedFund(itemId, out_trade_no) == 1) {
+            return true;
+        }
+        return false;
     }
 
 }

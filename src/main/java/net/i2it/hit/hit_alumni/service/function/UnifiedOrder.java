@@ -30,7 +30,7 @@ public class UnifiedOrder {
         orderInfo.setNonce_str(ValueGeneratorUtil.randomStr(10));
         orderInfo.setBody(simpleOrderInfo.getItemBody());
         orderInfo.setDetail(simpleOrderInfo.getItemDetail());
-        //todo 这里正式上线时，需要将<*100>去掉，同时前台限制最小捐助为1元，不可有小数
+        //统一下单接口中支付金额的单位为分，∴需要×100
         orderInfo.setTotal_fee((int) (simpleOrderInfo.getItemMoney() * 100));
         // 借助于日期实现的字段
         Date dateTime = new Date();

@@ -57,4 +57,15 @@ public interface ItemDao {
     })
     List<ItemPO> listNotExpiredItems();
 
+    /**
+     * 成功捐款后，更新已捐款的金额数目
+     *
+     * @param itemId
+     * @param out_trade_no
+     * @return
+     */
+    @Update("UPDATE t_items t1,t_donate t2 SET t1.raised_fund = t1.raised_fund+t2.total_fee " +
+            "WHERE t1.id = #{itemId} AND t2.out_trade_no = #{out_trade_no} AND t1.body = t2.body")
+    int updateRaisedFund(@Param("itemId") String itemId, @Param("out_trade_no") String out_trade_no);
+
 }
