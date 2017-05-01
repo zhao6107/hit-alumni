@@ -91,7 +91,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- 读写pdf文件的库 -->
+        <!-- 读写pdf文件的库:itext -->
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
@@ -101,6 +101,12 @@
             <groupId>com.itextpdf</groupId>
             <artifactId>itext-asian</artifactId>
             <version>5.2.0</version>
+        </dependency>
+        <!-- pdfbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.5</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
