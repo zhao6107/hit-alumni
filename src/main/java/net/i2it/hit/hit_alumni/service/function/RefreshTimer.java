@@ -17,26 +17,28 @@ public class RefreshTimer implements Runnable {
             String lastAccessToken = CacheConsts.APP_ACCESS_TOKEN;
             String lastJsApiTicket = CacheConsts.JS_API_TICKET;
             while (true) {
-                //更新access_token
-                AppAccessTokenVO accessToken = apiService.getAppAccessToken(ConfigConsts.getApp_id(), ConfigConsts.getApp_secret());
-                if (accessToken != null) {
-                    CacheConsts.APP_ACCESS_TOKEN = accessToken.getAccess_token();
-                    if (CacheConsts.APP_ACCESS_TOKEN != lastAccessToken) {
-                        //更新jsapi_ticket
-                        JsApiTicketVO jsApiTicket = apiService.getJsApiTIcket(CacheConsts.APP_ACCESS_TOKEN);
-                        CacheConsts.JS_API_TICKET = jsApiTicket.getTicket();
-                        if (CacheConsts.JS_API_TICKET != lastJsApiTicket) {
-                            //更新access_token和jsapi_ticket的更新时间
-                            CacheConsts.LAST_REFRESH_TIME = System.currentTimeMillis();
-                            System.out.println(">>> " + CacheConsts.APP_ACCESS_TOKEN + "   " + CacheConsts.JS_API_TICKET);
+                if (ConfigConsts.getApp_id() != null && ConfigConsts.getApp_secret() != null) {
+                    //更新access_token
+                    AppAccessTokenVO accessToken = apiService.getAppAccessToken(ConfigConsts.getApp_id(), ConfigConsts.getApp_secret());
+                    if (accessToken != null) {
+                        CacheConsts.APP_ACCESS_TOKEN = accessToken.getAccess_token();
+                        if (CacheConsts.APP_ACCESS_TOKEN != lastAccessToken) {
+                            //更新jsapi_ticket
+                            JsApiTicketVO jsApiTicket = apiService.getJsApiTIcket(CacheConsts.APP_ACCESS_TOKEN);
+                            CacheConsts.JS_API_TICKET = jsApiTicket.getTicket();
+                            if (CacheConsts.JS_API_TICKET != lastJsApiTicket) {
+                                //更新access_token和jsapi_ticket的更新时间
+                                CacheConsts.LAST_REFRESH_TIME = System.currentTimeMillis();
+                                System.out.println(">>> " + CacheConsts.APP_ACCESS_TOKEN + "   " + CacheConsts.JS_API_TICKET);
+                            }
                         }
                     }
                 }
 
                 if (System.currentTimeMillis() - CacheConsts.LAST_REFRESH_TIME > 90 * 60 * 1000) {
-                    //如果没有成功刷新，30秒后尝试再次刷新
+                    //如果没有成功刷新，20秒后尝试再次刷新
                     try {
-                        Thread.sleep(30 * 1000);
+                        Thread.sleep(20 * 1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

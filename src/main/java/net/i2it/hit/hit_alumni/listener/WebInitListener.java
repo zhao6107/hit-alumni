@@ -1,30 +1,25 @@
 package net.i2it.hit.hit_alumni.listener;
 
-import net.i2it.hit.hit_alumni.constant.CacheConsts;
-import net.i2it.hit.hit_alumni.service.function.MenuOption;
+import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.io.IOException;
 
 /**
- * 网站每次启动时需要初始化的设置监听器
- * Created by liuming on 2017/4/21.
+ * 网站每次启动时需要对web项目的配置进行初始化的设置监听器
+ * Created by liuming on 2017/5/2.
  */
 public class WebInitListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        // 系统启动时，开启菜单创建操作
-        while (true) {
-            //保证获得access_token，在进行菜单的创建
-            if (CacheConsts.LAST_REFRESH_TIME != 0 && new MenuOption().create()) {
-                System.out.println(">>> 微信菜单创建成功...");
-                break;
-            }
-            try {
-                Thread.sleep(10 * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        //加载系统配置信息
+        try {
+            ConfigConsts.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 

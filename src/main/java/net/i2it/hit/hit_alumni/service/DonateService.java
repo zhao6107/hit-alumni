@@ -145,7 +145,6 @@ public class DonateService {
 
     public String createCer(String out_trade_no) {
         DonatePO donatePO = donateDao.get(out_trade_no);
-        System.out.println(donatePO.toString());
         String name = donatePO.getTrue_name();
         if (name != null || !"匿名".equals(name)) {
             Map<String, String> map = new HashMap<String, String>();

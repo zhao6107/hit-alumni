@@ -77,8 +77,10 @@ public class ConfigConsts {
         String configFilePath = ConfigConsts.class.getClassLoader().getResource("hit-alumni.properties").getPath();
         //如果路径中含有中文需要解码
         configFilePath = URLDecoder.decode(configFilePath, "utf-8");
+
         Properties properties = new Properties();
         properties.load(new FileInputStream(configFilePath));
+
         Field[] fields = ConfigConsts.class.getDeclaredFields();
         ConfigConsts obj = new ConfigConsts();
         for (Field field : fields) {
@@ -103,7 +105,7 @@ public class ConfigConsts {
                 }
                 newStr.append(api_functions[api_functions.length - 1] + "]");
                 // 将新结果赋值为这个变量
-                field.set(obj, newStr);
+                field.set(obj, newStr.toString());
             } else {
                 field.set(obj, properties.get(field.getName()));
             }

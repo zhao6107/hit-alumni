@@ -1,5 +1,6 @@
 package net.i2it.hit.hit_alumni.listener;
 
+import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.service.function.MenuOption;
 import net.i2it.hit.hit_alumni.service.function.RefreshTimer;
 
