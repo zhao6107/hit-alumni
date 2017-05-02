@@ -69,8 +69,8 @@ public class WeChatApi {
      * @return
      */
     public WebAccessTokenVO getWebAccessToken(String code) {
-        String url = API_WEB_ACCESS_TOKEN.replace("APPID", ConfigConsts.APP_ID)
-                .replace("SECRET", ConfigConsts.APP_SECRET).replace("CODE", code);
+        String url = API_WEB_ACCESS_TOKEN.replace("APPID", ConfigConsts.getApp_id())
+                .replace("SECRET", ConfigConsts.getApp_secret()).replace("CODE", code);
         String result = HTTPUtil.doGet(url);
         if (result != null && result.contains("access_token")) {
             return JSON.parseObject(result, WebAccessTokenVO.class);

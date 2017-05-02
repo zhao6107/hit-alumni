@@ -21,6 +21,7 @@ public class ValueGeneratorUtil {
 
     public static final String DATE_FORMAT_PATTERN = "yyyyMMddHHmmss";
     public static final String DATE_FORMAT_PATTERN2 = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_FORMAT_PATTERN3 = "yyyy年MM月dd日";
 
     /**
      * 用于获取只包含数字且指定长度的随机字符串
@@ -68,7 +69,7 @@ public class ValueGeneratorUtil {
         for (int i = 0; i < keys.length; i++) {
             sb.append(keys[i] + "=" + params.get(keys[i]) + "&");
         }
-        sb.append("key=" + ConfigConsts.API_SECRET);
+        sb.append("key=" + ConfigConsts.getApi_secret());
         return EncryptionUtil.encrypt(sb.toString().replace("packageStr", "package"), EncryptionUtil.MD5).toUpperCase();
     }
 

@@ -18,7 +18,7 @@ public class RefreshTimer implements Runnable {
             String lastJsApiTicket = CacheConsts.JS_API_TICKET;
             while (true) {
                 //更新access_token
-                AppAccessTokenVO accessToken = apiService.getAppAccessToken(ConfigConsts.APP_ID, ConfigConsts.APP_SECRET);
+                AppAccessTokenVO accessToken = apiService.getAppAccessToken(ConfigConsts.getApp_id(), ConfigConsts.getApp_secret());
                 if (accessToken != null) {
                     CacheConsts.APP_ACCESS_TOKEN = accessToken.getAccess_token();
                     if (CacheConsts.APP_ACCESS_TOKEN != lastAccessToken) {

@@ -12,6 +12,7 @@
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>
     <mvc:resources mapping="/MP_verify_rkHrUZkg16fUIqT2.txt" location="/WEB-INF/classes/MP_verify_rkHrUZkg16fUIqT2.txt"/>
+    <mvc:resources mapping="/cer/*" location="/WEB-INF/classes/cer/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>

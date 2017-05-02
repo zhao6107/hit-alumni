@@ -1,11 +1,11 @@
 package net.i2it.hit.hit_alumni.dao;
 
+import net.i2it.hit.hit_alumni.entity.po.DonatePO;
 import net.i2it.hit.hit_alumni.entity.vo.DonatorVO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.Map;
 
 @Repository
@@ -23,5 +23,16 @@ public interface DonateDao {
             "entry_year=#{donatorVO.entryYear},major=#{donatorVO.major},mail_addr=#{donatorVO.mailAddr}," +
             "company=#{donatorVO.company},job=#{donatorVO.job} where out_trade_no=#{out_trade_no}")
     int updateDonatorInfo(@Param("out_trade_no") String out_trade_no, @Param("comment") String comment, @Param("donatorVO") DonatorVO donatorVO);
+
+    @Select("SELECT * FROM t_donate WHERE out_trade_no = #{out_trade_no}")
+    @Results(value = {
+            @Result(property = "out_trade_no", column = "out_trade_no", javaType = String.class),
+            @Result(property = "total_fee", column = "total_fee", javaType = double.class),
+            @Result(property = "true_name", column = "true_name", javaType = String.class),
+            @Result(property = "entry_year", column = "entry_year", javaType = String.class),
+            @Result(property = "mail_addr", column = "mail_addr", javaType = String.class),
+            @Result(property = "time_end", column = "time_end", javaType = Date.class)
+    })
+    DonatePO get(@Param("out_trade_no") String out_trade_no);
 
 }

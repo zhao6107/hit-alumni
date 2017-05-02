@@ -21,7 +21,7 @@ public class JsSdkConfig {
     public JsSdkConfigVO getJsSdkConfig(String url) {
         JsSdkConfigVO jsSdkConfigVO = new JsSdkConfigVO();
         jsSdkConfigVO.setNonceStr(ValueGeneratorUtil.randomStr(16));
-        jsSdkConfigVO.setAppId(ConfigConsts.APP_ID);
+        jsSdkConfigVO.setAppId(ConfigConsts.getApp_id());
         jsSdkConfigVO.setTimestamp(System.currentTimeMillis());
         jsSdkConfigVO.setSignature(this.getSign(jsSdkConfigVO, url));
         return jsSdkConfigVO;

@@ -1,7 +1,7 @@
 package net.i2it.hit.hit_alumni.entity.po;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 对应着数据中的t_donate数据表
@@ -152,6 +152,28 @@ public class DonatePO implements Serializable {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    @Override
+    public String toString() {
+        return "DonatePO{" +
+                "out_trade_no='" + out_trade_no + '\'' +
+                ", openid='" + openid + '\'' +
+                ", body='" + body + '\'' +
+                ", detail='" + detail + '\'' +
+                ", total_fee=" + total_fee +
+                ", origin='" + origin + '\'' +
+                ", time_end=" + time_end +
+                ", state=" + state +
+                ", comment='" + comment + '\'' +
+                ", true_name='" + true_name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", entry_year='" + entry_year + '\'' +
+                ", major='" + major + '\'' +
+                ", mail_addr='" + mail_addr + '\'' +
+                ", company='" + company + '\'' +
+                ", job='" + job + '\'' +
+                '}';
     }
 
 }

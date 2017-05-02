@@ -15,8 +15,8 @@ public class JsSdkConfigVO {
     private String jsApiList;
 
     public JsSdkConfigVO() {
-        this.debug = ConfigConsts.DEBUG;
-        this.jsApiList = ConfigConsts.JS_API_LIST;
+        this.debug = ConfigConsts.isJs_sdk_debug();
+        this.jsApiList = ConfigConsts.getJs_api_list();
     }
 
     public JsSdkConfigVO(String appId, int timestamp, String nonceStr, String signature) {
@@ -24,8 +24,8 @@ public class JsSdkConfigVO {
         this.timestamp = timestamp;
         this.nonceStr = nonceStr;
         this.signature = signature;
-        this.debug = ConfigConsts.DEBUG;
-        this.jsApiList = ConfigConsts.JS_API_LIST;
+        this.debug = ConfigConsts.isJs_sdk_debug();
+        this.jsApiList = ConfigConsts.getJs_api_list();
     }
 
     public boolean isDebug() {

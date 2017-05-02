@@ -3,6 +3,7 @@ package net.i2it.hit.hit_alumni.service;
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.dao.DonateDao;
 import net.i2it.hit.hit_alumni.dao.ItemDao;
+import net.i2it.hit.hit_alumni.entity.po.DonatePO;
 import net.i2it.hit.hit_alumni.entity.vo.DonatorVO;
 import net.i2it.hit.hit_alumni.entity.vo.PageItemVO;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
@@ -15,6 +16,7 @@ import net.i2it.hit.hit_alumni.entity.vo.api.response.WebAccessTokenVO;
 import net.i2it.hit.hit_alumni.service.function.JsSdkConfig;
 import net.i2it.hit.hit_alumni.service.function.UnifiedOrder;
 import net.i2it.hit.hit_alumni.service.function.WeChatApi;
+import net.i2it.hit.hit_alumni.util.DonateCertificateUtil;
 import net.i2it.hit.hit_alumni.util.ValueGeneratorUtil;
 import net.i2it.hit.hit_alumni.util.WebUtil;
 import net.i2it.hit.hit_alumni.util.XmlUtil;
@@ -23,7 +25,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -107,7 +111,7 @@ public class DonateService {
         }
         UnifiedOrderResultVO unifiedOrderResult = (UnifiedOrderResultVO) map.get("unifiedOrderResult");
         PayRequestVO payRequestVO = new PayRequestVO();
-        payRequestVO.setAppId(ConfigConsts.APP_ID);
+        payRequestVO.setAppId(ConfigConsts.getApp_id());
         payRequestVO.setTimeStamp(System.currentTimeMillis() / 10 + "");
         payRequestVO.setNonceStr(ValueGeneratorUtil.randomStr(20));
         payRequestVO.setPackageStr("prepay_id=" + ((unifiedOrderResult != null) ? unifiedOrderResult.getPrepay_id() : "0123456789"));
@@ -137,6 +141,28 @@ public class DonateService {
             return true;
         }
         return false;
+    }
+
+    public String createCer(String out_trade_no) {
+        DonatePO donatePO = donateDao.get(out_trade_no);
+        System.out.println(donatePO.toString());
+        String name = donatePO.getTrue_name();
+        if (name != null || !"匿名".equals(name)) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("out_trade_no", out_trade_no);
+            map.put("name", name);
+            map.put("money", this.formatNumber(donatePO.getTotal_fee()));
+            map.put("date", ValueGeneratorUtil.date2Str(donatePO.getTime_end(),
+                    ValueGeneratorUtil.DATE_FORMAT_PATTERN3));
+            if (DonateCertificateUtil.generateCerImage(map)) {
+                return donatePO.getOut_trade_no();
+            }
+        }
+        return null;
+    }
+
+    private String formatNumber(double number) {
+        return new DecimalFormat("#.00").format(number);
     }
 
 }

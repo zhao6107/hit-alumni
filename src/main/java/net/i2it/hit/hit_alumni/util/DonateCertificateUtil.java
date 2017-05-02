@@ -28,29 +28,35 @@ public class DonateCertificateUtil {
 
     private static final String TEMPLATE_FILE_PATH = "D:/我的代码/CodeRepo/hit-alumni/src/main/resources/donate-cer.pdf/";
     private static final String CER_FOLD_PATH = "D:/我的代码/CodeRepo/hit-alumni/src/main/resources/cer/";
+    private static final String FONT_PATH = "D:/我的代码/CodeRepo/hit-alumni/src/main/resources/STZHONGS.TTF";
 
-
-    // 利用pdf模板生成新的pdf文件
-    public static void createCerPDF(Map<String, String> map) {
-        PdfReader reader;
-        FileOutputStream out;
-        ByteArrayOutputStream bos;
-        PdfStamper stamper;
+    /**
+     * 通用的 根据pdf模板（填写表单）生成新的pdf文件
+     *
+     * @param data
+     * @param srcFile
+     * @param newFile
+     */
+    public static void createCerPDF(Map<String, String> data, String srcFile, String newFile) {
         try {
-            reader = new PdfReader(TEMPLATE_FILE_PATH);//读取pdf模板
-            bos = new ByteArrayOutputStream();
-            stamper = new PdfStamper(reader, bos);
+            PdfReader reader = new PdfReader(srcFile);//读取pdf模板
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            PdfStamper stamper = new PdfStamper(reader, bos);
+
+            // todo 设置pdf字体以及各式
+//            BaseFont bf = BaseFont.createFont(FONT_PATH, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+//            Font font = new Font(bf, 25, Font.BOLD);
 
             AcroFields form = stamper.getAcroFields();
             java.util.Iterator<String> it = form.getFields().keySet().iterator();
             while (it.hasNext()) {
                 String name = it.next().toString();
-                form.setField(name, map.get(name));
+                form.setField(name, data.get(name));
             }
             stamper.setFormFlattening(true);//如果为false那么生成的PDF文件还能编辑，一定要设为true
             stamper.close();
 
-            out = new FileOutputStream(CER_FOLD_PATH + map.get("out_trade_no") + ".pdf");//输出流
+            FileOutputStream out = new FileOutputStream(newFile);//输出流
             out.write(bos.toByteArray());
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,18 +65,34 @@ public class DonateCertificateUtil {
         }
     }
 
-    public static void pdf2Image(String out_trade_no) {
+    // 针对本项目的更为简便的调用方法，生成新的pdf文件
+    public static void createCerPDF(Map<String, String> data) {
+        createCerPDF(data, TEMPLATE_FILE_PATH, CER_FOLD_PATH + data.get("out_trade_no") + ".pdf");
+    }
+
+    /**
+     * 通用的 根据pdf文件转为对应的图片
+     *
+     * @param pdfFile
+     * @param imageFile
+     */
+    public static void pdf2Image(String pdfFile, String imageFile) {
         try {
-            PDDocument document = PDDocument.load(new File(CER_FOLD_PATH + out_trade_no + ".pdf"));
+            PDDocument document = PDDocument.load(new File(pdfFile));
             PDFRenderer renderer = new PDFRenderer(document);
-            BufferedImage bufferedImage = renderer.renderImage(0, 96, ImageType.RGB);
-            ImageIO.write(bufferedImage, "PNG", new File(CER_FOLD_PATH + out_trade_no + ".png"));
+            BufferedImage bufferedImage = renderer.renderImageWithDPI(0, 96, ImageType.RGB);
+            ImageIO.write(bufferedImage, "PNG", new File(imageFile));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void generateCerImage(Map<String, String> map) {
+    //本项目中直接使用将pdf转为图片
+    public static void pdf2Image(String out_trade_no) {
+        pdf2Image(CER_FOLD_PATH + out_trade_no + ".pdf", CER_FOLD_PATH + out_trade_no + ".png");
+    }
+
+    public static boolean generateCerImage(Map<String, String> map) {
         String out_trade_no = map.get("out_trade_no");
         File imageFile = new File(CER_FOLD_PATH + out_trade_no + ".png");
         if (!imageFile.exists()) {//图片格式的捐赠证书是否已经存在，存在就不需要进行重复生成
@@ -80,6 +102,11 @@ public class DonateCertificateUtil {
             }
             pdf2Image(out_trade_no);
         }
+
+        if (imageFile.exists()) {
+            return true;
+        }
+        return false;
     }
 
 }

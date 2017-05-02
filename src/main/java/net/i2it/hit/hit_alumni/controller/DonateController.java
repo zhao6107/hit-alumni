@@ -54,7 +54,7 @@ public class DonateController {
         modelMap.put("payInfo", map.get("payRequestVO"));
         modelMap.put("jsSdkConfig", jsSdkConfigVO);
         modelMap.put("out_trade_no", map.get("out_trade_no"));
-        modelMap.put("serverUrl", ConfigConsts.SERVER_DOMAIN);
+        modelMap.put("serverUrl", ConfigConsts.getServer_domain_url());
         return "client/payAction";
     }
 
@@ -98,21 +98,10 @@ public class DonateController {
     }
 
     @RequestMapping(value = "/donator-info", method = RequestMethod.POST)
-    public String updateDonatorInfo(String out_trade_no, String comment, DonatorVO donatorVO) {
+    public String updateDonatorInfo(String out_trade_no, String comment, DonatorVO donatorVO, ModelMap map) {
         donateService.updateDonatorInfo(out_trade_no, comment, donatorVO);
+        map.put("out_trade_no", donateService.createCer(out_trade_no));
         return "client/payResult";
-    }
-
-    /**
-     * 支付成功后，自定义的跳转页面
-     *
-     * @param out_trade_no
-     * @return
-     */
-    @RequestMapping(value = "/result", method = RequestMethod.GET)
-    public String donateResult(String out_trade_no) {
-        System.out.println(out_trade_no);
-        return "client/donatorForm";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -125,8 +114,8 @@ public class DonateController {
     public String listItems(@PathVariable int id, ModelMap map) {
         ItemPO item = adminService.getItem(id);
         map.put("item", item);
-        map.put("redirectUrl", ConfigConsts.PAY_URL);
-        map.put("targetUrl", WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.APP_ID)
+        map.put("redirectUrl", ConfigConsts.getPay_url());
+        map.put("targetUrl", WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.getApp_id())
                 .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni"));
         return "client/payForm";
     }

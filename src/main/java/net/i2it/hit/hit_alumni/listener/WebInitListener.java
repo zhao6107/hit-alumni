@@ -13,7 +13,7 @@ import javax.servlet.ServletContextListener;
 public class WebInitListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        //todo 系统启动时，开启菜单创建操作
+        // 系统启动时，开启菜单创建操作
         while (true) {
             //保证获得access_token，在进行菜单的创建
             if (CacheConsts.LAST_REFRESH_TIME != 0 && new MenuOption().create()) {

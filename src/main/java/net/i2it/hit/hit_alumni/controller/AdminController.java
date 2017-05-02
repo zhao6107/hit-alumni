@@ -79,8 +79,8 @@ public class AdminController {
 
     @RequestMapping(value = "/item/qrcode", method = RequestMethod.GET)
     public String createQRCode(ModelMap map) {
-        String targetUrl = ConfigConsts.PAY_URL;
-        String url = WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.APP_ID)
+        String targetUrl = ConfigConsts.getPay_url();
+        String url = WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.getApp_id())
                 .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
         map.put("url", url);
         map.put("targetUrl", targetUrl);

@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "xml")
 public class UnifiedOrderInfoVO {
 
-    private String appid = ConfigConsts.APP_ID;
-    private String mch_id = ConfigConsts.MCH_ID;
+    private String appid = ConfigConsts.getApp_id();
+    private String mch_id = ConfigConsts.getMch_id();
     private String openid;
     private String nonce_str;
     private String sign;
