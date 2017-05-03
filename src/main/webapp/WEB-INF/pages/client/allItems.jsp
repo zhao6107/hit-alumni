@@ -12,7 +12,7 @@
 <body>
 <div class="container js_container">
     <div class="hd">筹款项目列表</div>
-    <div class="weui-panel bd-m-t">
+    <div class="weui-panel" style="margin-top: 30px;">
         <div class="weui-panel__hd">正在进行的筹款项目</div>
         <div class="weui-panel__bd">
             <c:forEach items="${items}" var="item">

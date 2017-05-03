@@ -17,7 +17,7 @@
             <p class="weui-msg__desc">哈工大校友会感谢您的捐赠</p>
         </c:if>
         <c:if test="${!empty out_trade_no}">
-            <p class="weui-msg__desc">哈工大校友会感谢您的捐赠，下方查看您的捐赠证书吧</p>
+            <p class="weui-msg__desc">感谢您的捐赠，下方领取您的捐赠证书吧</p>
         </c:if>
     </div>
 </div>

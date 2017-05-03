@@ -10,10 +10,8 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.URLDecoder;
 import java.util.Map;
 
 /**
@@ -26,9 +24,19 @@ import java.util.Map;
  */
 public class DonateCertificateUtil {
 
-    private static final String TEMPLATE_FILE_PATH = "D:/我的代码/CodeRepo/hit-alumni/src/main/resources/donate-cer.pdf/";
-    private static final String CER_FOLD_PATH = "D:/我的代码/CodeRepo/hit-alumni/src/main/resources/cer/";
-    private static final String FONT_PATH = "D:/我的代码/CodeRepo/hit-alumni/src/main/resources/STZHONGS.TTF";
+    private static String TEMPLATE_FILE_PATH;
+    private static String CER_FOLD_PATH;
+    private static String FONT_PATH;
+
+    static {
+        try {
+            TEMPLATE_FILE_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("donate-cer.pdf").getPath(), "utf-8");
+            CER_FOLD_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("cer/").getPath(), "utf-8");
+            FONT_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("STZHONGS.TTF").getPath(), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 通用的 根据pdf模板（填写表单）生成新的pdf文件

@@ -5,7 +5,6 @@ import net.i2it.hit.hit_alumni.dao.DonateDao;
 import net.i2it.hit.hit_alumni.dao.ItemDao;
 import net.i2it.hit.hit_alumni.entity.po.DonatePO;
 import net.i2it.hit.hit_alumni.entity.vo.DonatorVO;
-import net.i2it.hit.hit_alumni.entity.vo.PageItemVO;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.JsSdkConfigVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.PayRequestVO;
@@ -20,7 +19,6 @@ import net.i2it.hit.hit_alumni.util.DonateCertificateUtil;
 import net.i2it.hit.hit_alumni.util.ValueGeneratorUtil;
 import net.i2it.hit.hit_alumni.util.WebUtil;
 import net.i2it.hit.hit_alumni.util.XmlUtil;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -161,7 +158,7 @@ public class DonateService {
     }
 
     private String formatNumber(double number) {
-        return new DecimalFormat("#.00").format(number);
+        return new DecimalFormat("#########0.00").format(number);
     }
 
 }
