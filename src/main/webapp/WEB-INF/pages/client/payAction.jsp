@@ -33,6 +33,9 @@
         signature: '${requestScope.jsSdkConfig.signature}',
         jsApiList: ${requestScope.jsSdkConfig.jsApiList}
     });
+    wx.ready(function () {
+        wx.hideAllNonBaseMenuItem();
+    });
 
     function readyPay() {
         wx.chooseWXPay({

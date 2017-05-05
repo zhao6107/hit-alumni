@@ -17,7 +17,8 @@
         <div class="weui-cell" id="div0">
             <div class="weui-cell__hd"><label class="weui-label">姓　　名</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="trueName" id="trueName" placeholder="请输入您的真实姓名"/>
+                <input class="weui-input" type="text" name="trueName" id="trueName" required="required"
+                       placeholder="请输入您的真实姓名" value="${donateInfo.true_name}"/>
             </div>
         </div>
         <div class="weui-cell weui-cell_switch">
@@ -29,37 +30,43 @@
         <div class="weui-cell" id="div1">
             <div class="weui-cell__hd"><label class="weui-label">入学年份</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="number" pattern="[0-9]*" name="entryYear" placeholder="请输入您的入学年份"/>
+                <input class="weui-input" type="number" pattern="[0-9]*" name="entryYear" placeholder="请输入您的入学年份"
+                       value="${donateInfo.entry_year}"/>
             </div>
         </div>
         <div class="weui-cell" id="div2">
             <div class="weui-cell__hd"><label class="weui-label">专业名称</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="major" placeholder="请输入您的专业名称"/>
+                <input class="weui-input" type="text" name="major" placeholder="请输入您的专业名称"
+                       value="${donateInfo.major}"/>
             </div>
         </div>
         <div class="weui-cell" id="div3">
             <div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="number" pattern="[0-9]*" name="phone" placeholder="请输入您的手机号码"/>
+                <input class="weui-input" type="number" pattern="[0-9]*" name="phone" placeholder="请输入您的手机号码"
+                       value="${donateInfo.entry_year}"/>
             </div>
         </div>
         <div class="weui-cell" id="div4">
             <div class="weui-cell__hd"><label class="weui-label">工作单位</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="company" placeholder="请输入您的工作单位"/>
+                <input class="weui-input" type="text" name="company" placeholder="请输入您的工作单位"
+                       value="${donateInfo.phone}"/>
             </div>
         </div>
         <div class="weui-cell" id="div5">
             <div class="weui-cell__hd"><label class="weui-label">职　　位</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="job" placeholder="请输入您的职务"/>
+                <input class="weui-input" type="text" name="job" placeholder="请输入您的职务"
+                       value="${donateInfo.job}"/>
             </div>
         </div>
         <div class="weui-cell" id="div6">
             <div class="weui-cell__hd"><label class="weui-label">邮寄地址</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="mailAddr" placeholder="请输入您的真实姓名"/>
+                <input class="weui-input" type="text" name="mailAddr" placeholder="请输入您的真实姓名"
+                       value="${donateInfo.mail_addr}"/>
             </div>
         </div>
     </div>
@@ -67,37 +74,68 @@
     <div class="weui-cells weui-cells_form">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <textarea class="weui-textarea" placeholder="匿名了也是可以填的奥" rows="3" id="comment_"></textarea>
-                <!-- <div class="weui-textarea-counter"><span>0</span>/200</div> -->
-                <input type="hidden" name="comment" id="comment">
+                <textarea class="weui-textarea" placeholder="匿名了也是可以填的奥" rows="3"
+                          id="comment_">${donateInfo.comment}</textarea>
+                <input type="hidden" name="comment" id="comment" value="${donateInfo.comment}">
             </div>
         </div>
     </div>
     <div class="weui-btn-area" style="text-align: center;">
-        <input class="weui-btn weui-btn_mini weui-btn_primary btn-c" type="submit" value="提交">
+        <input id="sbt-btn" class="weui-btn weui-btn_mini weui-btn_primary btn-c" type="submit" value="提交">
     </div>
 </form>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script>
-    $("#anonymous").click(function () {
-        var tmp = $("#anonymous").val();
-        if (tmp == 0) {
-            $("#anonymous").val(1);
-            $("#trueName").val("匿名");
+    wx.config({
+        debug: ${requestScope.jsSdkConfig.debug},
+        appId: '${requestScope.jsSdkConfig.appId}',
+        timestamp:${requestScope.jsSdkConfig.timestamp},
+        nonceStr: '${requestScope.jsSdkConfig.nonceStr}',
+        signature: '${requestScope.jsSdkConfig.signature}',
+        jsApiList: ${requestScope.jsSdkConfig.jsApiList}
+    });
+    wx.ready(function () {
+        wx.hideAllNonBaseMenuItem();
+    });
+
+    var truenameObj = $("#trueName");
+    var reloadFlag = false;
+    $(function () {
+        if (truenameObj.val() != "") {
+            reloadFlag = true;
             $("#donator-info input").each(function () {
                 $(this).attr("readonly", "readonly");
             });
-            for(var i=0;i<7;i++){
-                $("#div"+i).addClass("input-disabled")
+            for (var i = 0; i < 7; i++) {
+                $("#div" + i).addClass("input-disabled")
             }
-        } else {
-            $("#anonymous").val(0);
-            $("#trueName").val("");
-            $("#donator-info input").each(function () {
-                $(this).removeAttr("readonly");
-            });
-            for(var i=0;i<7;i++){
-                $("#div"+i).removeClass("input-disabled")
+
+            $("#sbt-btn").attr("type", "hidden");
+        }
+    });
+
+    $("#anonymous").click(function () {
+        if (reloadFlag == false) {
+            var tmp = $("#anonymous").val();
+            if (tmp == 0) {
+                $("#anonymous").val(1);
+                truenameObj.val("匿名");
+                $("#donator-info input").each(function () {
+                    $(this).attr("readonly", "readonly");
+                });
+                for (var i = 0; i < 7; i++) {
+                    $("#div" + i).addClass("input-disabled")
+                }
+            } else {
+                $("#anonymous").val(0);
+                truenameObj.val("");
+                $("#donator-info input").each(function () {
+                    $(this).removeAttr("readonly");
+                });
+                for (var i = 0; i < 7; i++) {
+                    $("#div" + i).removeClass("input-disabled")
+                }
             }
         }
     });

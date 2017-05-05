@@ -74,11 +74,10 @@ public class DonateService {
     public SimpleOrderInfoVO getSimpleOrderInfo(String itemInfo) {
         String[] arr = itemInfo.split("_");
         if (arr.length == 4) {
-            return new SimpleOrderInfoVO(arr[0], arr[1], Double.parseDouble(arr[2]), arr[3]);
+            return new SimpleOrderInfoVO(arr[0], arr[1], arr[2], arr[3]);
         } else if (arr.length == 5) {
-            return new SimpleOrderInfoVO(arr[0], arr[1], Double.parseDouble(arr[2]), arr[3], Integer.parseInt(arr[4]));
+            return new SimpleOrderInfoVO(arr[0], arr[1], arr[2], arr[3], arr[4]);
         }
-        System.out.println("[request parameter error]：订单请求参数不合法。");
         return null;
     }
 
@@ -143,7 +142,7 @@ public class DonateService {
     public String createCer(String out_trade_no) {
         DonatePO donatePO = donateDao.get(out_trade_no);
         String name = donatePO.getTrue_name();
-        if (name != null || !"匿名".equals(name) || "".equals(name)) {
+        if (name != null && !"匿名".equals(name) && !"".equals(name)) {
             Map<String, String> map = new HashMap<String, String>();
             map.put("out_trade_no", out_trade_no);
             map.put("name", name);
@@ -154,6 +153,10 @@ public class DonateService {
             return donatePO.getOut_trade_no();
         }
         return null;
+    }
+
+    public DonatePO getDonateInfo(String out_trade_no) {
+        return donateDao.get(out_trade_no);
     }
 
     private String formatNumber(double number) {

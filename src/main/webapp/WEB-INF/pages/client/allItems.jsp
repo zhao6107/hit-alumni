@@ -37,6 +37,20 @@
         </div>
     </div>
 </div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    wx.config({
+        debug: ${requestScope.jsSdkConfig.debug},
+        appId: '${requestScope.jsSdkConfig.appId}',
+        timestamp:${requestScope.jsSdkConfig.timestamp},
+        nonceStr: '${requestScope.jsSdkConfig.nonceStr}',
+        signature: '${requestScope.jsSdkConfig.signature}',
+        jsApiList: ${requestScope.jsSdkConfig.jsApiList}
+    });
+    wx.ready(function () {
+        wx.hideAllNonBaseMenuItem();
+    });
+</script>
 </body>
 </html>
 

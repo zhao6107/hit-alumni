@@ -2,11 +2,39 @@ package net.i2it.hit.hit_alumni.entity.vo;
 
 public class SimpleOrderInfoVO {
 
+    private String tmpItemId;
+    private int itemId;
     private String itemBody;
     private String itemDetail;
+    private String tmpItemMoney;
     private double itemMoney;
     private String origin;
-    private int itemId;
+
+    public SimpleOrderInfoVO() {
+    }
+
+    public SimpleOrderInfoVO(String itemBody, String itemDetail, String tmpItemMoney, String origin) {
+        this.itemBody = itemBody;
+        this.itemDetail = itemDetail;
+        this.tmpItemMoney = tmpItemMoney;
+        this.origin = origin;
+    }
+
+    public SimpleOrderInfoVO(String itemBody, String itemDetail, String tmpItemMoney, String origin, String tmpItemId) {
+        this.tmpItemId = tmpItemId;
+        this.itemBody = itemBody;
+        this.itemDetail = itemDetail;
+        this.tmpItemMoney = tmpItemMoney;
+        this.origin = origin;
+    }
+
+    public String getTmpItemId() {
+        return tmpItemId;
+    }
+
+    public void setTmpItemId(String tmpItemId) {
+        this.tmpItemId = tmpItemId;
+    }
 
     public int getItemId() {
         return itemId;
@@ -16,29 +44,9 @@ public class SimpleOrderInfoVO {
         this.itemId = itemId;
     }
 
-    public SimpleOrderInfoVO() {
-    }
-
-    public SimpleOrderInfoVO(String itemBody, String itemDetail, double itemMoney, String origin) {
-
-        this.itemBody = itemBody;
-        this.itemDetail = itemDetail;
-        this.itemMoney = itemMoney;
-        this.origin = origin;
-    }
-
-    public SimpleOrderInfoVO(String itemBody, String itemDetail, double itemMoney, String origin, int itemId) {
-        this.itemBody = itemBody;
-        this.itemDetail = itemDetail;
-        this.itemMoney = itemMoney;
-        this.origin = origin;
-        this.itemId = itemId;
-    }
-
     public String getItemBody() {
         return itemBody;
     }
-
 
     public void setItemBody(String itemBody) {
         this.itemBody = itemBody;
@@ -50,6 +58,14 @@ public class SimpleOrderInfoVO {
 
     public void setItemDetail(String itemDetail) {
         this.itemDetail = itemDetail;
+    }
+
+    public String getTmpItemMoney() {
+        return tmpItemMoney;
+    }
+
+    public void setTmpItemMoney(String tmpItemMoney) {
+        this.tmpItemMoney = tmpItemMoney;
     }
 
     public double getItemMoney() {
