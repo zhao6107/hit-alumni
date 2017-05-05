@@ -35,7 +35,7 @@
         <div class="weui-cell" id="div2">
             <div class="weui-cell__hd"><label class="weui-label">专业名称</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="number" name="major" placeholder="请输入您的专业名称"/>
+                <input class="weui-input" type="text" name="major" placeholder="请输入您的专业名称"/>
             </div>
         </div>
         <div class="weui-cell" id="div3">

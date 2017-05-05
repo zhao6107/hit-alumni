@@ -1,5 +1,7 @@
 package net.i2it.hit.hit_alumni.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 处理和微信服务器之间的网络交互操作
@@ -46,5 +50,22 @@ public class WeChatController {
         out.flush();
         out.close();
     }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public static void receive(HttpServletRequest request) {
+        try {
+            BufferedReader reader = request.getReader();
+            StringBuffer sb = new StringBuffer();
+            String tmp;
+            while ((tmp = reader.readLine()) != null) {
+                sb.append(tmp);
+            }
+            System.out.println(">>> 微信服务器发送的请求信息：" + sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // todo  遇到微信服务器发到 /wechat 的post请求遇到404错误，带排查
 
 }

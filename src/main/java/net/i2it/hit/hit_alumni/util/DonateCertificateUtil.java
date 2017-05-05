@@ -9,6 +9,7 @@ import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URLDecoder;
@@ -24,15 +25,15 @@ import java.util.Map;
  */
 public class DonateCertificateUtil {
 
-    private static String TEMPLATE_FILE_PATH;
+    private static String PDF_FILE_PATH;
     private static String CER_FOLD_PATH;
-    private static String FONT_PATH;
+    private static String IAMGE_FILE_PATH;
 
     static {
         try {
-            TEMPLATE_FILE_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("donate-cer.pdf").getPath(), "utf-8");
+            PDF_FILE_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("donate-cer.pdf").getPath(), "utf-8");
             CER_FOLD_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("cer/").getPath(), "utf-8");
-            FONT_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("STZHONGS.TTF").getPath(), "utf-8");
+            IAMGE_FILE_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("donate-cer.jpg").getPath(), "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -52,13 +53,10 @@ public class DonateCertificateUtil {
             PdfStamper stamper = new PdfStamper(reader, bos);
 
             // todo 设置pdf字体以及各式
-//            BaseFont bf = BaseFont.createFont(FONT_PATH, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//            Font font = new Font(bf, 25, Font.BOLD);
-
             AcroFields form = stamper.getAcroFields();
             java.util.Iterator<String> it = form.getFields().keySet().iterator();
             while (it.hasNext()) {
-                String name = it.next().toString();
+                String name = it.next();
                 form.setField(name, data.get(name));
             }
             stamper.setFormFlattening(true);//如果为false那么生成的PDF文件还能编辑，一定要设为true
@@ -75,7 +73,7 @@ public class DonateCertificateUtil {
 
     // 针对本项目的更为简便的调用方法，生成新的pdf文件
     public static void createCerPDF(Map<String, String> data) {
-        createCerPDF(data, TEMPLATE_FILE_PATH, CER_FOLD_PATH + data.get("out_trade_no") + ".pdf");
+        createCerPDF(data, PDF_FILE_PATH, CER_FOLD_PATH + data.get("out_trade_no") + ".pdf");
     }
 
     /**
@@ -115,6 +113,28 @@ public class DonateCertificateUtil {
             return true;
         }
         return false;
+    }
+
+    public static void drawTextInImg(Map<String, String> data) {
+        String part = "　　兹接受" + data.get("name") + "校友向哈尔滨工业大学校友会捐赠人民币" + data.get("money") + "元。";
+        String line1 = part.substring(0, 23);
+        String line2 = part.substring(23);
+        try {
+            BufferedImage image = ImageIO.read(new File(IAMGE_FILE_PATH));
+            Graphics graphics = image.getGraphics();
+            graphics.setColor(new Color(141, 12, 7));
+            graphics.setFont(new Font("华文中宋", Font.BOLD, 55));
+            graphics.drawString(line1, 220, 550);
+            graphics.drawString(line2, 220, 640);
+            graphics.drawString("　　颁发此证，谨致谢忱。", 220, 730);
+            graphics.setFont(new Font("华文中宋", Font.BOLD, 48));
+            graphics.drawString("哈尔滨工业大学校友会", 1000, 820);
+            graphics.drawString(data.get("date"), 1050, 910);
+            graphics.dispose();
+            ImageIO.write(image, "jpg", new File(CER_FOLD_PATH + data.get("out_trade_no") + ".jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

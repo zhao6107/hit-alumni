@@ -17,6 +17,7 @@ src/test/
 target/
 src/main/resources/MP_verify_rkHrUZkg16fUIqT2.txt
 src/main/resources/donate-cer.pdf
+src/main/resources/donate-cer.jpg
 src/main/resources/cer/
 src/main/resources/hit-alumni.properties
 # ignored when using intellij idea

@@ -143,16 +143,15 @@ public class DonateService {
     public String createCer(String out_trade_no) {
         DonatePO donatePO = donateDao.get(out_trade_no);
         String name = donatePO.getTrue_name();
-        if (name != null || !"匿名".equals(name)) {
+        if (name != null || !"匿名".equals(name) || "".equals(name)) {
             Map<String, String> map = new HashMap<String, String>();
             map.put("out_trade_no", out_trade_no);
             map.put("name", name);
             map.put("money", this.formatNumber(donatePO.getTotal_fee()));
             map.put("date", ValueGeneratorUtil.date2Str(donatePO.getTime_end(),
                     ValueGeneratorUtil.DATE_FORMAT_PATTERN3));
-            if (DonateCertificateUtil.generateCerImage(map)) {
-                return donatePO.getOut_trade_no();
-            }
+            DonateCertificateUtil.drawTextInImg(map);
+            return donatePO.getOut_trade_no();
         }
         return null;
     }

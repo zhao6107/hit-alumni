@@ -22,7 +22,7 @@
     </div>
 </div>
 <c:if test="${!empty out_trade_no}">
-    <img style="width: 100%;height: auto;display: block;" src="/cer/${out_trade_no}.png">
+    <img style="width: 100%;height: auto;display: block;" src="/cer/${out_trade_no}.jpg">
 </c:if>
 </body>
 </html>
