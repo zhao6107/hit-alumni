@@ -32,7 +32,7 @@ public class JsSdkConfig {
         StringBuffer sb = new StringBuffer();
         sb.append("jsapi_ticket=" + CacheConsts.JS_API_TICKET);
         sb.append("&noncestr=" + jsSdkConfigVO.getNonceStr());
-        sb.append("&timeStamp=" + jsSdkConfigVO.getTimestamp());
+        sb.append("&timestamp=" + jsSdkConfigVO.getTimestamp());
         sb.append("&url=" + url);
         return EncryptionUtil.encrypt(sb.toString(), EncryptionUtil.SHA1);
     }
