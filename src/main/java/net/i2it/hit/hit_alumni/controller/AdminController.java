@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author liuming
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/wechat/admin")
 public class AdminController {
 
     @Autowired

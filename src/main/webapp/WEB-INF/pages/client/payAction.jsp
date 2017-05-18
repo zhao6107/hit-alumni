@@ -45,7 +45,7 @@
             signType: '${requestScope.payInfo.signType}',
             paySign: '${requestScope.payInfo.paySign}',
             success: function () {
-                window.location.href = "/donate/donator-info?item_no=${item_no}&out_trade_no=${out_trade_no}"
+                window.location.href = "/wechat/donate/donator-info?item_no=${item_no}&out_trade_no=${out_trade_no}"
             }
         });
     }

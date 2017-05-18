@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * 处理和微信服务器之间的网络交互操作
  */
 @Controller
-@RequestMapping("/wechat")
+@RequestMapping("/wechat/msg")
 public class WeChatController {
 
     /**

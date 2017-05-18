@@ -14,7 +14,7 @@
 <body>
 <div style="padding-left: 20px;">
     <h2>未完成/结束的募捐项目</h2>
-    <a href="/admin/item/add">添加新的捐款项目</a><br>
+    <a href="/wechat/admin/item/add">添加新的捐款项目</a><br>
     <table>
         <tr>
             <th>编号</th>
@@ -34,8 +34,8 @@
                 <td>${item.targetFund}元</td>
                 <td>${item.raisedFund}元</td>
                 <td>
-                    <a href="/admin/item/${item.id}/update">修改</a>
-                    <a href="/admin/item/${item.id}/finish">终止</a>
+                    <a href="/wechat/admin/item/${item.id}/update">修改</a>
+                    <a href="/wechat/admin/item/${item.id}/finish">终止</a>
                 </td>
             </tr>
         </c:forEach>

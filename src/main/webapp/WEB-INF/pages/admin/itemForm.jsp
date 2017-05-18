@@ -17,11 +17,11 @@
         <c:choose>
             <c:when test="${item.body!=null}">
                 更新
-                <c:set value="/admin/item/${item.id}/update" var="targetUrl"/>
+                <c:set value="/wechat/admin/item/${item.id}/update" var="targetUrl"/>
             </c:when>
             <c:otherwise>
                 添加
-                <c:set value="/admin/item/add" var="targetUrl"/>
+                <c:set value="/wechat/admin/item/add" var="targetUrl"/>
             </c:otherwise>
         </c:choose>
         捐款项目

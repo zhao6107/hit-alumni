@@ -29,7 +29,7 @@ import java.util.Map;
  * @author liuming
  */
 @Controller
-@RequestMapping(value = {"/donate", "/test"})
+@RequestMapping(value = {"/wechat/donate", "/wechat/test"})
 public class DonateController {
 
     @Autowired

@@ -16,7 +16,7 @@
         <div class="weui-panel__hd">正在进行的筹款项目</div>
         <div class="weui-panel__bd">
             <c:forEach items="${items}" var="item">
-                <a class="weui-media-box weui-media-box_text" style="display: block;" href="/donate/item/${item.id}">
+                <a class="weui-media-box weui-media-box_text" style="display: block;" href="/wechat/donate/item/${item.id}">
                     <h4 class="weui-media-box__title">${item.body}</h4>
                     <p class="weui-media-box__desc">${item.detail}</p>
                     <ul class="weui-media-box__info">

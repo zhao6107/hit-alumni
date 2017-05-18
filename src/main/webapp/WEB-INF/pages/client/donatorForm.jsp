@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/common.css">
 </head>
 <body>
-<form class="container js_container" action="/donate/donator-info" method="post" id="donator-info">
+<form class="container js_container" action="/wechat/donate/donator-info" method="post" id="donator-info">
     <input type="hidden" name="out_trade_no" value="${out_trade_no}">
     <div class="hd">捐助者登记</div>
     <div class="weui-cells__title" style="margin-top: 30px;">做好事记得留名奥</div>
@@ -65,7 +65,7 @@
         <div class="weui-cell" id="div6">
             <div class="weui-cell__hd"><label class="weui-label">邮寄地址</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="mailAddr" placeholder="请输入您的真实姓名"
+                <input class="weui-input" type="text" name="mailAddr" placeholder="请输入您的邮寄地址"
                        value="${donateInfo.mail_addr}"/>
             </div>
         </div>

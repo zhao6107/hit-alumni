@@ -37,13 +37,13 @@ public class MenuOption {
 
         button10.setName("校友返校");
         button10.setType("view");
-        button10.setUrl(ConfigConsts.getServer_domain_url() + "/alumni/back-school");
+        button10.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/alumni/back-school");
         button1.setName("校友服务");
         button1.setSub_button(new MenuVO.Button[]{button10});
 
         button20.setName("校友捐赠");
         button20.setType("view");
-        button20.setUrl(ConfigConsts.getServer_domain_url() + "/donate/list");
+        button20.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/donate/list");
         button2.setName("校友捐赠");
         button2.setSub_button(new MenuVO.Button[]{button20});
 
