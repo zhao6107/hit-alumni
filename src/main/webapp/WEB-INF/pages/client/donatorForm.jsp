@@ -6,10 +6,10 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
     <title>哈尔滨工业大学校友会</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
 <body>
-<form class="container js_container" action="/wechat/donate/donator-info" method="post" id="donator-info">
+<form class="container js_container" action="${applicationScope.globalUrlPrefix}/wechat/donate/donator-info" method="post" id="donator-info">
     <input type="hidden" name="out_trade_no" value="${out_trade_no}">
     <div class="hd">捐助者登记</div>
     <div class="weui-cells__title" style="margin-top: 30px;">做好事记得留名奥</div>

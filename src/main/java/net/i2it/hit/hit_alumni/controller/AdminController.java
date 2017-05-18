@@ -48,9 +48,9 @@ public class AdminController {
     @RequestMapping(value = "/item/add", method = RequestMethod.POST)
     public String addNewItem(ItemVO itemVO) {
         if (adminService.saveItem(itemVO)) {
-            return "redirect:/admin/item/list/not-expired";
+            return "redirect:/wechat/admin/item/list/not-expired";
         }
-        return "redirect:/admin/item/add";
+        return "redirect:/wechat/admin/item/add";
     }
 
     /**************************************************
@@ -70,7 +70,17 @@ public class AdminController {
         if (adminService.updateItem(id, itemVO)) {
             return "redirect:/admin/item/list/not-expired";
         }
-        return "redirect:/admin/item/add";
+        return "redirect:/wechat/admin/item/add";
+    }
+
+    /**************************************************
+     * 关于停止捐款项目的操作：实质为update操作
+     **************************************************/
+    //停止已经完成任务的捐款项目
+    @RequestMapping(value = "/item/{id}/finish")
+    public String stopItem(@PathVariable int id) {
+        adminService.updateItemTimeEnd(id);
+        return "redirect:/wechat/admin/item/list/not-expired";
     }
 
     /**************************************************

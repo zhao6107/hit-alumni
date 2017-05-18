@@ -78,7 +78,7 @@ public class DonateController {
                 //验证捐款金额的格式是否正确
                 for (int i = 0; i < tmpItemMoney.length(); i++) {
                     if (!Character.isDigit(tmpItemMoney.charAt(i)) && tmpItemMoney.charAt(i) != '.') {
-                        return "redirect:/donate/item/" + simpleOrderInfo.getTmpItemId();
+                        return "redirect:/wechat/donate/item/" + simpleOrderInfo.getTmpItemId();
                     }
                 }
             } else {

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
 <body>
 <div class="container js_container">
@@ -16,7 +16,7 @@
         <div class="weui-panel__hd">正在进行的筹款项目</div>
         <div class="weui-panel__bd">
             <c:forEach items="${items}" var="item">
-                <a class="weui-media-box weui-media-box_text" style="display: block;" href="/wechat/donate/item/${item.id}">
+                <a class="weui-media-box weui-media-box_text" style="display: block;" href="${applicationScope.globalUrlPrefix}/wechat/donate/item/${item.id}">
                     <h4 class="weui-media-box__title">${item.body}</h4>
                     <p class="weui-media-box__desc">${item.detail}</p>
                     <ul class="weui-media-box__info">

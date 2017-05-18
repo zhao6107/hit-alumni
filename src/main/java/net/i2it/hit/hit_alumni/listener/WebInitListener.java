@@ -16,6 +16,8 @@ public class WebInitListener implements ServletContextListener {
         //加载系统配置信息
         try {
             ConfigConsts.load();
+            //将这个信息放到应用的上下文中
+            servletContextEvent.getServletContext().setAttribute("globalUrlPrefix", ConfigConsts.getServer_domain_url());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

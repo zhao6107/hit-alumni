@@ -68,4 +68,13 @@ public interface ItemDao {
             "WHERE t1.id = #{itemId} AND t2.out_trade_no = #{out_trade_no} AND t1.body = t2.body")
     int updateRaisedFund(@Param("itemId") String itemId, @Param("out_trade_no") String out_trade_no);
 
+    /**
+     * 捐款项目达成目标后，停止并更新项目结束时间
+     *
+     * @param itemId
+     * @return
+     */
+    @Update("UPDATE t_items SET time_end=NOW() WHERE id=#{itemId};")
+    int updateTimeEnd(@Param("itemId") int itemId);
+
 }

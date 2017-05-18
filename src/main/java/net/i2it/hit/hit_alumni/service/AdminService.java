@@ -3,9 +3,13 @@ package net.i2it.hit.hit_alumni.service;
 import net.i2it.hit.hit_alumni.dao.ItemDao;
 import net.i2it.hit.hit_alumni.entity.po.ItemPO;
 import net.i2it.hit.hit_alumni.entity.vo.ItemVO;
+import net.i2it.hit.hit_alumni.entity.vo.api.request.JsSdkConfigVO;
+import net.i2it.hit.hit_alumni.service.function.JsSdkConfig;
+import net.i2it.hit.hit_alumni.util.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -38,6 +42,25 @@ public class AdminService {
             return true;
         }
         return false;
+    }
+
+    public boolean updateItemTimeEnd(int id) {
+        if (itemDao.updateTimeEnd(id) == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 获取微信js-sdk配置信息的数据
+     *
+     * @param request
+     * @return
+     */
+    public JsSdkConfigVO getJsSdkConfig(HttpServletRequest request) {
+        String url = WebUtil.getFullUrl(request);
+        JsSdkConfig jsSdkConfig = new JsSdkConfig();
+        return jsSdkConfig.getJsSdkConfig(url);
     }
 
 }
