@@ -25,13 +25,12 @@ import java.util.Map;
  */
 public class DonateCertificateUtil {
 
-    private static String PDF_FILE_PATH;
+    private static String PDF_FILE_PATH="";
     private static String CER_FOLD_PATH;
     private static String IAMGE_FILE_PATH;
 
     static {
         try {
-            PDF_FILE_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("donate-cer.pdf").getPath(), "utf-8");
             CER_FOLD_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("cer/").getPath(), "utf-8");
             IAMGE_FILE_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("donate-cer.jpg").getPath(), "utf-8");
         } catch (UnsupportedEncodingException e) {
