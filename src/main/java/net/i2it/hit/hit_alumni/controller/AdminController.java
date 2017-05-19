@@ -68,7 +68,7 @@ public class AdminController {
     @RequestMapping(value = "/item/{id}/update", method = RequestMethod.POST)
     public String updateItem(@PathVariable int id, ItemVO itemVO) {
         if (adminService.updateItem(id, itemVO)) {
-            return "redirect:/admin/item/list/not-expired";
+            return "redirect:/wechat/admin/item/list/not-expired";
         }
         return "redirect:/wechat/admin/item/add";
     }

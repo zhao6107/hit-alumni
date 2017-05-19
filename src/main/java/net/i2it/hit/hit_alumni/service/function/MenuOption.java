@@ -43,7 +43,7 @@ public class MenuOption {
 
         button20.setName("校友捐赠");
         button20.setType("view");
-        button20.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/donate/list");
+        button20.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/donate/call");
         button2.setName("校友捐赠");
         button2.setSub_button(new MenuVO.Button[]{button20});
 
