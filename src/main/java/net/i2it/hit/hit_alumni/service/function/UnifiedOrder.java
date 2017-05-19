@@ -39,7 +39,7 @@ public class UnifiedOrder {
         orderInfo.setTime_start(ValueGeneratorUtil.date2Str(dateTime, ValueGeneratorUtil.DATE_FORMAT_PATTERN));
         orderInfo.setTime_expire(ValueGeneratorUtil.date2Str(new Date(dateTime.getTime() + 10 * 60 * 1000), ValueGeneratorUtil.DATE_FORMAT_PATTERN));// 订单失效时间：10分钟
         orderInfo.setDevice_info(simpleOrderInfo.getOrigin());
-        orderInfo.setNotify_url(ConfigConsts.getServer_domain_url() + "/donate/notify");
+        orderInfo.setNotify_url(ConfigConsts.getServer_domain_url() + "/wechat/donate/notify");
         // 最后一步才是设置sign
         orderInfo.setSign(ValueGeneratorUtil.getSign(orderInfo));
         map.put("order_info", orderInfo);

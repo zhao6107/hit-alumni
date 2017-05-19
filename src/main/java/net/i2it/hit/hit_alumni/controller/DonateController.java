@@ -37,11 +37,11 @@ public class DonateController {
     @Autowired
     private AdminService adminService;
 
-    //显示所有的筹款项目页面
+    //显示捐款倡议书
     @RequestMapping(value = "/call", method = RequestMethod.GET)
     public String callOn(HttpServletRequest request, ModelMap map) {
         map.put("jsSdkConfig", donateService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
-        return "client/allItems";
+        return "client/donateCall";
     }
 
     //显示所有的筹款项目页面

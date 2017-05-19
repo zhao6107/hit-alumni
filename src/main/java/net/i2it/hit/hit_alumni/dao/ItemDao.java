@@ -50,7 +50,7 @@ public interface ItemDao {
      *
      * @return
      */
-    @Select("SELECT * FROM t_items WHERE time_end IS NULL ORDER BY id DESC;")
+    @Select("SELECT * FROM t_items WHERE time_end IS NULL;")
     @Results(value = {
             @Result(property = "time_begin", column = "time_begin", javaType = Date.class),
             @Result(property = "time_end", column = "time_end", javaType = Date.class)
