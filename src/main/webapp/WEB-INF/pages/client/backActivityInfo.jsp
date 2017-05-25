@@ -30,7 +30,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">返校人数</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="alumniNum" required="required" placeholder="请输入此次返校人数"/>
+                <input class="weui-input" type="number" name="alumniNum" required="required" placeholder="请输入此次返校人数"/>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <input id="hidden-input-0" type="hidden" name="item[0].bookProxyed" value="0"/>
+    <input id="hidden-input-0" type="hidden" value="0"/>
     <div class="weui-cells__tips">预约方式见官网 <a href="http://www.museum.hit.edu.cn">www.museum.hit.edu.cn</a></div>
 
     <div class="weui-cells__title" style="margin-top: 30px;">航天馆参观</div>
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <input id="hidden-input-1" type="hidden" name="item[1].bookProxyed" value="0"/>
+    <input id="hidden-input-1" type="hidden" value="0"/>
     <div class="weui-cells__tips">预约方式见官网 <a href="http://hitam.aajp.net">hitam.aajp.net</a></div>
 
     <div class="weui-cells__title" style="margin-top: 30px;">博物馆参观</div>
@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    <input id="hidden-input-2" type="hidden" name="item[2].bookProxyed" value="0"/>
+    <input id="hidden-input-2" type="hidden" value="0"/>
     <div class="weui-cells__tips">预约方式见官网 <a href="http://www.museum.hit.edu.cn">www.museum.hit.edu.cn</a></div>
 
     <div class="weui-cells__title" style="margin-top: 30px;">其他需求</div>
@@ -191,7 +191,7 @@
             $("#item-1-bookProxyed").change(function () {
                 if (item1Chosen_ == 0) {
                     item1Chosen_ = 1;
-                    var div_ = '<div class="weui-cell" id="item-1-div-2"><div class="weui-cell__hd"><label for="" class="weui-label">参观时间</label></div><div class="weui-cell__bd"><input class="weui-input" type="datetime-local" value="" name="itemastronauticsMuseumVisitedDate" required="required" /></div></div>';
+                    var div_ = '<div class="weui-cell" id="item-1-div-2"><div class="weui-cell__hd"><label for="" class="weui-label">参观时间</label></div><div class="weui-cell__bd"><input class="weui-input" type="datetime-local" value="" name="astronauticsMuseumVisitedDate" required="required" /></div></div>';
                     $("#item-1-div-1").after(div_);
                     $("#hidden-input-1").val(1);
                 } else {

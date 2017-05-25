@@ -12,21 +12,33 @@ public class BackActivityPO {
 
     private int id;
     private String openId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;//返校活动结束日期
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date beginDate;//返校日期
+    private Date endDate;//返校活动结束日期
     private int alumniNum;//返校人数
-    @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm")
     private Date historyMuseumVisitedDate;//参观校史馆的日期，不为空表示校友总会需要帮助预约
-    @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm")
     private Date astronauticsMuseumVisitedDate;//参观航天馆的日期，不为空表示校友总会需要帮助预约
-    @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm")
     private Date schoolMuseumVisitedDate;//参观博物馆的日期，不为空表示校友总会需要帮助预约
     private int meetAlumniAssociation;//和校友总会是否对接，0-否，1-是
     private int acceptInterview;//接受学校采访，0-否，1-是
     private int giveLecture;//给学生开讲座，0-否，1-是
     private int needVolunteer;//需要志愿者给帮助拍照等，0-否，1-是
+
+    public BackActivityPO() {
+    }
+
+    public BackActivityPO(String openId, Date beginDate, Date endDate, int alumniNum, Date historyMuseumVisitedDate, Date astronauticsMuseumVisitedDate, Date schoolMuseumVisitedDate, int meetAlumniAssociation, int acceptInterview, int giveLecture, int needVolunteer) {
+        this.openId = openId;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.alumniNum = alumniNum;
+        this.historyMuseumVisitedDate = historyMuseumVisitedDate;
+        this.astronauticsMuseumVisitedDate = astronauticsMuseumVisitedDate;
+        this.schoolMuseumVisitedDate = schoolMuseumVisitedDate;
+        this.meetAlumniAssociation = meetAlumniAssociation;
+        this.acceptInterview = acceptInterview;
+        this.giveLecture = giveLecture;
+        this.needVolunteer = needVolunteer;
+    }
 
     public int getId() {
         return id;
