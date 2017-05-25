@@ -8,40 +8,47 @@
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
 <body>
-<form class="container js_container" action="#" method="post">
-    <div class="hd">返校登记</div>
+<form class="container js_container" action="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school"
+      method="post">
+    <input type="hidden" name="openId" value="${openId}">
+    <div class="hd">1/2　返校登记</div>
     <div class="weui-cells__title" style="margin-top: 30px;">基本信息</div>
     <div class="weui-cells weui-cells_form">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">姓　　名</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="alumniName" required="required" placeholder="请输入您的真实姓名"/>
+                <input class="weui-input" type="text" name="name" required="required" placeholder="请输入您的真实姓名"
+                       value="${alumni.name}"/>
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">入学年份</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="number" name="entryYear" placeholder="请输入您的入学年份"/>
+                <input class="weui-input" type="number" name="entryYear" placeholder="请输入您的入学年份"
+                       value="${alumni.entryYear}"/>
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">班　　号</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="classNO" placeholder="请输入您的班级号码"/>
+                <input class="weui-input" type="text" name="classNO" placeholder="请输入您的班级号码" value="${alumni.classNO}"/>
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">专业名称</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="major" placeholder="请输入您的专业名称"/>
+                <input class="weui-input" type="text" name="major" placeholder="请输入您的专业名称" value="${alumni.major}"/>
             </div>
         </div>
+        <!--
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">院系名称</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="acadamy" placeholder="请输入您的院系名称"/>
+                <input class="weui-input" type="text" name="academy" placeholder="请输入您的院系名称"/>
             </div>
         </div>
+         -->
+        <input type="hidden" name="academy"/>
         <div class="weui-cell weui-cell_select weui-cell_select-before">
             <div class="weui-cell__hd">
                 <select class="weui-select" name="contactType">
@@ -51,13 +58,20 @@
                 </select>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="contactInfo" required="required" placeholder="请输入相应联系方式"/>
+                <input class="weui-input" type="text" name="contactInfo" required="required" placeholder="请输入相应联系方式"
+                       value="${alumni.contactInfo}"/>
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">工作单位</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="text" name="company" placeholder="请输入您的工作单位"/>
+                <input class="weui-input" type="text" name="company" placeholder="请输入您的工作单位" value="${alumni.company}"/>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">职　　位</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" name="job" placeholder="请输入您的工作职位" value="${alumni.job}"/>
             </div>
         </div>
     </div>
@@ -67,6 +81,7 @@
 </form>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script>
     wx.config({
         debug: ${requestScope.jsSdkConfig.debug},
@@ -78,6 +93,13 @@
     });
     wx.ready(function () {
         wx.hideAllNonBaseMenuItem();
+    });
+
+    $(function () {
+        var number ='${alumni.contactType}';
+        if (number == '1' || number == '2' || number == '3') {
+            $('select[name="contactType"]').val(number);
+        }
     });
 </script>
 </html>

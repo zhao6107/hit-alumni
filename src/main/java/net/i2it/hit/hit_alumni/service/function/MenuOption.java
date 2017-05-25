@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSON;
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.MenuVO;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * 创建微信菜单的具体操作业务
  * Created by liuming on 2017/4/21.
@@ -11,10 +14,16 @@ import net.i2it.hit.hit_alumni.entity.vo.api.request.MenuVO;
 public class MenuOption {
 
     public boolean create() {
-        return new WeChatApi().createMenu(this.getMenuStr());
+        String menuStr= null;
+        try {
+            menuStr = this.getMenuStr();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return new WeChatApi().createMenu(menuStr);
     }
 
-    private String getMenuStr() {
+    private String getMenuStr() throws UnsupportedEncodingException {
         MenuVO menu = new MenuVO();
         //从左数第一个一级菜单
         MenuVO.Button button0 = menu.new Button();
@@ -37,7 +46,10 @@ public class MenuOption {
 
         button10.setName("校友返校");
         button10.setType("view");
-        button10.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/alumni/back-school");
+        String url10 = WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.getApp_id())
+                .replace("REDIRECT_URI", URLEncoder.encode(ConfigConsts.getServer_domain_url() + "/wechat/alumni/back-school", "utf-8"))
+                .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
+        button10.setUrl(url10);
         button1.setName("校友服务");
         button1.setSub_button(new MenuVO.Button[]{button10});
 

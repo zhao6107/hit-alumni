@@ -13,10 +13,11 @@
 <div class="container js_container">
     <div class="hd">筹款项目列表</div>
     <div class="weui-panel" style="margin-top: 30px;">
-        <div class="weui-panel__hd">正在进行的筹款项目</div>
+        <div class="weui-panel__hd">点击筹款项目可进行捐助</div>
         <div class="weui-panel__bd">
             <c:forEach items="${items}" var="item">
-                <a class="weui-media-box weui-media-box_text" style="display: block;" href="${applicationScope.globalUrlPrefix}/wechat/donate/item/${item.id}">
+                <a class="weui-media-box weui-media-box_text" style="display: block;"
+                   href="${applicationScope.globalUrlPrefix}/wechat/donate/item/${item.id}">
                     <h4 class="weui-media-box__title">${item.body}</h4>
                     <p class="weui-media-box__desc">${item.detail}</p>
                     <ul class="weui-media-box__info">
@@ -36,6 +37,7 @@
             </c:if>
         </div>
     </div>
+    <div>&nbsp;</div>
 </div>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>

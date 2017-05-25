@@ -4,7 +4,6 @@ import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.entity.po.ItemPO;
 import net.i2it.hit.hit_alumni.entity.vo.DonatorVO;
 import net.i2it.hit.hit_alumni.entity.vo.SimpleOrderInfoVO;
-import net.i2it.hit.hit_alumni.entity.vo.api.request.JsSdkConfigVO;
 import net.i2it.hit.hit_alumni.service.AdminService;
 import net.i2it.hit.hit_alumni.service.DonateService;
 import net.i2it.hit.hit_alumni.service.function.WeChatApi;
@@ -20,7 +19,6 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
 /**
@@ -76,7 +74,8 @@ public class DonateController {
                 //验证捐款项目的id是否正确，id全为数字
                 for (int i = 0; i < tmpItemId.length(); i++) {
                     if (!Character.isDigit(tmpItemMoney.charAt(i))) {
-                        return "client/error_param";
+                        modelMap.put("msg", "参数错误！");
+                        return "client/warning_msg";
                     }
                 }
                 simpleOrderInfo.setItemId(Integer.parseInt(tmpItemId));
@@ -92,7 +91,8 @@ public class DonateController {
                 //验证捐款金额的格式是否正确
                 for (int i = 0; i < tmpItemMoney.length(); i++) {
                     if (!Character.isDigit(tmpItemMoney.charAt(i)) || tmpItemMoney.charAt(i) != '.') {
-                        return "client/error_param";
+                        modelMap.put("msg", "参数错误！");
+                        return "client/warning_msg";
                     }
                 }
             }
@@ -106,7 +106,8 @@ public class DonateController {
             modelMap.put("jsSdkConfig", donateService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
             return "client/payAction";
         }
-        return "client/error_param";
+        modelMap.put("msg", "参数错误！");
+        return "client/warning_msg";
     }
 
     //支付成功后微信服务器发起通知的地址，需要返回特定信息，不然微信服务器会一直发信息请求确认

@@ -73,6 +73,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- @DateTimeFormat注解依赖 -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
         <!-- 实例对象和json相互转换处理 -->
         <dependency>
             <groupId>com.alibaba</groupId>

@@ -66,6 +66,8 @@
         wx.hideAllNonBaseMenuItem();
     });
 
+    $("#donateMoney").focus();
+
     $("#btn-sbt").click(function () {
         var param = $("#donateMoney").val();
         if (checkMoneyFormat(param)) {

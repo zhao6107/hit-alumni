@@ -9,9 +9,9 @@
 </head>
 <body>
 <div class="weui-msg bd-m-t">
-    <div class="weui-msg__icon-area"><i class="weui-icon-warn weui-icon_msg"></i></div>
+    <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
     <div class="weui-msg__text-area">
-        <h2 class="weui-msg__title">该功能正在开发中...</h2>
+        <h2 class="weui-msg__title">${msg}</h2>
     </div>
 </div>
 </body>
