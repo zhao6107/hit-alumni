@@ -28,7 +28,7 @@ public interface AlumniInfoDao {
      * @param openId
      * @return
      */
-    @Select("SELECT * FROM t_back_student_info WHERE openId=#{id};")
+    @Select("SELECT * FROM t_back_student_info WHERE openId=#{id} LIMIT 1;")
     AlumniPO get(@Param("id") String openId);
 
     /**
