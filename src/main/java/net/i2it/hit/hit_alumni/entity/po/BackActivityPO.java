@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class BackActivityPO {
 
-    private int id;
+    private Integer id;
     private String openId;
     private Date beginDate;//返校日期
     private Date endDate;//返校活动结束日期
@@ -26,7 +26,8 @@ public class BackActivityPO {
     public BackActivityPO() {
     }
 
-    public BackActivityPO(String openId, Date beginDate, Date endDate, int alumniNum, Date historyMuseumVisitedDate, Date astronauticsMuseumVisitedDate, Date schoolMuseumVisitedDate, int meetAlumniAssociation, int acceptInterview, int giveLecture, int needVolunteer) {
+    public BackActivityPO(Integer id, String openId, Date beginDate, Date endDate, int alumniNum, Date historyMuseumVisitedDate, Date astronauticsMuseumVisitedDate, Date schoolMuseumVisitedDate, int meetAlumniAssociation, int acceptInterview, int giveLecture, int needVolunteer) {
+        this.id = id;
         this.openId = openId;
         this.beginDate = beginDate;
         this.endDate = endDate;
