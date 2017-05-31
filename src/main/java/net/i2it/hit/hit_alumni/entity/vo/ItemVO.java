@@ -10,6 +10,15 @@ public class ItemVO {
     private String detail;
     private int targetFund;
 
+    public ItemVO() {
+    }
+
+    public ItemVO(String body, String detail, int targetFund) {
+        this.body = body;
+        this.detail = detail;
+        this.targetFund = targetFund;
+    }
+
     public String getBody() {
         return body;
     }

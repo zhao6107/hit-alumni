@@ -46,7 +46,7 @@ public interface ItemDao {
     ItemPO get(@Param("id") int id);
 
     /**
-     * 获取全部没有过期的捐款项目
+     * 获取全部正在进行的捐款项目
      *
      * @return
      */
@@ -56,6 +56,18 @@ public interface ItemDao {
             @Result(property = "time_end", column = "time_end", javaType = Date.class)
     })
     List<ItemPO> listNotExpiredItems();
+
+    /**
+     * 获取全部已经结束的捐款项目
+     *
+     * @return
+     */
+    @Select("SELECT * FROM t_items WHERE time_end IS NOT NULL;")
+    @Results(value = {
+            @Result(property = "time_begin", column = "time_begin", javaType = Date.class),
+            @Result(property = "time_end", column = "time_end", javaType = Date.class)
+    })
+    List<ItemPO> listExpiredItems();
 
     /**
      * 成功捐款后，更新已捐款的金额数目
@@ -76,5 +88,14 @@ public interface ItemDao {
      */
     @Update("UPDATE t_items SET time_end=NOW() WHERE id=#{itemId};")
     int updateTimeEnd(@Param("itemId") int itemId);
+
+    /**
+     * 恢复终止的项目
+     *
+     * @param itemId
+     * @return
+     */
+    @Update("UPDATE t_items SET time_end=NULL WHERE id=#{itemId};")
+    int recoverItem(@Param("itemId") int itemId);
 
 }

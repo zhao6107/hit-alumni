@@ -5,32 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <title>哈尔滨工业大学校友会微信服务号后台管理系统</title>
-    <style type="text/css" rel="stylesheet">
-        table, tr, td {
-            border: 2px solid #cccccc;
-        }
-    </style>
+    <style type="text/css" rel="stylesheet"></style>
 </head>
 <body>
-<div style="padding-left: 20px;">
+<div style="padding-left: 20px;text-align: center;">
     <h2>
         <c:choose>
-            <c:when test="${item.body!=null}">
-                更新
-                <c:set value="/wechat/admin/item/${item.id}/update" var="targetUrl"/>
+            <c:when test="${opt=='update'}">
+                更新捐款项目信息
+                <c:set value="/wechat/admin/items/${item.id}" var="targetUrl"/>
             </c:when>
             <c:otherwise>
-                添加
-                <c:set value="/wechat/admin/item/add" var="targetUrl"/>
+                添加捐款项目信息
+                <c:set value="/wechat/admin/items" var="targetUrl"/>
             </c:otherwise>
         </c:choose>
-        捐款项目
     </h2>
+    <hr>
     <form action="${targetUrl}" method="post">
-        募捐项目名称：<input type="text" name="body" value="${item.body}">
-        募捐项目描述：<input type="text" name="detail" value="${item.detail}">
-        目标筹集资金：<input type="text" name="targetFund" value="${item.targetFund}">
-        <input type="hidden" name="itemId" value="${item.id}">
+        募捐项目名称：<input type="text" name="body" value="${item.body}"><br><br>
+        募捐项目描述：<input type="text" name="detail" value="${item.detail}"><br><br>
+        目标筹集资金：<input type="text" name="targetFund"
+                      value="<fmt:formatNumber type='number' value='${item.targetFund}' pattern='#0'/>"><br><br>
         <input type="submit" value="提交">
     </form>
 </div>

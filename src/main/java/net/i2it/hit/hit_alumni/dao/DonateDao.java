@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -34,5 +35,34 @@ public interface DonateDao {
             @Result(property = "time_end", column = "time_end", javaType = Date.class)
     })
     DonatePO get(@Param("out_trade_no") String out_trade_no);
+
+    //获取全部记录
+    @Select("SELECT * FROM t_donate WHERE state='1' ORDER BY out_trade_no DESC;")
+    @Results(value = {
+            @Result(property = "out_trade_no", column = "out_trade_no", javaType = String.class),
+            @Result(property = "total_fee", column = "total_fee", javaType = double.class),
+            @Result(property = "true_name", column = "true_name", javaType = String.class),
+            @Result(property = "entry_year", column = "entry_year", javaType = String.class),
+            @Result(property = "mail_addr", column = "mail_addr", javaType = String.class),
+            @Result(property = "time_end", column = "time_end", javaType = Date.class)
+    })
+    List<DonatePO> getAllRecords();
+
+    //获取全部记录数
+    @Select("SELECT COUNT(state) FROM t_donate WHERE state='1';")
+    int getRecordCount();
+
+    //获取指定数量的内容，分页内容
+    @Select("SELECT * FROM t_donate WHERE state='1' ORDER BY out_trade_no DESC " +
+            "LIMIT #{index},#{count};")
+    @Results(value = {
+            @Result(property = "out_trade_no", column = "out_trade_no", javaType = String.class),
+            @Result(property = "total_fee", column = "total_fee", javaType = double.class),
+            @Result(property = "true_name", column = "true_name", javaType = String.class),
+            @Result(property = "entry_year", column = "entry_year", javaType = String.class),
+            @Result(property = "mail_addr", column = "mail_addr", javaType = String.class),
+            @Result(property = "time_end", column = "time_end", javaType = Date.class)
+    })
+    List<DonatePO> listPageDonate(@Param("index") int recordIndex, @Param("count") int pageSize);
 
 }
