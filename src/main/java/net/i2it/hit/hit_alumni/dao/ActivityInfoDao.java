@@ -115,4 +115,27 @@ public interface ActivityInfoDao {
     })
     int updateActivityInfo(@Param("obj") BackActivityPO activityInfo);
 
+
+    //获取全部记录数
+    @Select("SELECT COUNT(id) FROM t_back_activity_info;")
+    int getRecordCount();
+
+    @Select("SELECT * FROM t_back_activity_info ORDER BY id DESC "
+            + "LIMIT #{index},#{count};")
+    @Results(value = {
+            @Result(property = "id", column = "id", javaType = int.class),
+            @Result(property = "openId", column = "openId", javaType = String.class),
+            @Result(property = "beginDate", column = "begin_date", javaType = Date.class),
+            @Result(property = "endDate", column = "end_date", javaType = Date.class),
+            @Result(property = "alumniNum", column = "back_stu_num", javaType = int.class),
+            @Result(property = "historyMuseumVisitedDate", column = "visit_history_museum_datetime", javaType = Date.class),
+            @Result(property = "astronauticsMuseumVisitedDate", column = "visit_astronautics_museum_datetime", javaType = Date.class),
+            @Result(property = "schoolMuseumVisitedDate", column = "visit_school_museum_datetime", javaType = Date.class),
+            @Result(property = "meetAlumniAssociation", column = "meet_alumni_association", javaType = int.class),
+            @Result(property = "acceptInterview", column = "accepte_inerview", javaType = int.class),
+            @Result(property = "giveLecture", column = "give_lecture", javaType = int.class),
+            @Result(property = "needVolunteer", column = "need_volunteer_assist", javaType = int.class)
+    })
+    List<BackActivityPO> listPageActivity(@Param("index") int recordIndex, @Param("count") int pageSize);
+
 }

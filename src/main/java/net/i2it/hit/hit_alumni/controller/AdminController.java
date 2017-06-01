@@ -2,6 +2,7 @@ package net.i2it.hit.hit_alumni.controller;
 
 import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.entity.Pager;
+import net.i2it.hit.hit_alumni.entity.po.BackActivityPO;
 import net.i2it.hit.hit_alumni.entity.po.DonatePO;
 import net.i2it.hit.hit_alumni.entity.vo.ItemVO;
 import net.i2it.hit.hit_alumni.service.AdminService;
@@ -115,22 +116,45 @@ public class AdminController {
      **************************************************/
 
     @GetMapping("/donate")
-    public String listDonateRecordByPage(@RequestParam(value = "page", required = false) Integer pageIndex,
+    public String listDonateRecordByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageIndex,
                                          ModelMap map) {
         Pager<DonatePO> pageData;
-        if(pageIndex!=null){
-            pageData=adminService.getPage(pageIndex,20);
-        }else{
-            pageData=adminService.getPage(1,20);
+        if (pageIndex != null && pageIndex > 0) {
+            pageData = adminService.getDonatePage(pageIndex, 20);
+        } else {
+            pageData = adminService.getDonatePage(1, 20);
         }
-        map.put("pageData",pageData);
+        map.put("pageDonates", pageData);
         return "admin/donateList";
     }
 
     @GetMapping("/donate/{id}")
-    public String getDonateInfo(@PathVariable("id")String id,ModelMap map) {
-        map.put("donateInfo",adminService.getDonateInfo(id));
+    public String getDonateInfo(@PathVariable("id") String id, ModelMap map) {
+        map.put("donateInfo", adminService.getDonateInfo(id));
         return "admin/donateInfo";
+    }
+
+    /**************************************************
+     * 获取返校信息列表
+     **************************************************/
+
+    @GetMapping("/activities")
+    public String listActivityRecordByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageIndex,
+                                         ModelMap map) {
+        Pager<BackActivityPO> pageData;
+        if (pageIndex != null && pageIndex > 0) {
+            pageData = adminService.getActivityPage(pageIndex, 20);
+        } else {
+            pageData = adminService.getActivityPage(1, 20);
+        }
+        map.put("pageActivities", pageData);
+        return "admin/activityList";
+    }
+
+    @GetMapping("/activities/{id}")
+    public String getAlumniInfo(@PathVariable("id") String id, ModelMap map) {
+        map.put("alumniInfo", adminService.getAlumniInfo(id));
+        return "admin/alumniInfo";
     }
 
 }

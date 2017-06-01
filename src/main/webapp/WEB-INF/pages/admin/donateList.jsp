@@ -40,7 +40,7 @@
             <th>职位</th>
             <th>操作</th>
         </tr>
-        <c:forEach items="${pageData.pageRecords}" var="item">
+        <c:forEach items="${pageDonates.pageRecords}" var="item">
             <tr>
                 <td><fmt:formatDate value="${item.time_end}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                 <td>${item.body}</td>
@@ -55,18 +55,23 @@
             </tr>
         </c:forEach>
     </table>
-    <p>
-        当前为${pageData.pageIndex}页，每页${pageData.pageSize}条记录&nbsp;|&nbsp;共${pageData.totalRecord}条记录，总共${pageData.totalPage}页
+    <div>
+        当前为${pageDonates.pageIndex}页，每页${pageDonates.pageSize}条记录&nbsp;|&nbsp;共${pageDonates.totalRecord}条记录，总共${pageDonates.totalPage}页
         &nbsp;|&nbsp;
         <c:choose>
-            <c:when test="${pageData.pageIndex-1<1}">上一页</c:when>
-            <c:otherwise><a href="/wechat/admin/donate?page=${pageData.pageIndex-1}">上一页</a></c:otherwise>
+            <c:when test="${pageDonates.pageIndex-1<1}">上一页</c:when>
+            <c:otherwise><a href="/wechat/admin/donate?page=${pageDonates.pageIndex-1}">上一页</a></c:otherwise>
         </c:choose>，
         <c:choose>
-            <c:when test="${pageData.pageIndex+1>pageData.totalPage}">下一页</c:when>
-            <c:otherwise><a href="/wechat/admin/donate?page=${pageData.pageIndex+1}">下一页</a></c:otherwise>
+            <c:when test="${pageDonates.pageIndex+1>pageDonates.totalPage}">下一页</c:when>
+            <c:otherwise><a href="/wechat/admin/donate?page=${pageDonates.pageIndex+1}">下一页</a></c:otherwise>
         </c:choose>
-    </p>
+        &nbsp;|&nbsp;
+        <form action="/wechat/admin/donate" method="get" style="display:inline;">
+            <input type="number" name="page" value="1" style="width: 50px;">
+            <input type="submit" value="跳转">
+        </form>
+    </div>
 </div>
 </body>
 </html>
