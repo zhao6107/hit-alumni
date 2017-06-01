@@ -5,6 +5,7 @@
     <title>哈尔滨工业大学校友会</title>
 </head>
 <body style="text-align: center;">
+<jsp:include page="nav_base.jsp" flush="true"/>
 <h2 style="padding-left: 20px;">捐款二维码</h2>
 <hr>
 <div style="padding-left: 20px;">
@@ -23,7 +24,6 @@
         var targetUrl = "${requestScope.targetUrl}?itemInfo=" + $("#itemBody").val() + "_" + $("#itemDetail").val() + "_" + $("#itemMoney").val() + "_qrcode";
         targetUrl = encodeURI(targetUrl);
         var content = "${requestScope.url}".replace("REDIRECT_URI", targetUrl);
-        alert(content);
         jQuery("#qrcode").qrcode({
             text: content,
             correctLevel: 0

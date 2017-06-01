@@ -24,6 +24,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="nav_base.jsp" flush="true"/>
 <div style="padding-left: 20px;">
     <h2>捐款记录</h2>
     <hr>

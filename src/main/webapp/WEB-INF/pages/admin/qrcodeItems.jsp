@@ -18,6 +18,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="nav_base.jsp" flush="true"/>
 <div style="padding-left: 20px;">
     <h2>二维码捐款项</h2>
     <hr>
