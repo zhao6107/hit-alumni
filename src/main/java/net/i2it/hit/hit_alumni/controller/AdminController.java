@@ -4,6 +4,7 @@ import net.i2it.hit.hit_alumni.constant.ConfigConsts;
 import net.i2it.hit.hit_alumni.entity.Pager;
 import net.i2it.hit.hit_alumni.entity.po.BackActivityPO;
 import net.i2it.hit.hit_alumni.entity.po.DonatePO;
+import net.i2it.hit.hit_alumni.entity.po.QRCodeItemPO;
 import net.i2it.hit.hit_alumni.entity.vo.ItemVO;
 import net.i2it.hit.hit_alumni.service.AdminService;
 import net.i2it.hit.hit_alumni.service.function.WeChatApi;
@@ -98,20 +99,6 @@ public class AdminController {
     }
 
     /**************************************************
-     * 生成捐款二维码的操作
-     **************************************************/
-
-    @GetMapping(value = "/items/qrcode")
-    public String createQRCode(ModelMap map) {
-        String targetUrl = ConfigConsts.getPay_url();
-        String url = WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.getApp_id())
-                .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
-        map.put("url", url);
-        map.put("targetUrl", targetUrl);
-        return "admin/qrCode";
-    }
-
-    /**************************************************
      * 获取捐款成功的列表
      **************************************************/
 
@@ -140,7 +127,7 @@ public class AdminController {
 
     @GetMapping("/activities")
     public String listActivityRecordByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageIndex,
-                                         ModelMap map) {
+                                           ModelMap map) {
         Pager<BackActivityPO> pageData;
         if (pageIndex != null && pageIndex > 0) {
             pageData = adminService.getActivityPage(pageIndex, 20);
@@ -155,6 +142,54 @@ public class AdminController {
     public String getAlumniInfo(@PathVariable("id") String id, ModelMap map) {
         map.put("alumniInfo", adminService.getAlumniInfo(id));
         return "admin/alumniInfo";
+    }
+
+    /**************************************************
+     * 对二维码方式筹款的项目进行管理
+     **************************************************/
+    @GetMapping("/qrcode-items")
+    public String listQRCodeItems(@RequestParam(value = "opt", required = false) String opt, ModelMap map) {
+        if ("add".equals(opt)) {
+            map.put("opt", opt);
+            return "admin/qrcodeItem";
+        }
+        map.put("items", adminService.getAllQRCodeItems());
+        return "admin/qrcodeItems";
+    }
+
+    @PostMapping("/qrcode-items")
+    public String addQRCodeItem(QRCodeItemPO item, ModelMap map) {
+        adminService.addQRCodeItem(item);
+        return "redirect:/wechat/admin/qrcode-items";
+    }
+
+    @GetMapping("/qrcode-items/{id}")
+    public String listQRCodeItems(@PathVariable("id") int id,
+                                  @RequestParam(value = "opt", required = false) String opt, ModelMap map) {
+        if ("update".equals(opt)) {
+            map.put("opt", opt);
+            map.put("item", adminService.getQRCodeItem(id));
+            return "admin/qrcodeItem";
+        } else if ("del".equals(opt)) {
+            adminService.delQRCodeItem(id);
+            return "redirect:/wechat/admin/qrcode-items";
+        }else if("qrcode".equals(opt)){
+            String targetUrl = ConfigConsts.getPay_url();
+            String url = WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.getApp_id())
+                    .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
+            map.put("url", url);
+            map.put("targetUrl", targetUrl);
+            map.put("item", adminService.getQRCodeItem(id));
+            return "admin/qrCode";
+        }
+        map.put("items", adminService.getAllQRCodeItems());
+        return "admin/qrcodeItems";
+    }
+
+    @PostMapping("/qrcode-items/{id}")
+    public String updateQRCodeItem(QRCodeItemPO item, ModelMap map) {
+        adminService.updateQRCodeItem(item);
+        return "redirect:/wechat/admin/qrcode-items";
     }
 
 }

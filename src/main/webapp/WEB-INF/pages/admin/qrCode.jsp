@@ -3,28 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>哈尔滨工业大学校友会</title>
-    <!-- local resources -->
-    <!-- create qr code -->
-    <script src="../../resources/js/jquery.min.js"></script>
-    <script src="../../resources/js/jquery.qrcode.min.js"></script>
-
-    <!-- cdn resources -->
-    <%--<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>--%>
-    <%--<script src="http://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>--%>
 </head>
-<body>
-<h2 style="padding-left: 20px;">捐款二维码生成器</h2>
+<body style="text-align: center;">
+<h2 style="padding-left: 20px;">捐款二维码</h2>
 <hr>
 <div style="padding-left: 20px;">
-    捐款项目：<input type="text" id="itemBody"><br>
-    详细描述：<input type="text" id="itemDetail"><br>
-    捐款金额：<input type="number" id="itemMoney"><br>
-    <button id="submit-btn">提交</button>
+    捐款项目：<input type="text" id="itemBody" value="${item.body}" disabled="disabled"><br>
+    详细描述：<input type="text" id="itemDetail" value="${item.detail}" disabled="disabled"><br>
+    捐款金额：<input type="number" id="itemMoney" value="${item.money}" disabled="disabled"><br>
 </div>
 <hr>
 <div id="qrcode" style="padding-left: 20px;"></div>
+</body>
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script>
-    $("#submit-btn").click(function () {
+    $(function () {
         $("#qrcode").text("");
         var targetUrl = "${requestScope.targetUrl}?itemInfo=" + $("#itemBody").val() + "_" + $("#itemDetail").val() + "_" + $("#itemMoney").val() + "_qrcode";
         targetUrl = encodeURI(targetUrl);
@@ -58,5 +52,4 @@
         return out;
     }
 </script>
-</body>
 </html>

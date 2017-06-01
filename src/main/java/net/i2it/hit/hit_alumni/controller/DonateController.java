@@ -66,6 +66,7 @@ public class DonateController {
     // 实际的支付动作发生界面
     @RequestMapping(value = "/pay", method = RequestMethod.GET)
     public String pay(HttpServletRequest request, String itemInfo, String code, ModelMap modelMap) {
+        modelMap.put("jsSdkConfig", donateService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         SimpleOrderInfoVO simpleOrderInfo = donateService.getSimpleOrderInfo(itemInfo);
         if (simpleOrderInfo != null && simpleOrderInfo.getTmpItemMoney() != null) {
             String tmpItemId = simpleOrderInfo.getTmpItemId();
@@ -80,17 +81,16 @@ public class DonateController {
                 }
                 simpleOrderInfo.setItemId(Integer.parseInt(tmpItemId));
 
-                System.out.println(tmpItemMoney);
                 //验证捐款金额的格式是否正确
                 for (int i = 0; i < tmpItemMoney.length(); i++) {
-                    if (!Character.isDigit(tmpItemMoney.charAt(i)) && tmpItemMoney.charAt(i) != '.') {
+                    if (!(Character.isDigit(tmpItemMoney.charAt(i))||tmpItemMoney.charAt(i)=='.')) {
                         return "redirect:/wechat/donate/item/" + simpleOrderInfo.getTmpItemId();
                     }
                 }
             } else {
                 //验证捐款金额的格式是否正确
                 for (int i = 0; i < tmpItemMoney.length(); i++) {
-                    if (!Character.isDigit(tmpItemMoney.charAt(i)) || tmpItemMoney.charAt(i) != '.') {
+                    if (!(Character.isDigit(tmpItemMoney.charAt(i))||tmpItemMoney.charAt(i)=='.')) {
                         modelMap.put("msg", "参数错误！");
                         return "client/warning_msg";
                     }
@@ -103,7 +103,6 @@ public class DonateController {
             modelMap.put("payInfo", map.get("payRequestVO"));//页面发起js_api字符需要的配置信息
             modelMap.put("out_trade_no", map.get("out_trade_no"));//统一下单后，商户订单号
             modelMap.put("serverUrl", ConfigConsts.getServer_domain_url());//对应着服务的根目录url
-            modelMap.put("jsSdkConfig", donateService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
             return "client/payAction";
         }
         modelMap.put("msg", "参数错误！");

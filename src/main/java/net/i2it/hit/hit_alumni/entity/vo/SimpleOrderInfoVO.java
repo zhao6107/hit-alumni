@@ -84,4 +84,17 @@ public class SimpleOrderInfoVO {
         this.origin = origin;
     }
 
+    @Override
+    public String toString() {
+        return "SimpleOrderInfoVO{" +
+                "tmpItemId='" + tmpItemId + '\'' +
+                ", itemId=" + itemId +
+                ", itemBody='" + itemBody + '\'' +
+                ", itemDetail='" + itemDetail + '\'' +
+                ", tmpItemMoney='" + tmpItemMoney + '\'' +
+                ", itemMoney=" + itemMoney +
+                ", origin='" + origin + '\'' +
+                '}';
+    }
+
 }

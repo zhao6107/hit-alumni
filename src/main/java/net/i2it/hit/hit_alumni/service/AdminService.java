@@ -1,14 +1,8 @@
 package net.i2it.hit.hit_alumni.service;
 
-import net.i2it.hit.hit_alumni.dao.ActivityInfoDao;
-import net.i2it.hit.hit_alumni.dao.AlumniInfoDao;
-import net.i2it.hit.hit_alumni.dao.DonateDao;
-import net.i2it.hit.hit_alumni.dao.ItemDao;
+import net.i2it.hit.hit_alumni.dao.*;
 import net.i2it.hit.hit_alumni.entity.Pager;
-import net.i2it.hit.hit_alumni.entity.po.AlumniPO;
-import net.i2it.hit.hit_alumni.entity.po.BackActivityPO;
-import net.i2it.hit.hit_alumni.entity.po.DonatePO;
-import net.i2it.hit.hit_alumni.entity.po.ItemPO;
+import net.i2it.hit.hit_alumni.entity.po.*;
 import net.i2it.hit.hit_alumni.entity.vo.ItemVO;
 import net.i2it.hit.hit_alumni.entity.vo.api.request.JsSdkConfigVO;
 import net.i2it.hit.hit_alumni.service.function.JsSdkConfig;
@@ -35,6 +29,12 @@ public class AdminService {
     private ActivityInfoDao activityInfoDao;
     @Autowired
     private AlumniInfoDao alumniInfoDao;
+    @Autowired
+    private QRCodeItemDao qrCodeItemDao;
+
+    /**************************************************
+     * 对公众号内支付的捐款项目进行管理操作
+     **************************************************/
 
     public List<ItemPO> listNotExpiredItems() {
         return itemDao.listNotExpiredItems();
@@ -77,6 +77,10 @@ public class AdminService {
         }
     }
 
+    /**************************************************
+     * 查看捐款记录
+     **************************************************/
+
     public Pager<DonatePO> getDonatePage(int pageIndex, int pageSize) {
         int recordCount = donateDao.getRecordCount();
         if (recordCount == 0) {
@@ -101,6 +105,10 @@ public class AdminService {
         return donateDao.get(id);
     }
 
+    /**************************************************
+     * 查看返校信息登记
+     **************************************************/
+
     public Pager<BackActivityPO> getActivityPage(int pageIndex, int pageSize) {
         int recordCount = activityInfoDao.getRecordCount();
         if (recordCount == 0) {
@@ -123,6 +131,39 @@ public class AdminService {
 
     public AlumniPO getAlumniInfo(String openId) {
         return alumniInfoDao.get(openId);
+    }
+
+    /**************************************************
+     * 对二维码方式筹款的项目进行管理
+     **************************************************/
+
+    public List<QRCodeItemPO> getAllQRCodeItems() {
+        return qrCodeItemDao.listItems();
+    }
+
+    public boolean addQRCodeItem(QRCodeItemPO item) {
+        if (qrCodeItemDao.save(item) == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public QRCodeItemPO getQRCodeItem(int id) {
+        return qrCodeItemDao.getItem(id);
+    }
+
+    public boolean updateQRCodeItem(QRCodeItemPO item) {
+        if (qrCodeItemDao.update(item) == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean delQRCodeItem(int id) {
+        if (qrCodeItemDao.del(id) == 1) {
+            return true;
+        }
+        return false;
     }
 
 }

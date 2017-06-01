@@ -39,7 +39,6 @@ public class AlumniController {
         if (webAccessTokenVO != null) {//调用api获取access_token失败
             String openId = webAccessTokenVO.getOpenid();
             Map<Long, Object> activityMap = alumniBackService.divideActivities(openId);
-            System.out.println(activityMap);
             //返回到我的返校活动列表页
             map.put("openId", openId);
             map.put("activities", activityMap);
@@ -54,7 +53,6 @@ public class AlumniController {
     public String listActivity(HttpServletRequest request, String openId, ModelMap map) {
         map.put("jsSdkConfig", alumniBackService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         Map<Long, Object> activityMap = alumniBackService.divideActivities(openId);
-        System.out.println(activityMap);
         //返回到我的返校活动列表页
         map.put("openId", openId);
         map.put("activities", activityMap);
