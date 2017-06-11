@@ -6,12 +6,12 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
     <title>哈尔滨工业大学校友会</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/css/base.css">
 </head>
 <body>
 <form class="container js_container" action="${applicationScope.globalUrlPrefix}/wechat/donate/donator-info" method="post" id="donator-info">
+    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/img/top_img.jpg" width="100%"></div>
     <input type="hidden" name="out_trade_no" value="${out_trade_no}">
-    <div class="hd">捐助者登记</div>
     <div class="weui-cells__title" style="margin-top: 30px;">做好事记得留名奥</div>
     <div class="weui-cells weui-cells_form">
         <div class="weui-cell" id="div0">
@@ -80,8 +80,8 @@
             </div>
         </div>
     </div>
-    <div class="weui-btn-area" style="text-align: center;">
-        <input id="sbt-btn" class="weui-btn weui-btn_mini weui-btn_primary btn-c" type="submit" value="提交">
+    <div class="weui-btn-area" style="text-align: center;margin-bottom: 20px;">
+        <input id="sbt-btn" class="weui-btn weui-btn_mini weui-btn_primary btn" type="submit" value="提交">
     </div>
 </form>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>

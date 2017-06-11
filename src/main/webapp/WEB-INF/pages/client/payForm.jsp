@@ -3,54 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>哈尔滨工业大学校友会</title>
+    <title>${item.name}</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/css/base.css">
+    <style type="text/css">
+        .div-area{
+            width: 95%;
+            color: #333;
+            background: #fff;
+            margin: 16px auto 20px;
+            border: 1px solid #c5c5c5;
+            border-radius: 8px;
+            display: table;
+            box-sizing: border-box;
+        }
+        .fund-content{
+            padding: 10px;
+        }
+        .donate-area{
+            padding: 0px 10px;
+        }
+        .hd-content{
+            width: 100%;
+            border-bottom: 1px dotted #c3c3c3;
+            text-align: center;
+        }
+        .hd-content h3{
+            font-size: 1rem;
+            line-height: 30px;
+        }
+        .fund-body{
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+            line-height: 30px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
 <div class="container js_container">
-    <div class="hd">我要捐款</div>
-    <div class="weui-cells__title bd-m-t">筹款信息</div>
-    <div class="weui-form-preview">
-        <div class="weui-form-preview__bd">
-            <p>
-                <label class="weui-form-preview__label">筹款项目</label>
-                <span class="weui-form-preview__value">${item.body}</span>
-            </p>
-            <p>
-                <label class="weui-form-preview__label">筹款说明</label>
-                <span class="weui-form-preview__value">${item.detail}</span>
-            </p>
-            <p>
-                <label class="weui-form-preview__label">已筹金额</label>
-                <span class="weui-form-preview__value">${item.raisedFund}元</span>
-            </p>
-            <p>
-                <label class="weui-form-preview__label">目标金额</label>
-                <span class="weui-form-preview__value">${item.targetFund}元</span>
-            </p>
-            <p style="height: 28px;">
-                <label class="weui-form-preview__label">发起时间</label>
-                <span class="weui-form-preview__value">
-                    <fmt:formatDate value="${item.time_begin}" pattern="yyyy-MM-dd HH:mm:ss"/>
-                </span>
-            </p>
-        </div>
+    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/img/top_img.jpg" width="100%"></div>
+    <div class="div-area fund-content">
+        <div class="hd-content"><h3>${item.name}</h3></div>
+        <div class="fund-body">${item.desc}</div>
     </div>
-    <div class="weui-cells__title">我要捐款</div>
-    <div class="weui-cells weui-cells_form">
-        <div id="donateMoneyDiv" class="weui-cell">
+    <div class="weui-cells weui-cells_form div-area donate-area">
+        <div class="weui-cell" id="donateMoneyDiv">
             <div class="weui-cell__hd"><label class="weui-label">捐款金额</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" id="donateMoney" type="number" pattern="^[0-9]+\.?[0-9]?[1-9]$"
-                       required="required" placeholder="捐款金额，单位元"/>
+                <input class="weui-input" id="donateMoney" type="number" placeholder="捐款金额，单位元"/>
             </div>
         </div>
     </div>
-    <div class="weui-btn-area" style="text-align: center;">
-        <button class="weui-btn weui-btn_mini weui-btn_primary btn-c" id="btn-sbt">捐助</button>
+    <div class="weui-btn-area" style="text-align: center;margin-bottom:20px;">
+        <button id="btn-sbt" class="weui-btn weui-btn_mini weui-btn_primary btn">捐助</button>
     </div>
 </div>
+</body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script>
@@ -73,7 +83,7 @@
         if (checkMoneyFormat(param)) {
             var targetUrl = "${targetUrl}";
             var redirectUrl = "${redirectUrl}";
-            redirectUrl = redirectUrl + "?itemInfo=${item.body}_${item.detail}_" + $("#donateMoney").val() + "_web_${item.id}";
+            redirectUrl = redirectUrl + "?itemInfo=${item.id}_${item.name}_" + $("#donateMoney").val();
             redirectUrl = encodeURI(redirectUrl);
             targetUrl = targetUrl.replace("REDIRECT_URI", redirectUrl);
             window.location.href = targetUrl;
@@ -97,6 +107,4 @@
         }
     }
 </script>
-</body>
 </html>
-

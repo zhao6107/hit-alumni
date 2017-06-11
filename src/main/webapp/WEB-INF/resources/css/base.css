@@ -1,0 +1,11 @@
+body{
+    font-family: Microsoft YaHei,宋体;
+    color: #444444;
+    background-color:#F8F8F8;
+}
+.btn{
+    padding: 1px 20px;
+    min-width: 75px;
+    border-radius: 4px;
+    background-color: #2A4F86;
+}

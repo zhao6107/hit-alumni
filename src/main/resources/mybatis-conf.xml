@@ -19,7 +19,7 @@
     </settings>
 
     <typeAliases>
-        <package name="net.i2it.hit.hit_alumni.dao"/>
+        <package name="net.i2it.hit.hitef.dao"/>
     </typeAliases>
 
 </configuration>

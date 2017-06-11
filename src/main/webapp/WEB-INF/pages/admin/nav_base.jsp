@@ -32,10 +32,7 @@
 <body>
 <ul class="nav-ul">
     <li class="nav-li"><div style="width: 100px;height: 50px;">&emsp;</div></li>
-    <li class="nav-li"><a href="${applicationScope.globalUrlPrefix}/wechat/admin/items">捐款项目</a></li>
-    <li class="nav-li"><a href="${applicationScope.globalUrlPrefix}/wechat/admin/donate">捐款记录</a></li>
-    <li class="nav-li"><a href="${applicationScope.globalUrlPrefix}/wechat/admin/qrcode-items">捐款二维码</a></li>
-    <li class="nav-li"><a href="${applicationScope.globalUrlPrefix}/wechat/admin/activities">校友返校</a></li>
+    <%--<li class="nav-li"><a href="${applicationScope.globalUrlPrefix}/wechat/admin/items">捐款项目</a></li>--%>
 </ul>
 </body>
 </html>

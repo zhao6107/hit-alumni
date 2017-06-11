@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
 <body>
 <div class="weui-msg bd-m-t">

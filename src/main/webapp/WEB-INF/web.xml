@@ -10,13 +10,13 @@
     </context-param>
 
     <listener>
-        <listener-class>net.i2it.hit.hit_alumni.listener.WebInitListener</listener-class>
+        <listener-class>net.i2it.hit.hitef.listener.WebInitListener</listener-class>
     </listener>
     <listener>
-        <listener-class>net.i2it.hit.hit_alumni.listener.TimerListener</listener-class>
+        <listener-class>net.i2it.hit.hitef.listener.TimerListener</listener-class>
     </listener>
     <listener>
-        <listener-class>net.i2it.hit.hit_alumni.listener.WeChatInitListener</listener-class>
+        <listener-class>net.i2it.hit.hitef.listener.WeChatInitListener</listener-class>
     </listener>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -34,8 +34,16 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+    <filter>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
@@ -55,4 +63,5 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
 </web-app>
