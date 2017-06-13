@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
-<body>
+<fundItemName>
 <form class="container js_container" action="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school"
       method="post">
     <c:if test="${not empty activity}">
@@ -170,7 +170,7 @@
         <button class="weui-btn weui-btn_mini weui-btn_primary btn-c" id="modify-btn">我要修改信息</button>
     </div>
 </c:if>
-</body>
+</fundItemName>
 
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>

@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <title>哈尔滨工业大学校友会</title>
 </head>
-<body style="text-align: center;">
+<fundItemName style="text-align: center;">
 <jsp:include page="nav_base.jsp" flush="true"/>
 <h2 style="padding-left: 20px;">捐款二维码</h2>
 <hr>
 <div style="padding-left: 20px;">
-    捐款项目：<input type="text" id="itemBody" value="${item.body}" disabled="disabled"><br>
-    详细描述：<input type="text" id="itemDetail" value="${item.detail}" disabled="disabled"><br>
+    捐款项目：<input type="text" id="itemBody" value="${item.fundItemName}" disabled="disabled"><br>
+    详细描述：<input type="text" id="itemDetail" value="${item.fundItemId}" disabled="disabled"><br>
     捐款金额：<input type="number" id="itemMoney" value="${item.money}" disabled="disabled"><br>
 </div>
 <hr>
 <div id="qrcode" style="padding-left: 20px;"></div>
-</body>
+</fundItemName>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script>

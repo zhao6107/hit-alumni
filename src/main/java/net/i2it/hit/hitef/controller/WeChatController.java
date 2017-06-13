@@ -6,7 +6,10 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 
 import net.i2it.hit.hitef.util.EncryptionUtil;
+import org.apache.http.protocol.HTTP;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  * 处理和微信服务器之间的网络交互操作
  */
 @Controller
-@RequestMapping("/wechat/msg")
+@RequestMapping("/hitef/wechat/msg")
 public class WeChatController {
 
     /**
@@ -30,7 +33,7 @@ public class WeChatController {
      * @param echostr
      * @param out
      */
-    @RequestMapping(method = RequestMethod.GET, params = {"signature", "timestamp", "nonce", "echostr"})
+    @GetMapping(params = {"signature", "timestamp", "nonce", "echostr"})
     public void verify(String signature, String timestamp, String nonce, String echostr, PrintWriter out) {
         // 第一步：对参数token、timestamp、nonce排序
         String[] arr = new String[]{ConfigConsts.getToken(), timestamp, nonce};
@@ -51,8 +54,17 @@ public class WeChatController {
         out.close();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public static void receive(HttpServletRequest request) {
+    @PostMapping
+    public void receiveViaPost(HttpServletRequest request) {
+        processMsg(request, "post");
+    }
+
+    @GetMapping
+    public void receiveViaGet(HttpServletRequest request) {
+        processMsg(request, "get");
+    }
+
+    private void processMsg(HttpServletRequest request, String reqMethod) {
         try {
             BufferedReader reader = request.getReader();
             StringBuffer sb = new StringBuffer();
@@ -60,7 +72,7 @@ public class WeChatController {
             while ((tmp = reader.readLine()) != null) {
                 sb.append(tmp);
             }
-            System.out.println(">>> 微信服务器发送的请求信息：" + sb.toString());
+            System.out.println(">>> 微信服务器发送的" + reqMethod + "请求信息：" + sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
-<body>
+<fundItemName>
 <div class="container js_container">
     <div class="hd">筹款项目列表</div>
     <div class="weui-panel" style="margin-top: 30px;">
@@ -18,8 +18,8 @@
             <c:forEach items="${items}" var="item">
                 <a class="weui-media-box weui-media-box_text" style="display: block;"
                    href="${applicationScope.globalUrlPrefix}/wechat/donate/item/${item.id}">
-                    <h4 class="weui-media-box__title">${item.body}</h4>
-                    <p class="weui-media-box__desc">${item.detail}</p>
+                    <h4 class="weui-media-box__title">${item.fundItemName}</h4>
+                    <p class="weui-media-box__desc">${item.fundItemId}</p>
                     <ul class="weui-media-box__info">
                         <li class="weui-media-box__info__meta">已筹${item.raisedFund}元</li>
                         <li class="weui-media-box__info__meta">目标${item.targetFund}元</li>
@@ -53,6 +53,6 @@
         wx.hideAllNonBaseMenuItem();
     });
 </script>
-</body>
+</fundItemName>
 </html>
 

@@ -12,14 +12,11 @@
 hs_err_pid*
 
 
-hit-alumni.sql
 src/test/
 target/
-src/main/resources/MP_verify_rkHrUZkg16fUIqT2.txt
-src/main/resources/donate-cer.pdf
+src/main/resources/MP_verify_ZrPwd9uqYEtnomKF.txt
 src/main/resources/donate-cer.jpg
-src/main/resources/cer/
-src/main/resources/hit-alumni.properties
+src/main/resources/certifications/
 # ignored when using intellij idea
 .idea/
 out/

@@ -17,7 +17,7 @@
         }
     </style>
 </head>
-<body>
+<fundItemName>
 <jsp:include page="nav_base.jsp" flush="true"/>
 <div style="padding-left: 20px;">
     <h2>
@@ -53,8 +53,8 @@
             <tr>
                 <td>${item.id}</td>
                 <td><fmt:formatDate value="${item.time_begin}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                <td>${item.body}</td>
-                <td>${item.detail}</td>
+                <td>${item.fundItemName}</td>
+                <td>${item.fundItemId}</td>
                 <td>${item.targetFund}元</td>
                 <td>${item.raisedFund}元</td>
                 <td>
@@ -74,5 +74,5 @@
         </c:forEach>
     </table>
 </div>
-</body>
+</fundItemName>
 </html>

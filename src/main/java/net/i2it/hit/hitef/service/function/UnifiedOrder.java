@@ -1,7 +1,7 @@
 package net.i2it.hit.hitef.service.function;
 
 import net.i2it.hit.hitef.constant.ConfigConsts;
-import net.i2it.hit.hitef.domain.PrepayVO;
+import net.i2it.hit.hitef.domain.PrepayInfoVO;
 import net.i2it.hit.hitef.entity.vo.SimpleOrderInfoVO;
 import net.i2it.hit.hitef.entity.vo.api.request.UnifiedOrderInfoVO;
 import net.i2it.hit.hitef.util.ValueGeneratorUtil;
@@ -47,15 +47,15 @@ public class UnifiedOrder {
         return map;
     }
 
-    public Map<String, Object> getUnifiedOrderInfo(String openid, PrepayVO prepayVO) {
+    public Map<String, Object> getUnifiedOrderInfo(String openid, PrepayInfoVO prepayInfoVO) {
         Map<String, Object> map = new HashMap<String, Object>();
         UnifiedOrderInfoVO orderInfo = new UnifiedOrderInfoVO();
         orderInfo.setOpenid(openid);
         orderInfo.setNonce_str(ValueGeneratorUtil.randomStr(10));
-        orderInfo.setBody(prepayVO.getName());
-        orderInfo.setDetail(prepayVO.getId()+"");
+        orderInfo.setBody(prepayInfoVO.getName());
+        orderInfo.setDetail(prepayInfoVO.getId()+"");
         //统一下单接口中支付金额的单位为分，∴需要×100
-        orderInfo.setTotal_fee((int) (prepayVO.getMoney() * 100));
+        orderInfo.setTotal_fee((int) (prepayInfoVO.getMoney() * 100));
         // 借助于日期实现的字段
         Date dateTime = new Date();
         map.put("time_end", ValueGeneratorUtil.date2Str(dateTime, ValueGeneratorUtil.DATE_FORMAT_PATTERN2));
@@ -63,7 +63,7 @@ public class UnifiedOrder {
         orderInfo.setTime_start(ValueGeneratorUtil.date2Str(dateTime, ValueGeneratorUtil.DATE_FORMAT_PATTERN));
         orderInfo.setTime_expire(ValueGeneratorUtil.date2Str(new Date(dateTime.getTime() + 10 * 60 * 1000), ValueGeneratorUtil.DATE_FORMAT_PATTERN));// 订单失效时间：10分钟
         orderInfo.setDevice_info("web");
-        orderInfo.setNotify_url(ConfigConsts.getServer_domain_url() + "/wechat/donate/notify");
+        orderInfo.setNotify_url(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/resultNofity");
         // 最后一步才是设置sign
         orderInfo.setSign(ValueGeneratorUtil.getSign(orderInfo));
         map.put("order_info", orderInfo);

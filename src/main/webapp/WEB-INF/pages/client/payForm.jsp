@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>${item.name}</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/css/base.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/res/css/base.css">
     <style type="text/css">
-        .div-area{
+        .div-area {
             width: 95%;
             color: #333;
             background: #fff;
@@ -17,22 +17,27 @@
             display: table;
             box-sizing: border-box;
         }
-        .fund-content{
+
+        .fund-content {
             padding: 10px;
         }
-        .donate-area{
+
+        .donate-area {
             padding: 0px 10px;
         }
-        .hd-content{
+
+        .hd-content {
             width: 100%;
             border-bottom: 1px dotted #c3c3c3;
             text-align: center;
         }
-        .hd-content h3{
+
+        .hd-content h3 {
             font-size: 1rem;
             line-height: 30px;
         }
-        .fund-body{
+
+        .fund-fundItemName {
             padding: 10px;
             box-sizing: border-box;
             font-size: 14px;
@@ -41,12 +46,12 @@
         }
     </style>
 </head>
-<body>
+<fundItemName>
 <div class="container js_container">
-    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/img/top_img.jpg" width="100%"></div>
+    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
     <div class="div-area fund-content">
         <div class="hd-content"><h3>${item.name}</h3></div>
-        <div class="fund-body">${item.desc}</div>
+        <div class="fund-fundItemName">${item.desc}</div>
     </div>
     <div class="weui-cells weui-cells_form div-area donate-area">
         <div class="weui-cell" id="donateMoneyDiv">
@@ -60,7 +65,7 @@
         <button id="btn-sbt" class="weui-btn weui-btn_mini weui-btn_primary btn">捐助</button>
     </div>
 </div>
-</body>
+</fundItemName>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script>
@@ -83,7 +88,7 @@
         if (checkMoneyFormat(param)) {
             var targetUrl = "${targetUrl}";
             var redirectUrl = "${redirectUrl}";
-            redirectUrl = redirectUrl + "?itemInfo=${item.id}_${item.name}_" + $("#donateMoney").val();
+            redirectUrl = redirectUrl + "?payInfo=${item.id}__${item.name}__" + $("#donateMoney").val();
             redirectUrl = encodeURI(redirectUrl);
             targetUrl = targetUrl.replace("REDIRECT_URI", redirectUrl);
             window.location.href = targetUrl;
@@ -93,7 +98,7 @@
     function checkMoneyFormat(param) {
         var reg = /^[0-9]+\.?[0-9]{0,2}$/;
         var element = $("#donateMoneyDiv");
-        if (!reg.test(param)) {
+        if (!reg.test(param) || param==0) {
             element.addClass("weui-cell_warn");
             if ($("#donateMoneyWarn").length > 0) {
             } else {

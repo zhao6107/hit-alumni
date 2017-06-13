@@ -17,7 +17,7 @@
         }
     </style>
 </head>
-<body>
+<fundItemName>
 <jsp:include page="nav_base.jsp" flush="true"/>
 <div style="padding-left: 20px;">
     <h2>二维码捐款项</h2>
@@ -37,8 +37,8 @@
         <c:forEach items="${items}" var="item">
             <tr>
                 <td>${item.id}</td>
-                <td>${item.body}</td>
-                <td>${item.detail}</td>
+                <td>${item.fundItemName}</td>
+                <td>${item.fundItemId}</td>
                 <td><fmt:formatNumber value="${item.money}" pattern="￥#0.00"/></td>
                 <td>
                     <a href="/wechat/admin/qrcode-items/${item.id}?opt=qrcode">捐款二维码</a>
@@ -50,5 +50,5 @@
         </c:forEach>
     </table>
 </div>
-</body>
+</fundItemName>
 </html>

@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body>
+<fundItemName>
 <jsp:include page="nav_base.jsp" flush="true"/>
 <div style="padding-left: 20px;text-align: center;">
     <h2>联系人信息</h2>
@@ -35,5 +35,5 @@
         <p><a href="/wechat/admin/activities?page=1">返回返校活动列表</a></p>
     </div>
 </div>
-</body>
+</fundItemName>
 </html>

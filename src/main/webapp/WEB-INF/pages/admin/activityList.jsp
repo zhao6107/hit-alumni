@@ -22,7 +22,7 @@
         }
     </style>
 </head>
-<body>
+<fundItemName>
 <jsp:include page="nav_base.jsp" flush="true"/>
 <div style="padding-left: 20px;">
     <h2>返校活动登记信息</h2>
@@ -103,5 +103,5 @@
         </form>
     </div>
 </div>
-</body>
+</fundItemName>
 </html>

@@ -31,7 +31,7 @@ public class DonateCertificateUtil {
 
     static {
         try {
-            CER_FOLD_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("cer/").getPath(), "utf-8");
+            CER_FOLD_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("certifications/").getPath(), "utf-8");
             IAMGE_FILE_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("donate-cer.jpg").getPath(), "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
-    <title>哈尔滨工业大学校友会</title>
+    <title>捐助者信息完善</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/css/base.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/res/css/base.css">
 </head>
-<body>
-<form class="container js_container" action="${applicationScope.globalUrlPrefix}/wechat/donate/donator-info" method="post" id="donator-info">
-    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/img/top_img.jpg" width="100%"></div>
-    <input type="hidden" name="out_trade_no" value="${out_trade_no}">
+<fundItemName>
+<form class="container js_container"
+      action="${applicationScope.globalUrlPrefix}/hitef//wechat/donate/?action=updateDonatorInfo" method="post"
+      id="donator-info">
+    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
+    <input type="hidden" name="outTradeNo" value="${out_trade_no}">
     <div class="weui-cells__title" style="margin-top: 30px;">做好事记得留名奥</div>
     <div class="weui-cells weui-cells_form">
         <div class="weui-cell" id="div0">
             <div class="weui-cell__hd"><label class="weui-label">姓　　名</label></div>
             <div class="weui-cell__bd">
                 <input class="weui-input" type="text" name="trueName" id="trueName" required="required"
-                       placeholder="请输入您的真实姓名" value="${donateInfo.true_name}"/>
+                       placeholder="请输入您的真实姓名" value="${donateInfo.trueName}"/>
             </div>
         </div>
         <div class="weui-cell weui-cell_switch">
@@ -31,7 +33,7 @@
             <div class="weui-cell__hd"><label class="weui-label">入学年份</label></div>
             <div class="weui-cell__bd">
                 <input class="weui-input" type="number" pattern="[0-9]*" name="entryYear" placeholder="请输入您的入学年份"
-                       value="${donateInfo.entry_year}"/>
+                       value="${donateInfo.entryYear}"/>
             </div>
         </div>
         <div class="weui-cell" id="div2">
@@ -45,7 +47,7 @@
             <div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
             <div class="weui-cell__bd">
                 <input class="weui-input" type="number" pattern="[0-9]*" name="phone" placeholder="请输入您的手机号码"
-                       value="${donateInfo.entry_year}"/>
+                       value="${donateInfo.entryYear}"/>
             </div>
         </div>
         <div class="weui-cell" id="div4">
@@ -66,7 +68,7 @@
             <div class="weui-cell__hd"><label class="weui-label">邮寄地址</label></div>
             <div class="weui-cell__bd">
                 <input class="weui-input" type="text" name="mailAddr" placeholder="请输入您的邮寄地址"
-                       value="${donateInfo.mail_addr}"/>
+                       value="${donateInfo.mailAddr}"/>
             </div>
         </div>
     </div>
@@ -144,5 +146,5 @@
         $("#comment").val($(this).val());
     });
 </script>
-</body>
+</fundItemName>
 </html>

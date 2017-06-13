@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
-<body>
+<fundItemName>
 <div class="container js_container">
     <div class="hd">我的返校活动</div>
     <div class="weui-btn-area" style="text-align: right;margin-top: 16px;margin-bottom: 16px;">
@@ -105,7 +105,7 @@
         wx.hideAllNonBaseMenuItem();
     });
 </script>
-</body>
+</fundItemName>
 </html>
 
 

@@ -3,7 +3,7 @@ package net.i2it.hit.hitef.controller;
 import net.i2it.hit.hitef.constant.ConfigConsts;
 import net.i2it.hit.hitef.entity.Pager;
 import net.i2it.hit.hitef.entity.po.BackActivityPO;
-import net.i2it.hit.hitef.entity.po.DonatePO;
+import net.i2it.hit.hitef.domain.DonateRecordDO;
 import net.i2it.hit.hitef.entity.po.QRCodeItemPO;
 import net.i2it.hit.hitef.entity.vo.ItemVO;
 import net.i2it.hit.hitef.service.AdminService;
@@ -105,7 +105,7 @@ public class AdminController {
     @GetMapping("/donate")
     public String listDonateRecordByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageIndex,
                                          ModelMap map) {
-        Pager<DonatePO> pageData;
+        Pager<DonateRecordDO> pageData;
         if (pageIndex != null && pageIndex > 0) {
             pageData = adminService.getDonatePage(pageIndex, 20);
         } else {

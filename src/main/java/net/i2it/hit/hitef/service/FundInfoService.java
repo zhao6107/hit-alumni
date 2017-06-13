@@ -1,9 +1,7 @@
 package net.i2it.hit.hitef.service;
 
 import net.i2it.hit.hitef.dao.FundItemDAO;
-import net.i2it.hit.hitef.dao.FundTypeDAO;
 import net.i2it.hit.hitef.domain.CommonInfo;
-import net.i2it.hit.hitef.domain.FundInfo;
 import net.i2it.hit.hitef.domain.FundItemDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +13,16 @@ public class FundInfoService {
 
     @Autowired
     private FundItemDAO fundItemDAO;
-    @Autowired
-    private FundTypeDAO fundTypeDAO;
 
-    public List<FundInfo> getNormalFundInfos() {
+    public List<FundItemDO> getNormalFundItems() {
         return fundItemDAO.listAllFundItemByStatus(1);
     }
 
-    public List<FundInfo> getStopedFundInfos() {
+    public List<FundItemDO> getStopedFundItems() {
         return fundItemDAO.listAllFundItemByStatus(0);
     }
 
-    public FundInfo getFundItemById(int id) {
+    public FundItemDO getFundItemById(int id) {
         return fundItemDAO.getById(id);
     }
 
@@ -52,18 +48,12 @@ public class FundInfoService {
         return false;
     }
 
-    public List<FundInfo> getSchoolNormalFundItems() {
+    public List<FundItemDO> getSchoolNormalFundItems() {
+        return fundItemDAO.listAllFundItemByTypeAndStatus(0, 1);
+    }
+
+    public List<FundItemDO> getAcademyNormalFundItems() {
         return fundItemDAO.listAllFundItemByTypeAndStatus(1, 1);
-    }
-
-    public List<FundInfo> getAcademyNormalFundItems() {
-        return fundItemDAO.listAcademyFundItemByStatus(1);
-    }
-
-    /********************* FundTypeDAO *********************/
-
-    public List<CommonInfo> getAllFundTypes() {
-        return fundTypeDAO.listAllFundType();
     }
 
 }

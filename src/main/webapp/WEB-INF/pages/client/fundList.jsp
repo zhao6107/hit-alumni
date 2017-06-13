@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>哈尔滨工业大学校友会</title>
+    <title>筹款基金项目列表</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/css/base.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/res/css/base.css">
     <style type="text/css">
         .funds {
             margin-top: 10px;
@@ -52,27 +52,23 @@
         }
     </style>
 </head>
-<body>
-<div class="container js_container">
-    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/img/top_img.jpg" width="100%"></div>
-    <div class="funds">
-        <ul>
-            <c:forEach items="${fundItems}" var="item">
-                <li><a href="/wechat/test/items/${item.id}">
-                    <c:choose>
-                        <c:when test="${item.typeId!=1}">
-                            ${item.typeName}：${item.name}
-                        </c:when>
-                        <c:otherwise>${item.name}</c:otherwise>
-                    </c:choose>
-                    <span><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/img/arrow.png" width="125%"></span></a>
-                </li>
-            </c:forEach>
-            <%--<li><a href="">基金项目<span><img src="./arrow.png" width="125%"></span></a></li>--%>
-        </ul>
+<fundItemName>
+    <div class="container js_container">
+        <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
+        <div class="funds">
+            <ul>
+                <c:forEach items="${fundItems}" var="item">
+                    <li><a href="/hitef/wechat/items/${item.id}?opt=getFundItemInfoAndDonateFormPage">
+                            ${item.name}
+                        <span><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/arrow.png"
+                                   width="125%"></span></a>
+                    </li>
+                </c:forEach>
+                <%--<li><a href="">基金项目<span><img src="./arrow.png" width="125%"></span></a></li>--%>
+            </ul>
+        </div>
     </div>
-</div>
-</body>
+</fundItemName>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     wx.config({

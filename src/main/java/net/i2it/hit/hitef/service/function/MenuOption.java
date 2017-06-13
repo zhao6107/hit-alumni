@@ -68,25 +68,22 @@ public class MenuOption {
         button11.setName("院系基金");
         button11.setType("view");
         button11.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/items?q=academy");
-//        String url10 = WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.getApp_id())
-//                .replace("REDIRECT_URI", URLEncoder.encode(ConfigConsts.getServer_domain_url() + "/wechat/alumni/back-school", "utf-8"))
-//                .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
         button1.setName("募捐项目");
         button1.setSub_button(new MenuVO.Button[]{button10, button11});
 
         //第三栏菜单
         button20.setName("微信捐赠");
         button20.setType("view");
-        button20.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/donate/list");
+        button20.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/items?q=all");
         button21.setName("捐赠芳名录");
         button21.setType("view");
-        button21.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/donate/tmp");
+        button21.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/tmp");
         button22.setName("其他捐赠方式");
         button22.setType("view");
-        button22.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/donate/tmp");
+        button22.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/tmp");
         button23.setName("捐赠统计");
         button23.setType("view");
-        button23.setUrl(ConfigConsts.getServer_domain_url() + "/wechat/donate/tmp");
+        button23.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/tmp");
         button2.setName("我要捐赠");
         button2.setSub_button(new MenuVO.Button[]{button20, button21, button22, button23});
 

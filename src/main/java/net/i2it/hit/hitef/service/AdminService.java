@@ -1,6 +1,7 @@
 package net.i2it.hit.hitef.service;
 
 import net.i2it.hit.hitef.dao.*;
+import net.i2it.hit.hitef.domain.DonateRecordDO;
 import net.i2it.hit.hitef.entity.Pager;
 import net.i2it.hit.hitef.entity.po.*;
 import net.i2it.hit.hitef.entity.vo.ItemVO;
@@ -76,10 +77,10 @@ public class AdminService {
      * 查看捐款记录
      **************************************************/
 
-    public Pager<DonatePO> getDonatePage(int pageIndex, int pageSize) {
+    public Pager<DonateRecordDO> getDonatePage(int pageIndex, int pageSize) {
         int recordCount = donateDao.getRecordCount();
         if (recordCount == 0) {
-            return new Pager<DonatePO>(pageSize, 0, 0, 0, null);
+            return new Pager<DonateRecordDO>(pageSize, 0, 0, 0, null);
         } else {
             int tmp = recordCount / pageSize;
             int totalPage = (tmp * pageSize == recordCount) ? tmp : (tmp + 1);
@@ -87,16 +88,16 @@ public class AdminService {
             if ((pageIndex * pageSize < recordCount)//取前totalPage-1页中的某一页
                     || ((pageIndex * pageSize >= recordCount) && ((pageIndex - 1) * pageSize < recordCount))//最后一页
                     ) {
-                List<DonatePO> donatePOList = donateDao.listPageDonate((pageIndex - 1) * pageSize, pageSize);
-                return new Pager<DonatePO>(pageSize, pageIndex, recordCount, totalPage, donatePOList);
+                List<DonateRecordDO> donateRecordDOList = donateDao.listPageDonate((pageIndex - 1) * pageSize, pageSize);
+                return new Pager<DonateRecordDO>(pageSize, pageIndex, recordCount, totalPage, donateRecordDOList);
             } else {//如果查询的页数不存在，返回最后一页
-                List<DonatePO> donatePOList = donateDao.listPageDonate((totalPage - 1) * pageSize, pageSize);
-                return new Pager<DonatePO>(pageSize, totalPage, recordCount, totalPage, donatePOList);
+                List<DonateRecordDO> donateRecordDOList = donateDao.listPageDonate((totalPage - 1) * pageSize, pageSize);
+                return new Pager<DonateRecordDO>(pageSize, totalPage, recordCount, totalPage, donateRecordDOList);
             }
         }
     }
 
-    public DonatePO getDonateInfo(String id) {
+    public DonateRecordDO getDonateInfo(String id) {
         return donateDao.get(id);
     }
 

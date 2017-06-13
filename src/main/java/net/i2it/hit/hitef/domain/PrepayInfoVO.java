@@ -1,15 +1,15 @@
 package net.i2it.hit.hitef.domain;
 
-public class PrepayVO {
+public class PrepayInfoVO {
 
     private int id;
     private String name;
     private double money;
 
-    public PrepayVO() {
+    public PrepayInfoVO() {
     }
 
-    public PrepayVO(int id, String name, double money) {
+    public PrepayInfoVO(int id, String name, double money) {
         this.id = id;
         this.name = name;
         this.money = money;

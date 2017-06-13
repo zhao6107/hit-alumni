@@ -23,7 +23,7 @@
         }
     </style>
 </head>
-<body>
+<fundItemName>
 <jsp:include page="nav_base.jsp" flush="true"/>
 <div style="padding-left: 20px;">
     <h2>捐款记录</h2>
@@ -43,16 +43,16 @@
         </tr>
         <c:forEach items="${pageDonates.pageRecords}" var="item">
             <tr>
-                <td><fmt:formatDate value="${item.time_end}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                <td>${item.body}</td>
-                <td><fmt:formatNumber value="${item.total_fee}" pattern="￥#0.00"/></td>
-                <td>${item.true_name}</td>
-                <td>${item.entry_year}</td>
+                <td><fmt:formatDate value="${item.timeEnd}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                <td>${item.fundItemName}</td>
+                <td><fmt:formatNumber value="${item.totalFee}" pattern="￥#0.00"/></td>
+                <td>${item.trueName}</td>
+                <td>${item.entryYear}</td>
                 <td>${item.major}</td>
                 <td>${item.phone}</td>
                 <td>${item.company}</td>
                 <td>${item.job}</td>
-                <td><a href="/wechat/admin/donate/${item.out_trade_no}">查看</a></td>
+                <td><a href="/wechat/admin/donate/${item.outTradeNo}">查看</a></td>
             </tr>
         </c:forEach>
     </table>
@@ -74,5 +74,5 @@
         </form>
     </div>
 </div>
-</body>
+</fundItemName>
 </html>

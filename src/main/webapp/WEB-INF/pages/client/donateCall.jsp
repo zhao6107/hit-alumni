@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
-<body>
+<fundItemName>
 <div class="container js_container">
     <div class="hd">捐赠倡议书</div>
     <div class="weui-btn-area" style="text-align: right;margin-top: 16px;margin-bottom: 16px;">
@@ -34,7 +34,7 @@
            class="weui-btn weui-btn_mini weui-btn_primary btn-c">我要捐助</a>
     </div>
 </div>
-</body>
+</fundItemName>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     wx.config({

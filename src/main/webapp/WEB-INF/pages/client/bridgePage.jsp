@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
-<body>
+<fundItemName>
 <div class="weui-loadmore bd-m-t">
     <i class="weui-loading"></i>
     <span class="weui-loadmore__tips">${msg}</span>
@@ -37,5 +37,5 @@
         wx.hideAllNonBaseMenuItem();
     });
 </script>
-</body>
+</fundItemName>
 </html>
