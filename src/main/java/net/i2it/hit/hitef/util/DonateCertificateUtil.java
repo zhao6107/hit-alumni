@@ -51,7 +51,6 @@ public class DonateCertificateUtil {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             PdfStamper stamper = new PdfStamper(reader, bos);
 
-            // todo 设置pdf字体以及各式
             AcroFields form = stamper.getAcroFields();
             java.util.Iterator<String> it = form.getFields().keySet().iterator();
             while (it.hasNext()) {
@@ -115,7 +114,7 @@ public class DonateCertificateUtil {
     }
 
     public static void drawTextInImg(Map<String, String> data) {
-        String part = "　　兹接受" + data.get("name") + "校友向哈尔滨工业大学校友会捐赠人民币" + data.get("money") + "元。";
+        String part = "　　兹接受" + data.get("name") + "校友向哈尔滨工业大学教育发展基金会捐助人民币" + data.get("money") + "元。";
         String line1 = part.substring(0, 23);
         String line2 = part.substring(23);
         try {
@@ -127,8 +126,9 @@ public class DonateCertificateUtil {
             graphics.drawString(line2, 220, 640);
             graphics.drawString("　　颁发此证，谨致谢忱。", 220, 730);
             graphics.setFont(new Font("华文中宋", Font.BOLD, 48));
-            graphics.drawString("哈尔滨工业大学校友会", 1000, 820);
-            graphics.drawString(data.get("date"), 1050, 910);
+            graphics.drawString("哈尔滨工业大学校友总会", 903, 820);
+            graphics.drawString("哈尔滨工业大学教育发展基金会", 830, 910);
+            graphics.drawString(data.get("date"), 985, 1000);
             graphics.dispose();
             ImageIO.write(image, "jpg", new File(CER_FOLD_PATH + data.get("out_trade_no") + ".jpg"));
         } catch (IOException e) {

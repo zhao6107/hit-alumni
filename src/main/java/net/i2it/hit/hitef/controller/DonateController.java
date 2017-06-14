@@ -88,6 +88,7 @@ public class DonateController {
         comment = "".equals(comment) ? null : comment;//但内容为空字符串时，赋值为null
         donatorVO = processDonatorVO(donatorVO);//但对象中的变量内容为空字符串时，赋值为null
         donateService.updateDonatorInfo(outTradeNo, comment, donatorVO);
+        map.put("donatorName", donatorVO.getTrueName().equals("匿名") ? "校友" : donatorVO.getTrueName());
         map.put("out_trade_no", donateService.createCer(outTradeNo));//某个支付单对应的支付捐赠证书
         map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         return "client/payResult";

@@ -10,7 +10,7 @@
 </head>
 <fundItemName>
 <form class="container js_container"
-      action="${applicationScope.globalUrlPrefix}/hitef//wechat/donate/?action=updateDonatorInfo" method="post"
+      action="${applicationScope.globalUrlPrefix}/hitef/wechat/donate/?action=updateDonatorInfo" method="post"
       id="donator-info">
     <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
     <input type="hidden" name="outTradeNo" value="${out_trade_no}">

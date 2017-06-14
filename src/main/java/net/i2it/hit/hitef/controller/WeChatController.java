@@ -78,6 +78,6 @@ public class WeChatController {
         }
     }
 
-    // todo  遇到微信服务器发到 /wechat 的post请求遇到404错误，带排查
+    // todo  遇到微信服务器发到请求遇到404错误，带排查
 
 }

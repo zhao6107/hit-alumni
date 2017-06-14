@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/hitef/wechat")
 public class FundItemController {
 
+    // TODO 添加记录日志
+
+    // TODO 其他功能完善
+
     private static final String PAGE_URI = "redirect:/hitef/wechat/items?type=1";
 
     @Autowired
@@ -36,7 +40,7 @@ public class FundItemController {
             } else if ("academy".equals(q)) {
                 map.put("fundItems", fundInfoService.getAcademyNormalFundItems());
                 return "client/fundList";
-            }else if("all".equals(q)){ //显示所有的正常状态的筹款基金项目页面
+            } else if ("all".equals(q)) { //显示所有的正常状态的筹款基金项目页面
                 map.put("fundItems", fundInfoService.getNormalFundItems());
                 return "client/fundList";
             }
