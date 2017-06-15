@@ -30,7 +30,7 @@
                     <my:formatDate value="${item.ctime}" pattern="yyyy年MM月dd日 HH:mm"/>　
                     |　<a href="/hitef/wechat/items/${item.id}?opt=update">修改</a>　
                     |　<a href="/hitef/wechat/items/${item.id}?opt=stop"
-                         onClick="return confirm('确认要终止编号为${item.id}的基金项目吗?');">终止</a>
+                         onClick="return confirm('确认要终止编号为${itemStatus.count}的基金项目吗?');">终止</a>
                 </p>
             </div>
         </c:forEach>

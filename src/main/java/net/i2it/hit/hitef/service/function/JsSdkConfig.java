@@ -2,7 +2,7 @@ package net.i2it.hit.hitef.service.function;
 
 import net.i2it.hit.hitef.constant.CacheConsts;
 import net.i2it.hit.hitef.constant.ConfigConsts;
-import net.i2it.hit.hitef.entity.vo.api.request.JsSdkConfigVO;
+import net.i2it.hit.hitef.domain.api.request.JsSdkConfigVO;
 import net.i2it.hit.hitef.util.EncryptionUtil;
 import net.i2it.hit.hitef.util.ValueGeneratorUtil;
 

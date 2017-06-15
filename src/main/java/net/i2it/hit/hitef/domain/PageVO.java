@@ -1,4 +1,4 @@
-package net.i2it.hit.hitef.entity;
+package net.i2it.hit.hitef.domain;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.List;
  * 分页功能使用到的类
  * Created by liuming on 2017/5/31.
  */
-public class Pager<T> implements Serializable {
+public class PageVO<T> implements Serializable {
 
     private int pageSize;//每页记录数
     private int pageIndex;//当前页的索引
@@ -15,10 +15,10 @@ public class Pager<T> implements Serializable {
     private int totalPage;//总共多少页
     private List<T> pageRecords;//当前页要显示的内容
 
-    public Pager() {
+    public PageVO() {
     }
 
-    public Pager(int pageSize, int pageIndex, int totalRecord, int totalPage, List<T> pageRecords) {
+    public PageVO(int pageSize, int pageIndex, int totalRecord, int totalPage, List<T> pageRecords) {
         this.pageSize = pageSize;
         this.pageIndex = pageIndex;
         this.totalRecord = totalRecord;

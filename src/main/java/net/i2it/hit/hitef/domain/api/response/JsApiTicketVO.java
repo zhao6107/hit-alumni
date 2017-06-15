@@ -1,4 +1,4 @@
-package net.i2it.hit.hitef.entity.vo.api.response;
+package net.i2it.hit.hitef.domain.api.response;
 
 /**
  * 请求微信接口获取jsapi_ticket得到的json返回值对应的实例对象

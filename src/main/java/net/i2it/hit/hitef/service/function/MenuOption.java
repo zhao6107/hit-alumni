@@ -2,10 +2,9 @@ package net.i2it.hit.hitef.service.function;
 
 import com.alibaba.fastjson.JSON;
 import net.i2it.hit.hitef.constant.ConfigConsts;
-import net.i2it.hit.hitef.entity.vo.api.request.MenuVO;
+import net.i2it.hit.hitef.domain.api.request.MenuVO;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 /**
  * 创建微信菜单的具体操作业务

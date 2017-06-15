@@ -1,6 +1,6 @@
 package net.i2it.hit.hitef.domain;
 
-import net.i2it.hit.hitef.entity.vo.api.request.PayRequestVO;
+import net.i2it.hit.hitef.domain.api.request.PayRequestVO;
 
 public class DonateFormVO {
 

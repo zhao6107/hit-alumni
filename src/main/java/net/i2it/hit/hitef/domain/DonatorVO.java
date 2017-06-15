@@ -1,4 +1,4 @@
-package net.i2it.hit.hitef.entity.vo;
+package net.i2it.hit.hitef.domain;
 
 /**
  * 捐款人的信息

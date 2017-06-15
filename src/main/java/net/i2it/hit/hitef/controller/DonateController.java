@@ -1,17 +1,10 @@
 package net.i2it.hit.hitef.controller;
 
-import com.alibaba.fastjson.JSON;
-import net.i2it.hit.hitef.constant.ConfigConsts;
-import net.i2it.hit.hitef.domain.DonateFormVO;
 import net.i2it.hit.hitef.domain.PrepayInfoVO;
-import net.i2it.hit.hitef.entity.vo.DonatorVO;
-import net.i2it.hit.hitef.entity.vo.api.request.PayRequestVO;
+import net.i2it.hit.hitef.domain.DonatorVO;
 import net.i2it.hit.hitef.service.DonateService;
-import net.i2it.hit.hitef.service.FundInfoService;
 import net.i2it.hit.hitef.service.function.CommonService;
-import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package net.i2it.hit.hitef.entity.vo.api.request;
+package net.i2it.hit.hitef.domain.api.request;
 
 import net.i2it.hit.hitef.constant.ConfigConsts;
 

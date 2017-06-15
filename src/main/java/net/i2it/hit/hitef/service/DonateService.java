@@ -2,16 +2,15 @@ package net.i2it.hit.hitef.service;
 
 import net.i2it.hit.hitef.constant.ConfigConsts;
 import net.i2it.hit.hitef.dao.DonateDao;
-import net.i2it.hit.hitef.dao.ItemDao;
 import net.i2it.hit.hitef.domain.PrepayInfoVO;
 import net.i2it.hit.hitef.domain.DonateRecordDO;
-import net.i2it.hit.hitef.entity.vo.DonatorVO;
-import net.i2it.hit.hitef.entity.vo.SimpleOrderInfoVO;
-import net.i2it.hit.hitef.entity.vo.api.request.PayRequestVO;
-import net.i2it.hit.hitef.entity.vo.api.request.UnifiedOrderInfoVO;
-import net.i2it.hit.hitef.entity.vo.api.response.PayResultNotifyVO;
-import net.i2it.hit.hitef.entity.vo.api.response.UnifiedOrderResultVO;
-import net.i2it.hit.hitef.entity.vo.api.response.WebAccessTokenVO;
+import net.i2it.hit.hitef.domain.DonatorVO;
+import net.i2it.hit.hitef.domain.SimpleOrderInfoVO;
+import net.i2it.hit.hitef.domain.api.request.PayRequestVO;
+import net.i2it.hit.hitef.domain.api.request.UnifiedOrderInfoVO;
+import net.i2it.hit.hitef.domain.api.response.PayResultNotifyVO;
+import net.i2it.hit.hitef.domain.api.response.UnifiedOrderResultVO;
+import net.i2it.hit.hitef.domain.api.response.WebAccessTokenVO;
 import net.i2it.hit.hitef.service.function.UnifiedOrder;
 import net.i2it.hit.hitef.service.function.WeChatApi;
 import net.i2it.hit.hitef.util.DonateCertificateUtil;
@@ -33,8 +32,6 @@ public class DonateService {
 
     @Autowired
     private DonateDao donateDao;
-    @Autowired
-    private ItemDao itemDao;
 
     private Map<String, Object> getUnifiedOrderResult(String code, PrepayInfoVO prepayInfoVO) {
         WeChatApi weChatApi = new WeChatApi();
@@ -108,13 +105,6 @@ public class DonateService {
 
     public void updateDonatorInfo(String out_trade_no, String comment, DonatorVO donatorVO) {
         donateDao.updateDonatorInfo(out_trade_no, comment, donatorVO);
-    }
-
-    public boolean updateRaisedFund(String itemId, String out_trade_no) {
-        if (itemDao.updateRaisedFund(itemId, out_trade_no) == 1) {
-            return true;
-        }
-        return false;
     }
 
     public String createCer(String out_trade_no) {

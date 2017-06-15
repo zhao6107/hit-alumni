@@ -1,7 +1,7 @@
 /**
  *
  */
-package net.i2it.hit.hitef.entity.vo.api.request;
+package net.i2it.hit.hitef.domain.api.request;
 
 /**
  * @author liuming

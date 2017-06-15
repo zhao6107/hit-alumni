@@ -2,8 +2,8 @@ package net.i2it.hit.hitef.service.function;
 
 import net.i2it.hit.hitef.constant.ConfigConsts;
 import net.i2it.hit.hitef.domain.PrepayInfoVO;
-import net.i2it.hit.hitef.entity.vo.SimpleOrderInfoVO;
-import net.i2it.hit.hitef.entity.vo.api.request.UnifiedOrderInfoVO;
+import net.i2it.hit.hitef.domain.SimpleOrderInfoVO;
+import net.i2it.hit.hitef.domain.api.request.UnifiedOrderInfoVO;
 import net.i2it.hit.hitef.util.ValueGeneratorUtil;
 
 import java.util.Date;

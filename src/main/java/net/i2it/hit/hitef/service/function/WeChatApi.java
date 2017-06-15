@@ -3,10 +3,10 @@ package net.i2it.hit.hitef.service.function;
 import com.alibaba.fastjson.JSON;
 import net.i2it.hit.hitef.constant.CacheConsts;
 import net.i2it.hit.hitef.constant.ConfigConsts;
-import net.i2it.hit.hitef.entity.vo.api.response.AppAccessTokenVO;
-import net.i2it.hit.hitef.entity.vo.api.response.JsApiTicketVO;
-import net.i2it.hit.hitef.entity.vo.api.response.UnifiedOrderResultVO;
-import net.i2it.hit.hitef.entity.vo.api.response.WebAccessTokenVO;
+import net.i2it.hit.hitef.domain.api.response.AppAccessTokenVO;
+import net.i2it.hit.hitef.domain.api.response.JsApiTicketVO;
+import net.i2it.hit.hitef.domain.api.response.UnifiedOrderResultVO;
+import net.i2it.hit.hitef.domain.api.response.WebAccessTokenVO;
 import net.i2it.hit.hitef.util.HTTPUtil;
 import net.i2it.hit.hitef.util.XmlUtil;
 

@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
 </head>
-<fundItemName>
-<div class="weui-loadmore bd-m-t">
+<body>
+<div class="weui-loadmore" style="margin-top: 50px;">
     <i class="weui-loading"></i>
     <span class="weui-loadmore__tips">${msg}</span>
 </div>
+</body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     var time = 3;
@@ -37,5 +37,4 @@
         wx.hideAllNonBaseMenuItem();
     });
 </script>
-</fundItemName>
 </html>

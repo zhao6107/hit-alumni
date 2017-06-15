@@ -1,4 +1,4 @@
-package net.i2it.hit.hitef.entity.vo.api.response;
+package net.i2it.hit.hitef.domain.api.response;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

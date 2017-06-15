@@ -1,4 +1,4 @@
-package net.i2it.hit.hitef.entity.vo.api.request;
+package net.i2it.hit.hitef.domain.api.request;
 
 /**
  * 微信菜单创建需要构建出的中的菜单类，转为对应的json格式字符串后直接提交给接口创建菜单

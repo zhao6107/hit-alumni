@@ -1,4 +1,4 @@
-package net.i2it.hit.hitef.entity.vo.api.response;
+package net.i2it.hit.hitef.domain.api.response;
 
 /**
  * 请求微信API获取access_token,得到正确结果的

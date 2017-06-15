@@ -2,8 +2,8 @@ package net.i2it.hit.hitef.service.function;
 
 import net.i2it.hit.hitef.constant.CacheConsts;
 import net.i2it.hit.hitef.constant.ConfigConsts;
-import net.i2it.hit.hitef.entity.vo.api.response.AppAccessTokenVO;
-import net.i2it.hit.hitef.entity.vo.api.response.JsApiTicketVO;
+import net.i2it.hit.hitef.domain.api.response.AppAccessTokenVO;
+import net.i2it.hit.hitef.domain.api.response.JsApiTicketVO;
 
 /**
  * 具体的定时任务逻辑和内容：主要用于更新access_token和jsapi_ticket

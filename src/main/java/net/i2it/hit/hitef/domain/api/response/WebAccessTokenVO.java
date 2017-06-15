@@ -1,4 +1,4 @@
-package net.i2it.hit.hitef.entity.vo.api.response;
+package net.i2it.hit.hitef.domain.api.response;
 
 /**
  * 网页授权中得到的返回json结果对应的Java类，重要的信息有：access_token和openid<br>

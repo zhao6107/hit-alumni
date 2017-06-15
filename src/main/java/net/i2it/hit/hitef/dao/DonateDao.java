@@ -1,7 +1,7 @@
 package net.i2it.hit.hitef.dao;
 
 import net.i2it.hit.hitef.domain.DonateRecordDO;
-import net.i2it.hit.hitef.entity.vo.DonatorVO;
+import net.i2it.hit.hitef.domain.DonatorVO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
