@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/res/css/base.css">
 </head>
-<fundItemName>
+<body>
 <form class="container js_container"
       action="${applicationScope.globalUrlPrefix}/hitef/wechat/donate/?action=updateDonatorInfo" method="post"
       id="donator-info">
@@ -86,6 +86,7 @@
         <input id="sbt-btn" class="weui-btn weui-btn_mini weui-btn_primary btn" type="submit" value="提交">
     </div>
 </form>
+</body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script>
@@ -146,5 +147,4 @@
         $("#comment").val($(this).val());
     });
 </script>
-</fundItemName>
 </html>

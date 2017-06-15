@@ -46,7 +46,7 @@
         }
     </style>
 </head>
-<fundItemName>
+<body>
 <div class="container js_container">
     <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
     <div class="div-area fund-content">
@@ -65,7 +65,7 @@
         <button id="btn-sbt" class="weui-btn weui-btn_mini weui-btn_primary btn">捐助</button>
     </div>
 </div>
-</fundItemName>
+</body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script>
@@ -98,7 +98,7 @@
     function checkMoneyFormat(param) {
         var reg = /^[0-9]+\.?[0-9]{0,2}$/;
         var element = $("#donateMoneyDiv");
-        if (!reg.test(param) || param==0) {
+        if (!reg.test(param) || param == 0) {
             element.addClass("weui-cell_warn");
             if ($("#donateMoneyWarn").length > 0) {
             } else {

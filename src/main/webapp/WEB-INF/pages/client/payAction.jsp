@@ -7,11 +7,12 @@
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/res/css/base.css">
 </head>
-<fundItemName>
+<body>
 <div class="weui-loadmore bd-m-t">
     <i class="weui-loading"></i>
     <span class="weui-loadmore__tips">正在跳转</span>
 </div>
+</body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     var time = 3;
@@ -53,5 +54,4 @@
         });
     }
 </script>
-</fundItemName>
 </html>

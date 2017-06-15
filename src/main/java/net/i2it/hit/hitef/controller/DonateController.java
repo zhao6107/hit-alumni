@@ -94,6 +94,12 @@ public class DonateController {
         return "client/payResult";
     }
 
+    @GetMapping("/certification/{id}")
+    public String certification(@PathVariable("id") String id, ModelMap map) {
+        map.put("out_trade_no", id);
+        return "client/donateCertification";
+    }
+
     private DonatorVO processDonatorVO(DonatorVO donatorVO) {
         donatorVO.setCompany("".equals(donatorVO.getCompany()) ? null : donatorVO.getCompany());
         donatorVO.setEntryYear("".equals(donatorVO.getEntryYear()) ? null : donatorVO.getEntryYear());

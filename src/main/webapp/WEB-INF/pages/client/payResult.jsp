@@ -44,6 +44,7 @@
         }
     </style>
 </head>
+<body>
 <div class="weui-msg bd-m-t" style="margin-top: 20px;padding-top: 20px;">
     <div class="weui-msg__icon-area" style="margin-bottom: 20px;"><i class="weui-icon-success weui-icon_msg"></i></div>
     <div class="weui-msg__text-area">
@@ -69,9 +70,13 @@
     <jsp:useBean id="currentDate" class="java.util.Date"/>
     <div class="hd-content"><h3>感谢函</h3></div>
     <div class="fund-body">尊敬的${donatorName}：<br>　　您好！<br>　　感谢您长期以来对哈尔滨工业大学的关心和支持！对您捐资助学的慈心善举表示最诚挚的感谢和最崇高的敬意！<br>　　哈工大教育发展基金会自2009年12月成立以来，受到了社会各界、广大校友和师生员工的关心和支持。基金会始终把公信力建设放在工作首位，坚持公平正义，公开透明，努力维护公益形象，不断提高工作的规范化、科学化和专业化水平。基金会于2013年在黑龙江省社会组织等级评估中，被授予5A级基金会荣誉称号。<br>　　基金会立足实际，开拓创新，打造和开展了一系列如“李昌教育基金”、“春晖创新成果奖励基金”、“困难不怕，哈工大是家”等深入人心的品牌项目，多方面助力了学校的发展建设。<br>　　涓涓细流，汇成爱的大海。您无私的爱心给学校师生员工带来了无限温暖，哈工大的发展历程中将会永远地镌刻着您的名字。再次感谢您对哈工大的支持与厚爱！<br>
-        <div align="right"><div style="margin-top: 10px;width:auto; display:inline-block !important; display:inline;text-align: center;">哈尔滨工业大学教育发展基金会<br><fmt:formatDate value="${currentDate}" pattern="yyyy年MM月dd日"/></div></div>
+        <div align="right">
+            <div style="margin-top: 10px;width:auto; display:inline-block !important; display:inline;text-align: center;">
+                哈尔滨工业大学教育发展基金会<br><fmt:formatDate value="${currentDate}" pattern="yyyy年MM月dd日"/></div>
+        </div>
     </div>
 </div>
+</body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     wx.config({
@@ -93,27 +98,27 @@
         wx.onMenuShareAppMessage({
             title: '我参与了为母校哈工大捐款的活动，你有我捐得多吗？→ →',
             desc: '尽一份微薄之力，助力母校腾飞！',
-            link: '${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg',
+            link: '${applicationScope.globalUrlPrefix}/hitef/wechat/donate/certification/${out_trade_no}',
             imgUrl: '${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg',
         });
         //分享到微信朋友圈
         wx.onMenuShareTimeline({
             title: '我参与了为母校哈工大捐款的活动，你有我捐得多吗？→ →',
-            link: '${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg',
+            link: '${applicationScope.globalUrlPrefix}/hitef/wechat/donate/certification/${out_trade_no}',
             imgUrl: '${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg',
         });
         //分享给QQ朋友
         wx.onMenuShareQQ({
             title: '我参与了为母校哈工大捐款的活动，你有我捐得多吗？→ →',
             desc: '尽一份微薄之力，助力母校腾飞！',
-            link: '${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg',
+            link: '${applicationScope.globalUrlPrefix}/hitef/wechat/donate/certification/${out_trade_no}',
             imgUrl: '${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg',
         });
         //分享到QQ空间
         wx.onMenuShareQZone({
             title: '我参与了为母校哈工大捐款的活动，你有我捐得多吗？→ →',
             desc: '尽一份微薄之力，助力母校腾飞！',
-            link: '${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg',
+            link: '${applicationScope.globalUrlPrefix}/hitef/wechat/donate/certification/${out_trade_no}',
             imgUrl: '${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg',
         });
     });

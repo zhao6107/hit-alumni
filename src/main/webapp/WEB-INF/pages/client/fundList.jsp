@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -52,23 +51,22 @@
         }
     </style>
 </head>
-<fundItemName>
-    <div class="container js_container">
-        <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
-        <div class="funds">
-            <ul>
-                <c:forEach items="${fundItems}" var="item">
-                    <li><a href="/hitef/wechat/items/${item.id}?opt=getFundItemInfoAndDonateFormPage">
-                            ${item.name}
-                        <span><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/arrow.png"
-                                   width="125%"></span></a>
-                    </li>
-                </c:forEach>
-                <%--<li><a href="">基金项目<span><img src="./arrow.png" width="125%"></span></a></li>--%>
-            </ul>
-        </div>
+<body>
+<div class="container js_container">
+    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
+    <div class="funds">
+        <ul>
+            <c:forEach items="${fundItems}" var="item">
+                <li><a href="/hitef/wechat/items/${item.id}?opt=getFundItemInfoAndDonateFormPage">
+                        ${item.name}
+                    <span><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/arrow.png"
+                               width="125%"></span></a>
+                </li>
+            </c:forEach>
+        </ul>
     </div>
-</fundItemName>
+</div>
+</body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
     wx.config({
