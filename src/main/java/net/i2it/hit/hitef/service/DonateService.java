@@ -2,10 +2,7 @@ package net.i2it.hit.hitef.service;
 
 import net.i2it.hit.hitef.constant.ConfigConsts;
 import net.i2it.hit.hitef.dao.DonateDao;
-import net.i2it.hit.hitef.domain.PrepayInfoVO;
-import net.i2it.hit.hitef.domain.DonateRecordDO;
-import net.i2it.hit.hitef.domain.DonatorVO;
-import net.i2it.hit.hitef.domain.SimpleOrderInfoVO;
+import net.i2it.hit.hitef.domain.*;
 import net.i2it.hit.hitef.domain.api.request.PayRequestVO;
 import net.i2it.hit.hitef.domain.api.request.UnifiedOrderInfoVO;
 import net.i2it.hit.hitef.domain.api.response.PayResultNotifyVO;
@@ -22,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -137,6 +135,17 @@ public class DonateService {
             return new PrepayInfoVO(Integer.parseInt(arr[0]), arr[1], Double.parseDouble(arr[2]));
         }
         return null;
+    }
+
+    public List<SimpleDonateVO> getPageDonateInfos(Date date) {
+        return donateDao.getSucecessList(date, 20);
+    }
+
+    public Map<String, Object> getStatistics() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("donateCount", donateDao.donateCount());
+        map.put("fundItemStat", donateDao.getAllFundItemStat());
+        return map;
     }
 
 }

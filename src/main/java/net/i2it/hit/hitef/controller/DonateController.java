@@ -2,6 +2,7 @@ package net.i2it.hit.hitef.controller;
 
 import net.i2it.hit.hitef.domain.PrepayInfoVO;
 import net.i2it.hit.hitef.domain.DonatorVO;
+import net.i2it.hit.hitef.domain.SimpleDonateVO;
 import net.i2it.hit.hitef.service.DonateService;
 import net.i2it.hit.hitef.service.function.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,10 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -93,6 +98,38 @@ public class DonateController {
         return "client/donateCertification";
     }
 
+    @GetMapping("/list")
+    public String donateList(@RequestParam(value = "date", required = false) String dateStr, HttpServletRequest request, ModelMap map) {
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));
+
+        if (dateStr == null) {
+            List<SimpleDonateVO> donateVOList = donateService.getPageDonateInfos(new Date());
+            map.put("donateList", donateVOList);
+            return "client/donateList";
+        }
+
+        Date date = str2Date(dateStr);
+        if (date == null) {
+            return "redirect:/hitef/wechat/donate/list";
+        }
+
+        List<SimpleDonateVO> donateVOList = donateService.getPageDonateInfos(date);
+        map.put("donateList", donateVOList);
+        return "client/donateList";
+    }
+
+    @GetMapping("/stat")
+    public String donateStat(HttpServletRequest request, ModelMap map) {
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));
+        map.put("stat", donateService.getStatistics());
+        return "client/donateStat";
+    }
+
+    @GetMapping("/otherWay")
+    public String otherWay() {
+        return "client/otherDonateWays";
+    }
+
     private DonatorVO processDonatorVO(DonatorVO donatorVO) {
         donatorVO.setCompany("".equals(donatorVO.getCompany()) ? null : donatorVO.getCompany());
         donatorVO.setEntryYear("".equals(donatorVO.getEntryYear()) ? null : donatorVO.getEntryYear());
@@ -102,6 +139,16 @@ public class DonateController {
         donatorVO.setPhone("".equals(donatorVO.getPhone()) ? null : donatorVO.getPhone());
         donatorVO.setTrueName("".equals(donatorVO.getTrueName()) ? null : donatorVO.getTrueName());
         return donatorVO;
+    }
+
+    private Date str2Date(String str) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            return dateFormat.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @GetMapping("/tmp")
