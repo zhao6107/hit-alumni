@@ -11,14 +11,18 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Iterator;
+import java.util.List;
 
 @Controller
 @RequestMapping("/hitef/wechat")
 public class FundItemController {
 
+    // TODO 其他捐赠方式底部加鸣谢词
+    // TODO 联系我们页面编辑
+    // TODO 证书分享页快速进入到捐助基金项目列表页
     // TODO 添加记录日志
-
-    // TODO 其他功能完善
+    // TODO 我的捐助历史信息
 
     private static final String PAGE_URI = "redirect:/hitef/wechat/items?type=1";
 
@@ -34,14 +38,22 @@ public class FundItemController {
                                       HttpServletRequest request, ModelMap map) {
         if (q != null) {
             map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+            String name = request.getServletContext().getInitParameter("alumniDonateItemName");
             if ("school".equals(q)) {
-                map.put("fundItems", fundInfoService.getSchoolNormalFundItems());
+                List<FundItemDO> fundItems = fundInfoService.getSchoolNormalFundItems();
+                filterAlumniDonateItem(fundItems, name);
+                map.put("fundItems", fundItems);
                 return "client/fundList";
             } else if ("academy".equals(q)) {
-                map.put("fundItems", fundInfoService.getAcademyNormalFundItems());
+                List<FundItemDO> fundItems = fundInfoService.getAcademyNormalFundItems();
+                filterAlumniDonateItem(fundItems, name);
+                map.put("fundItems", fundItems);
                 return "client/fundList";
             } else if ("all".equals(q)) { //显示所有的正常状态的筹款基金项目页面
-                map.put("fundItems", fundInfoService.getNormalFundItems());
+                List<FundItemDO> fundItems = fundInfoService.getNormalFundItems();
+                FundItemDO fundItem = filterAlumniDonateItem(fundItems, name);
+                map.put("fundItem", fundItem);
+                map.put("fundItems", fundItems);
                 return "client/fundList";
             }
         }
@@ -117,6 +129,18 @@ public class FundItemController {
             return PAGE_URI;
         }
         return PAGE_URI;
+    }
+
+    private FundItemDO filterAlumniDonateItem(List<FundItemDO> fundItems, String name) {
+        Iterator<FundItemDO> iterator = fundItems.iterator();
+        while (iterator.hasNext()) {
+            FundItemDO fundItem = iterator.next();
+            if (name.equals(fundItem.getName())) {
+                iterator.remove();
+                return fundItem;
+            }
+        }
+        return null;
     }
 
 }

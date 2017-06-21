@@ -74,15 +74,15 @@ public class MenuOption {
         button20.setName("微信捐赠");
         button20.setType("view");
         button20.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/items?q=all");
-        button21.setName("捐赠芳名录");
+        button21.setName("微信捐赠名录");
         button21.setType("view");
         button21.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/list");
-        button22.setName("其他捐赠方式");
+        button22.setName("微信捐赠统计");
         button22.setType("view");
-        button22.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/otherWay");
-        button23.setName("捐赠统计");
+        button22.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/stat");
+        button23.setName("其他捐赠方式");
         button23.setType("view");
-        button23.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/stat");
+        button23.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/otherWay");
         button2.setName("我要捐赠");
         button2.setSub_button(new MenuVO.Button[]{button20, button21, button22, button23});
 

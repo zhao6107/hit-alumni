@@ -56,6 +56,12 @@
     <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
     <div class="funds">
         <ul>
+            <c:if test="${not empty fundItem}">
+                <li><a href="/hitef/wechat/items/${fundItem.id}?opt=getFundItemInfoAndDonateFormPage">
+                        ${fundItem.name}
+                    <span><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/arrow.png" width="125%"></span></a>
+                </li>
+            </c:if>
             <c:forEach items="${fundItems}" var="item">
                 <li><a href="/hitef/wechat/items/${item.id}?opt=getFundItemInfoAndDonateFormPage">
                         ${item.name}
