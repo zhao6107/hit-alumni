@@ -24,8 +24,8 @@ public interface DonateDao {
     @Insert("INSERT INTO " + TB_NAME + "(" + INSERT_KEYS_DONATE_RECORD + ") VALUES(" + INSERT_VALUES_DONATE_RECORD + ")")
     int save(Map<String, Object> map);
 
-    @Update("UPDATE " + TB_NAME + " SET state=1,time_end=#{time_end} WHERE out_trade_no=#{out_trade_no}")
-    int updateState(@Param("out_trade_no") String out_trade_no, @Param("time_end") String time_end);
+    @Update("UPDATE " + TB_NAME + " SET state=1,time_end=#{time_end} WHERE out_trade_no=#{out_trade_no} And total_fee=#{total_fee}")
+    int updateState(@Param("out_trade_no") String out_trade_no, @Param("total_fee")double total_fee,@Param("time_end") String time_end);
 
     @Update("UPDATE " + TB_NAME + " SET " + UPDATE_FIELDS_DONATOR_INFO + " WHERE out_trade_no=#{out_trade_no}")
     int updateDonatorInfo(@Param("out_trade_no") String out_trade_no, @Param("comment") String comment, @Param("a") DonatorVO donatorVO);
@@ -51,10 +51,10 @@ public interface DonateDao {
     int donateCount();
 
     //统计每个基金项目的捐款次数以及总捐款额
-    @Select("SELECT t2.fundItemId,t1.fundItemName,t2.totalCount,t2.totalMoney FROM " +
+    @Select("SELECT t2.fundItemId,t1.`name` AS fundItemName,t2.totalCount,t2.totalMoney FROM " +
             "(SELECT fund_item_id AS fundItemId,SUM(total_fee) AS totalMoney,COUNT(*) AS totalCount FROM hitef_donate_record WHERE state=1 GROUP BY fund_item_id) AS t2 " +
-            "LEFT JOIN (SELECT DISTINCT fund_item_id AS fundItemId,fund_item_name AS fundItemName FROM hitef_donate_record) AS t1 " +
-            "ON t1.fundItemId=t2.fundItemId ORDER BY t2.totalCount DESC;")
+            "LEFT JOIN hitef_fund_item AS t1 " +
+            "ON t1.id=t2.fundItemId ORDER BY t2.totalCount DESC;")
     List<FundItemStatVO> getAllFundItemStat();
 
 }

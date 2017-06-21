@@ -57,7 +57,7 @@
         <div class="weui-cell" id="donateMoneyDiv">
             <div class="weui-cell__hd"><label class="weui-label">捐款金额</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" id="donateMoney" type="number" placeholder="捐款金额，单位元"/>
+                <input class="weui-input" id="donateMoney" type="number" placeholder="单位元，最低1元"/>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
     function checkMoneyFormat(param) {
         var reg = /^[0-9]+\.?[0-9]{0,2}$/;
         var element = $("#donateMoneyDiv");
-        if (!reg.test(param) || param == 0) {
+        if (!reg.test(param) || param < 1) {
             element.addClass("weui-cell_warn");
             if ($("#donateMoneyWarn").length > 0) {
             } else {

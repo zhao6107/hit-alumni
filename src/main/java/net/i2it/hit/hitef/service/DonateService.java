@@ -95,7 +95,8 @@ public class DonateService {
         String out_trade_no = payResultNotifyVO.getOut_trade_no();
         Date date = ValueGeneratorUtil.str2Date(payResultNotifyVO.getTime_end(), ValueGeneratorUtil.DATE_FORMAT_PATTERN);
         String time_end = ValueGeneratorUtil.date2Str(date, ValueGeneratorUtil.DATE_FORMAT_PATTERN2);
-        if (donateDao.updateState(out_trade_no, time_end) == 1) {
+        double total_fee = Double.parseDouble(payResultNotifyVO.getTotal_fee()) / 100;
+        if (donateDao.updateState(out_trade_no, total_fee, time_end) == 1) {
             return true;
         }
         return false;
