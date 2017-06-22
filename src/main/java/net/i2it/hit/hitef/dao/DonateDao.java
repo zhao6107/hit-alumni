@@ -54,7 +54,7 @@ public interface DonateDao {
     @Select("SELECT t2.fundItemId,t1.`name` AS fundItemName,t2.totalCount,t2.totalMoney FROM " +
             "(SELECT fund_item_id AS fundItemId,SUM(total_fee) AS totalMoney,COUNT(*) AS totalCount FROM hitef_donate_record WHERE state=1 GROUP BY fund_item_id) AS t2 " +
             "LEFT JOIN hitef_fund_item AS t1 " +
-            "ON t1.id=t2.fundItemId ORDER BY t2.totalCount DESC;")
+            "ON t1.id=t2.fundItemId ORDER BY t2.totalCount DESC,t2.totalMoney DESC;")
     List<FundItemStatVO> getAllFundItemStat();
 
 }
