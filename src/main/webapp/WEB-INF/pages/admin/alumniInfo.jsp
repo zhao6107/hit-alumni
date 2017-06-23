@@ -32,7 +32,7 @@
         <br><br>
         工作单位：<input disabled="disabled" value="${alumniInfo.company}"><br><br>
         工作职位：<input disabled="disabled" value="${alumniInfo.job}"><br><br>
-        <p><a href="/wechat/admin/activities?page=1">返回返校活动列表</a></p>
+        <p><a href="/hit-alumni/wechat/admin/activities?page=1">返回返校活动列表</a></p>
     </div>
 </div>
 </body>

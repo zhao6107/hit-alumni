@@ -81,7 +81,7 @@
                         <c:otherwise>否</c:otherwise>
                     </c:choose>
                 </td>
-                <td><a href="/wechat/admin/activities/${item.openId}">联系人</a></td>
+                <td><a href="/hit-alumni/wechat/admin/activities/${item.openId}">联系人</a></td>
             </tr>
         </c:forEach>
     </table>
@@ -90,14 +90,14 @@
         &nbsp;|&nbsp;
         <c:choose>
             <c:when test="${pageActivities.pageIndex-1<1}">上一页</c:when>
-            <c:otherwise><a href="/wechat/admin/activities?page=${pageActivities.pageIndex-1}">上一页</a></c:otherwise>
+            <c:otherwise><a href="/hit-alumni/wechat/admin/activities?page=${pageActivities.pageIndex-1}">上一页</a></c:otherwise>
         </c:choose>，
         <c:choose>
             <c:when test="${pageActivities.pageIndex+1>pageActivities.totalPage}">下一页</c:when>
-            <c:otherwise><a href="/wechat/admin/activities?page=${pageActivities.pageIndex+1}">下一页</a></c:otherwise>
+            <c:otherwise><a href="/hit-alumni/wechat/admin/activities?page=${pageActivities.pageIndex+1}">下一页</a></c:otherwise>
         </c:choose>
         &nbsp;|&nbsp;
-        <form action="/wechat/admin/activities" method="get" style="display:inline;">
+        <form action="/hit-alumni/wechat/admin/activities" method="get" style="display:inline;">
             <input type="number" name="page" value="1" style="width: 50px;">
             <input type="submit" value="跳转">
         </form>

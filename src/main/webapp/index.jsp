@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<h2>Hello world!</h2>
+<h2><i><a href="http://alumni.hit.edu.cn">alumni.hit.edu.cn &gt;&gt;</a></i></h2>
 </body>
 </html>
