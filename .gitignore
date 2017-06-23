@@ -14,9 +14,6 @@ hs_err_pid*
 
 src/test/
 target/
-src/main/resources/MP_verify_ZrPwd9uqYEtnomKF.txt
-src/main/resources/donate-cer.jpg
-src/main/resources/certifications/
 # ignored when using intellij idea
 .idea/
 out/
