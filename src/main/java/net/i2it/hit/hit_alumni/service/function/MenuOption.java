@@ -47,7 +47,7 @@ public class MenuOption {
         button10.setName("校友返校");
         button10.setType("view");
         String url10 = WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.getApp_id())
-                .replace("REDIRECT_URI", URLEncoder.encode(ConfigConsts.getServer_domain_url() + "/wechat/alumni/back-school", "utf-8"))
+                .replace("REDIRECT_URI", URLEncoder.encode(ConfigConsts.getServer_domain_url() + "/hit-alumni/wechat/alumni/back-school", "utf-8"))
                 .replace("SCOPE", "snsapi_base").replace("STATE", "hit-alumni");
         button10.setUrl(url10);
         button1.setName("校友服务");

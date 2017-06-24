@@ -10,9 +10,7 @@
     <mvc:annotation-driven/>
     <!-- 处理静态资源问题 -->
     <mvc:default-servlet-handler/>
-    <mvc:resources mapping="/hitef/wechat/**" location="/WEB-INF/resources/"/>
-    <mvc:resources mapping="/wechat/*" location="/WEB-INF/classes/MP_verify_rkHrUZkg16fUIqT2.txt"/>
-    <mvc:resources mapping="/wechat/cer/*" location="/WEB-INF/classes/cer/"/>
+    <mvc:resources mapping="/hit-alumni/wechat/**" location="/WEB-INF/resources/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>

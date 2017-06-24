@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/css/common.css">
 </head>
 <body>
-<form class="container js_container" action="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school"
+<form class="container js_container" action="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/alumni/back-school"
       method="post">
     <c:if test="${not empty activity}">
         <input type="hidden" name="openId" value="${activity.openId}">
@@ -171,7 +171,6 @@
     </div>
 </c:if>
 </body>
-
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script>

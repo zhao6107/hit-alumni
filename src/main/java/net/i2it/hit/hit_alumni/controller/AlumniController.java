@@ -5,6 +5,7 @@ import net.i2it.hit.hit_alumni.entity.po.AlumniPO;
 import net.i2it.hit.hit_alumni.entity.po.BackActivityPO;
 import net.i2it.hit.hit_alumni.entity.vo.api.response.WebAccessTokenVO;
 import net.i2it.hit.hit_alumni.service.AlumniBackService;
+import net.i2it.hit.hit_alumni.service.function.CommonService;
 import net.i2it.hit.hit_alumni.service.function.WeChatApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,16 +25,21 @@ import java.util.Map;
 @RequestMapping("/hit-alumni/wechat/alumni")
 public class AlumniController {
 
+    //todo route优化、文件命名
+    //todo 日志系统
+
     private String datePattern0 = "yyyy-MM-dd";
     private String datePattern1 = "yyyy-MM-dd HH:mm";
 
     @Autowired
     private AlumniBackService alumniBackService;
+    @Autowired
+    private CommonService commonService;
 
     //从微信公众号中的按钮对应的url跳转到返校信息列表页
     @GetMapping(value = "/back-school", params = {"code"})
     public String listActivityFromMenu(HttpServletRequest request, String code, ModelMap map) {
-        map.put("jsSdkConfig", alumniBackService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         WeChatApi weChatApi = new WeChatApi();
         WebAccessTokenVO webAccessTokenVO = weChatApi.getWebAccessToken(code);
         if (webAccessTokenVO != null) {//调用api获取access_token失败
@@ -51,7 +57,7 @@ public class AlumniController {
     //在已知openId时，跳转到返校信息列表页
     @GetMapping(value = "/activities", params = {"openId"})
     public String listActivity(HttpServletRequest request, String openId, ModelMap map) {
-        map.put("jsSdkConfig", alumniBackService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         Map<Long, Object> activityMap = alumniBackService.divideActivities(openId);
         //返回到我的返校活动列表页
         map.put("openId", openId);
@@ -62,7 +68,7 @@ public class AlumniController {
     //获取某个返校活动的信息
     @GetMapping(value = "/back-school/{id}")
     public String getActivityInfo(HttpServletRequest request, @PathVariable("id") Integer id, ModelMap map) {
-        map.put("jsSdkConfig", alumniBackService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         map.put("activity", alumniBackService.getActivityInfoById(id));
         return "client/backActivityInfo";
     }
@@ -70,7 +76,7 @@ public class AlumniController {
     //用户点击添加返校信息按钮
     @GetMapping(value = "/back-school", params = {"openId"})
     public String getFormPage(HttpServletRequest request, String openId, ModelMap map) {
-        map.put("jsSdkConfig", alumniBackService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         //先检验是否存在未结束的返校活动
         if (alumniBackService.getCurActivity(openId) == null) {//不存在时才可以提交新的返校信息
             map.put("openId", openId);
@@ -80,12 +86,12 @@ public class AlumniController {
         //存在时，先跳转到提示信息页，再返回返校信息列表页
         map.put("targetUrl", ConfigConsts.getServer_domain_url() + "/wechat/alumni/activities?openId=" + openId);
         map.put("msg", "您当前存在未结束的返校活动，无法添加新的返校信息，系统正在为您跳转...");
-        return "client/bridgePage";
+        return "client/loading";
     }
 
     @PostMapping(value = "/back-school", params = {"openId", "name", "contactType", "contactInfo"})
     public String handleAlumniInfo(HttpServletRequest request, AlumniPO alumniInfo, ModelMap map) {
-        map.put("jsSdkConfig", alumniBackService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         boolean optSuccess;
         if (alumniBackService.getAlumniInfo(alumniInfo.getOpenId()) == null) {//数据库中是不是已经存在记录
             optSuccess = alumniBackService.saveAlumniInfo(handleAlumniInfo(alumniInfo));//不存在则增加
@@ -103,7 +109,7 @@ public class AlumniController {
 
     @GetMapping(value = "/back-school/activity", params = {"openId"})
     public String linkToActivityPage(HttpServletRequest request, String openId, ModelMap map) {
-        map.put("jsSdkConfig", alumniBackService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         map.put("openId", openId);
         return "client/backActivityInfo";
     }
@@ -124,7 +130,7 @@ public class AlumniController {
                                      @RequestParam(value = "giveLecture", defaultValue = "0") int giveLecture,
                                      @RequestParam(value = "needVolunteer", defaultValue = "0") int needVolunteer
     ) {
-        map.put("jsSdkConfig", alumniBackService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+        map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         BackActivityPO activityInfo = new BackActivityPO(id, openId,
                 str2Date(beginDate, datePattern0), str2Date(endDate, datePattern0), alumniNum,
                 str2Date(historyMuseumVisitedDate, datePattern1), str2Date(astronauticsMuseumVisitedDate, datePattern1),

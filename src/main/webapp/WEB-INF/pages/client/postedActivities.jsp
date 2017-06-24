@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/css/common.css">
 </head>
 <body>
 <div class="container js_container">
     <div class="hd">我的返校活动</div>
     <div class="weui-btn-area" style="text-align: right;margin-top: 16px;margin-bottom: 16px;">
         <a id="btn-sbt" class="weui-btn weui-btn_mini weui-btn_primary btn-c"
-           href="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school?openId=${openId}">添加返校信息&nbsp;&gt;&gt;</a>
+           href="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/alumni/back-school?openId=${openId}">添加返校信息&nbsp;&gt;&gt;</a>
     </div>
     <!-- 展示正在进行的返校活动 -->
     <c:if test="${not empty activities[2]}">
@@ -23,7 +23,7 @@
             <div class="weui-panel__hd">正在进行的返校活动</div>
             <div class="weui-panel__bd">
                 <a class="weui-media-box weui-media-box_text" style="display: block;"
-                   href="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school/${activities[2].id}">
+                   href="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/alumni/back-school/${activities[2].id}">
                     <h4 class="weui-media-box__title">
                         <fmt:formatDate value="${activities[2].beginDate}" pattern="yyyy-MM-dd"/> 至 <fmt:formatDate
                             value="${activities[2].endDate}" pattern="yyyy-MM-dd"/>
@@ -43,7 +43,7 @@
             <div class="weui-panel__hd">尚未开始的返校活动</div>
             <div class="weui-panel__bd">
                 <a class="weui-media-box weui-media-box_text" style="display: block;"
-                   href="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school/${activities[3].id}">
+                   href="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/alumni/back-school/${activities[3].id}">
                     <h4 class="weui-media-box__title">
                         <fmt:formatDate value="${activities[3].beginDate}" pattern="yyyy-MM-dd"/> 至 <fmt:formatDate
                             value="${activities[3].endDate}" pattern="yyyy-MM-dd"/>
@@ -64,7 +64,7 @@
             <div class="weui-panel__bd">
                 <c:forEach items="${activities[1]}" var="activity">
                     <a class="weui-media-box weui-media-box_text" style="display: block;"
-                       href="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school/${activity.id}">
+                       href="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/alumni/back-school/${activity.id}">
                         <h4 class="weui-media-box__title">
                             <fmt:formatDate value="${activity.beginDate}" pattern="yyyy-MM-dd"/> 至 <fmt:formatDate
                                 value="${activity.endDate}" pattern="yyyy-MM-dd"/>

@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>哈尔滨工业大学校友会</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/wechat/resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/css/common.css">
 </head>
 <body>
-<form class="container js_container" action="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school"
+<form class="container js_container" action="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/alumni/back-school"
       method="post">
     <input type="hidden" name="openId" value="${openId}">
     <div class="hd">1/2　返校登记</div>
@@ -86,7 +86,7 @@
     <div style="text-align: center;">
         <a class="weui-btn weui-btn_mini weui-btn_default" id="btn0">修改信息</a>
         <a class="weui-btn weui-btn_mini weui-btn_primary btn-c" id="btn1"
-           href="${applicationScope.globalUrlPrefix}/wechat/alumni/back-school/activity?openId=${openId}">确认信息</a>
+           href="${applicationScope.globalUrlPrefix}/hit-alumni/wechat/alumni/back-school/activity?openId=${openId}">确认信息</a>
     </div>
 </c:if>
 </body>
