@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>我的捐助证书</title>
+    <title>联系我们</title>
     <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${applicationScope.globalUrlPrefix}/hitef/wechat/res/css/base.css">
     <style type="text/css">
@@ -19,24 +19,11 @@
         }
 
         .fund-content {
-            margin-top: 32px;
             padding: 10px;
         }
 
-        .hd-content {
-            width: 100%;
-            padding-bottom: 10px;
-            border-bottom: 1px dotted #c3c3c3;
-            text-align: center;
-        }
-
-        .hd-content h3 {
-            font-size: 1rem;
-            line-height: 30px;
-        }
-
-        .fund-body {
-            padding: 20px 8px 10px 8px;
+        .part-body {
+            padding: 10px;
             box-sizing: border-box;
             font-size: 14px;
             line-height: 30px;
@@ -46,16 +33,17 @@
 </head>
 <body>
 <div class="container js_container">
-    <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
+    <div id="top-area"><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%">
+    </div>
     <div class="div-area fund-content">
-        <div class="hd-content"><h3>捐助证书</h3></div>
-        <div class="fund-body"><img style="width: 100%;height: auto;display: block;" alt="捐助证书"
-                                    src="${applicationScope.globalUrlPrefix}/hitef/wechat/certifications/${out_trade_no}.jpg">
+        <div class="part-body">
+            <h3>我们的联系信息</h3>
+            <p>
+                <br>办公地点：哈尔滨工业大学行政楼202室<br>通信地址：哈尔滨工业大学208信箱<br>邮政编码：150001<br>联系电话：0451-86418538<br>传　　真：0451-86403889<br>电子邮箱：hitef@hit.edu.cn<br>官网网址：<<a
+                    href="http://hitef.hit.edu.cn/">http://hitef.hit.edu.cn</a><br><br>
+            </p>
         </div>
     </div>
-    <div style="margin-left: 25px;"><a href="/hitef/wechat/items">我也要去捐助，助母校腾飞！</a></div>
 </div>
 </body>
 </html>
-
-

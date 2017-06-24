@@ -1,7 +1,6 @@
 package net.i2it.hit.hitef.service;
 
 import net.i2it.hit.hitef.dao.FundItemDAO;
-import net.i2it.hit.hitef.domain.CommonInfo;
 import net.i2it.hit.hitef.domain.FundItemDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -57,13 +57,13 @@
     <div class="funds">
         <ul>
             <c:if test="${not empty fundItem}">
-                <li><a href="/hitef/wechat/items/${fundItem.id}?opt=getFundItemInfoAndDonateFormPage">
+                <li><a href="/hitef/wechat/items/${fundItem.id}">
                         ${fundItem.name}
                     <span><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/arrow.png" width="125%"></span></a>
                 </li>
             </c:if>
             <c:forEach items="${fundItems}" var="item">
-                <li><a href="/hitef/wechat/items/${item.id}?opt=getFundItemInfoAndDonateFormPage">
+                <li><a href="/hitef/wechat/items/${item.id}">
                         ${item.name}
                     <span><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/arrow.png"
                                width="125%"></span></a>

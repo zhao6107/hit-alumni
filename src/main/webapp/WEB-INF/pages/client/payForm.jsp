@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -51,7 +52,10 @@
     <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
     <div class="div-area fund-content">
         <div class="hd-content"><h3>${item.name}</h3></div>
-        <div class="fund-fundItemName">${item.desc}</div>
+        <div class="fund-fundItemName">
+            <p>${item.desc}</p>
+            <c:if test="${not empty item.pictureName}"><img src="/hitef/wechat/pic/${item.pictureName}" width="100%"></c:if>
+        </div>
     </div>
     <div class="weui-cells weui-cells_form div-area donate-area">
         <div class="weui-cell" id="donateMoneyDiv">

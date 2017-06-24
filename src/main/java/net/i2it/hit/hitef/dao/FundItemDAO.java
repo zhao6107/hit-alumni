@@ -9,11 +9,11 @@ import java.util.List;
 @Repository
 public interface FundItemDAO {
 
-    String INSERT_KEYS = "`name`,`desc`,type,ctime,utime";
-    String INSERT_VALUES = "#{item.name},#{item.desc},#{item.type},#{item.ctime},#{item.utime}";
-    String UPDATE_FIELDS = "`name`=#{item.name},`desc`=#{item.desc},type=#{item.type},utime=#{item.utime}";
+    String INSERT_KEYS = "`name`,`desc`,picture_name,type,ctime,utime";
+    String INSERT_VALUES = "#{item.name},#{item.desc},#{item.pictureName},#{item.type},#{item.ctime},#{item.utime}";
+    String UPDATE_FIELDS = "`name`=#{item.name},`desc`=#{item.desc},picture_name=#{item.pictureName},type=#{item.type},utime=#{item.utime}";
     String TB_NAME = "hitef_fund_item";
-    String SELECT_KEYS = "id,`name`,`desc`,type,`status`,ctime,utime";
+    String SELECT_KEYS = "id,`name`,`desc`,picture_name As pictureName,type,`status`,ctime,utime";
 
     /**
      * 往数据库中添加基金项目的记录，同时得到其主键id

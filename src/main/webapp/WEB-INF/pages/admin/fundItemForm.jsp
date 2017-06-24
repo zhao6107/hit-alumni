@@ -30,14 +30,14 @@
             </c:choose>
         </h2>
         <hr>
-        <form action="${actionUrl}" method="post">
-            <c:if test="${opt=='update'}"><input name="_method" type="hidden" value="put"></c:if>
+        <form action="${actionUrl}" method="post" enctype="multipart/form-data">
             <input type="hidden" name="desc" value="">
             基金名称：<input type="text" name="name" value="${fundItem.name}" required="required"><br><br>
             基金类型：<select name="type" required="required" style="text-align: center;">
             <option value="0">特别推荐（校级基金）</option>
             <option value="1">院系基金</option>
         </select><br><br>
+            上传图片：<input type="file" name="picture">　<c:if test="${not empty fundItem.pictureName}"><a href="/hitef/wechat/pic/${fundItem.pictureName}" target="_blank">上传过的配图</a></c:if><br><br>
             基金描述：<textarea rows="8" cols="100" required="required">${fundItem.desc}</textarea><br><br>
             <c:choose>
                 <c:when test="${opt=='update'}">

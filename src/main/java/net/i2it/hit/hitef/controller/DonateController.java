@@ -1,5 +1,6 @@
 package net.i2it.hit.hitef.controller;
 
+import net.i2it.hit.hitef.constant.ConfigConsts;
 import net.i2it.hit.hitef.domain.PrepayInfoVO;
 import net.i2it.hit.hitef.domain.DonatorVO;
 import net.i2it.hit.hitef.domain.SimpleDonateVO;
@@ -38,11 +39,14 @@ public class DonateController {
     @GetMapping(params = {"code"})
     public String pay(String payInfo, String code, HttpServletRequest request, ModelMap modelMap) {
         modelMap.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
+        //解析提交的下单信息
         PrepayInfoVO prepayInfoVO = donateService.getPrepayVO(payInfo);
         Map<String, Object> map = donateService.getPayRequestInfo(code, prepayInfoVO);
-        modelMap.put("fundItemId", prepayInfoVO.getId());//统一下单后，商户订单号
-        modelMap.put("out_trade_no", map.get("out_trade_no"));//统一下单后，商户订单号
-        modelMap.put("payInfo", map.get("payRequestVO"));//页面发起js_api字符需要的配置信息
+        modelMap.put("fundItemId", prepayInfoVO.getId());
+        //统一下单后，商户订单号
+        modelMap.put("out_trade_no", map.get("out_trade_no"));
+        //页面发起js_api字符需要的配置信息
+        modelMap.put("payInfo", map.get("payRequestVO"));
         return "client/payAction";
     }
 
@@ -130,6 +134,11 @@ public class DonateController {
         return "client/otherDonateWays";
     }
 
+    @GetMapping("/contactUs")
+    public String contactUs() {
+        return "client/contactUs";
+    }
+
     private DonatorVO processDonatorVO(DonatorVO donatorVO) {
         donatorVO.setCompany("".equals(donatorVO.getCompany()) ? null : donatorVO.getCompany());
         donatorVO.setEntryYear("".equals(donatorVO.getEntryYear()) ? null : donatorVO.getEntryYear());
@@ -149,12 +158,6 @@ public class DonateController {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @GetMapping("/tmp")
-    public String tmp(ModelMap map) {
-        map.put("msg", "功能开发中...");
-        return "client/warning_msg";
     }
 
 }

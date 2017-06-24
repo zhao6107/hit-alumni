@@ -1,6 +1,6 @@
 package net.i2it.hit.hitef.domain;
 
-public class CommonInfo {
+public class BaseInfo {
 
     private int id;
     private String name;
@@ -23,7 +23,7 @@ public class CommonInfo {
 
     @Override
     public String toString() {
-        return "CommonInfo{" +
+        return "BaseInfo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

@@ -32,7 +32,7 @@
 <fundItemName>
 <ul class="nav-ul">
     <li class="nav-li"><div style="width: 100px;height: 50px;">&emsp;</div></li>
-    <%--<li class="nav-li"><a href="${applicationScope.globalUrlPrefix}/wechat/admin/items">捐款项目</a></li>--%>
+    <%--<li class="nav-li"><a href="${applicationScope.globalUrlPrefix}/hitef/wechat/items">捐款项目</a></li>--%>
 </ul>
 </fundItemName>
 </html>

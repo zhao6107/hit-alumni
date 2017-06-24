@@ -28,6 +28,7 @@
                 <p>${item.desc}</p>
                 <p>
                     <my:formatDate value="${item.ctime}" pattern="yyyy年MM月dd日 HH:mm"/>　
+                    <c:if test="${not empty item.pictureName}">|　<a href="/hitef/wechat/pic/${item.pictureName}" target="_blank">查看配图</a>　</c:if>
                     |　<a href="/hitef/wechat/items/${item.id}?opt=update">修改</a>　
                     |　<a href="/hitef/wechat/items/${item.id}?opt=stop"
                          onClick="return confirm('确认要终止编号为${itemStatus.count}的基金项目吗?');">终止</a>

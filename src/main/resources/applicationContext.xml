@@ -24,4 +24,6 @@
         <property name="basePackage" value="net.i2it.hit.hitef.dao"/>
     </bean>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
 </beans>

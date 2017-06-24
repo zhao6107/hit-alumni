@@ -56,7 +56,7 @@ public class MenuOption {
         button03.setUrl("http://hitef.hit.edu.cn/7702/list.htm");
         button04.setName("联系我们");
         button04.setType("view");
-        button04.setUrl("http://mp.weixin.qq.com/s/xyAz7NU0EMi0PpkD8Ncceg");
+        button04.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/contactUs");
         button0.setName("关于我们");
         button0.setSub_button(new MenuVO.Button[]{button00, button01, button02, button03, button04});
 
@@ -73,7 +73,7 @@ public class MenuOption {
         //第三栏菜单
         button20.setName("微信捐赠");
         button20.setType("view");
-        button20.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/items?q=all");
+        button20.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/items");
         button21.setName("微信捐赠名录");
         button21.setType("view");
         button21.setUrl(ConfigConsts.getServer_domain_url() + "/hitef/wechat/donate/list");
