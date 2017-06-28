@@ -56,7 +56,7 @@
         <c:forEach var="item" items="${stat.fundItemStat}">
             <tr>
                 <td>
-                    <a href="/hitef/wechat/items/${item.fundItemId}?opt=getFundItemInfoAndDonateFormPage">${item.fundItemName}</a>
+                    <a href="/hitef/wechat/items/${item.fundItemId}">${item.fundItemName}</a>
                 </td>
                 <td>${item.totalCount}</td>
                 <td><fmt:formatNumber pattern="#0.00" value="${item.totalMoney}"/></td>

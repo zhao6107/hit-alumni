@@ -124,7 +124,7 @@ public class FundItemController {
 
     //管理后台：显示更新捐款项目的表单页面
     @GetMapping(value = "/items/{id}", params = {"opt"})
-    public String updateFundItem(@PathVariable(value = "id") Integer id,String opt,ModelMap map) {
+    public String updateFundItem(@PathVariable(value = "id") Integer id, String opt, ModelMap map) {
         //先判断该id的基金项目是否存在
         FundItemDO fundItemDO = fundInfoService.getFundItemById(id);
         if (fundItemDO == null) {//不存在
@@ -156,7 +156,11 @@ public class FundItemController {
         long tmp = System.currentTimeMillis();
         if (file != null) {
             String targetFileName = upload(file, request, tmp);
-            fundItem.setPictureName(targetFileName);
+            if (targetFileName == null) {//没有上传图片，还是用之前上传的图片
+                fundItem.setPictureName(fundItemDO.getPictureName());
+            } else {
+                fundItem.setPictureName(targetFileName);
+            }
         }
         //基金项目存在
         fundItem.setId(id);
@@ -180,27 +184,29 @@ public class FundItemController {
     }
 
     private String upload(MultipartFile file, HttpServletRequest request, long timestamp) {
-        //上传路径
-        String targetPath = request.getServletContext().getRealPath("WEB-INF/upload");
-        System.out.println(targetPath);
         String fileName = file.getOriginalFilename();
-        //构建上传后文件名
-        StringBuilder targetFileName = new StringBuilder();
-        targetFileName.append(timestamp);
-        targetFileName.append(fileName.substring(fileName.lastIndexOf(".")));
-        System.out.println(targetFileName.toString());
-        //构建上传目标文件
-        File targetFile = new File(targetPath, targetFileName.toString());
-        if (!targetFile.exists()) {
-            targetFile.mkdirs();
+        if (!"".equals(fileName)) {
+            //上传路径
+            String targetPath = request.getServletContext().getRealPath("WEB-INF/upload");
+            //构建上传后文件名
+            StringBuilder targetFileName = new StringBuilder();
+            targetFileName.append(timestamp);
+            targetFileName.append(fileName.substring(fileName.lastIndexOf(".")));
+            System.out.println(targetFileName.toString());
+            //构建上传目标文件
+            File targetFile = new File(targetPath, targetFileName.toString());
+            if (!targetFile.exists()) {
+                targetFile.mkdirs();
+            }
+            //上传图片
+            try {
+                file.transferTo(targetFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return targetFileName.toString();
         }
-        //上传图片
-        try {
-            file.transferTo(targetFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return targetFileName.toString();
+        return null;
     }
 
 }
