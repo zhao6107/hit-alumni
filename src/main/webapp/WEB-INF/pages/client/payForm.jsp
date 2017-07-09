@@ -54,7 +54,7 @@
         <div class="hd-content"><h3>${item.name}</h3></div>
         <div class="fund-fundItemName">
             <p>${item.desc}</p>
-            <c:if test="${not empty item.pictureName}"><img src="/hitef/wechat/pic/${item.pictureName}" width="100%"></c:if>
+            <c:if test="${not empty item.pictureName}"><img src="/hitef/wechat/pictures/${item.pictureName}" width="100%"></c:if>
         </div>
     </div>
     <div class="weui-cells weui-cells_form div-area donate-area">

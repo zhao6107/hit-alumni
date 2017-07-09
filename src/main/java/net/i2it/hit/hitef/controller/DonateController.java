@@ -1,8 +1,7 @@
 package net.i2it.hit.hitef.controller;
 
-import net.i2it.hit.hitef.constant.ConfigConsts;
-import net.i2it.hit.hitef.domain.PrepayInfoVO;
 import net.i2it.hit.hitef.domain.DonatorVO;
+import net.i2it.hit.hitef.domain.PrepayInfoVO;
 import net.i2it.hit.hitef.domain.SimpleDonateVO;
 import net.i2it.hit.hitef.service.DonateService;
 import net.i2it.hit.hitef.service.function.CommonService;
@@ -41,6 +40,9 @@ public class DonateController {
         modelMap.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
         //解析提交的下单信息
         PrepayInfoVO prepayInfoVO = donateService.getPrepayVO(payInfo);
+        if (prepayInfoVO.getMoney() > 90000000.0) { //捐款上限，避免超出数据库中数值范围
+            return "redirect:/hitef/wechat/items/" + prepayInfoVO.getId();
+        }
         Map<String, Object> map = donateService.getPayRequestInfo(code, prepayInfoVO);
         modelMap.put("fundItemId", prepayInfoVO.getId());
         //统一下单后，商户订单号
@@ -90,6 +92,9 @@ public class DonateController {
         comment = "".equals(comment) ? null : comment;//但内容为空字符串时，赋值为null
         donatorVO = processDonatorVO(donatorVO);//但对象中的变量内容为空字符串时，赋值为null
         donateService.updateDonatorInfo(outTradeNo, comment, donatorVO);
+        if(null==donatorVO.getTrueName()||"".equals(donatorVO.getTrueName().trim())){
+            donatorVO.setTrueName("匿名");
+        }
         map.put("donatorName", donatorVO.getTrueName().equals("匿名") ? "校友" : donatorVO.getTrueName());
         map.put("out_trade_no", donateService.createCer(outTradeNo));//某个支付单对应的支付捐赠证书
         map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息

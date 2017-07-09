@@ -30,6 +30,9 @@ public class ConfigConsts {
     // 支付-统一下单处理对应的url
     private static String pay_url;
 
+    // 为防止一些静态资源（基金项目配图、证书）应用重启后丢失，将其放在非web应用目录下
+    private static String server_file_path;
+
     public static String getApp_id() {
         return app_id;
     }
@@ -64,6 +67,10 @@ public class ConfigConsts {
 
     public static String getPay_url() {
         return pay_url;
+    }
+
+    public static String getServer_file_path() {
+        return server_file_path;
     }
 
     /**

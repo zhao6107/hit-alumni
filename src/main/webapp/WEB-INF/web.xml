@@ -8,11 +8,6 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
-    
-    <context-param>
-        <param-name>alumniDonateItemName</param-name>
-        <param-value>校友年度捐赠</param-value>
-    </context-param>
 
     <listener>
         <listener-class>net.i2it.hit.hitef.listener.WebInitListener</listener-class>
@@ -64,6 +59,19 @@
         <servlet-name>spring-mvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/pages/PAGE_NOT_FOUND.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/pages/SERVER_ERROR.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/pages/SERVER_ERROR.jsp</location>
+    </error-page>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

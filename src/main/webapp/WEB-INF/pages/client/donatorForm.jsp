@@ -11,7 +11,7 @@
 <body>
 <form class="container js_container"
       action="${applicationScope.globalUrlPrefix}/hitef/wechat/donate/?action=updateDonatorInfo" method="post"
-      id="donator-info">
+      id="donator-info" onsubmit="return checkTrueName();">
     <div><img src="${applicationScope.globalUrlPrefix}/hitef/wechat/res/img/top_img.jpg" width="100%"></div>
     <input type="hidden" name="outTradeNo" value="${out_trade_no}">
     <div class="weui-cells__title" style="margin-top: 30px;">做好事记得留名奥</div>
@@ -146,5 +146,12 @@
     $("#comment_").change(function () {
         $("#comment").val($(this).val());
     });
+
+    function checkTrueName() {
+        if ($.trim($("#trueName").val()) == "") {
+            return false;
+        }
+        $("#trueName").val($.trim($("#trueName").val()));
+    }
 </script>
 </html>

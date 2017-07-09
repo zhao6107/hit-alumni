@@ -20,7 +20,6 @@ public interface DonateDao {
     String UPDATE_FIELDS_DONATOR_INFO = "comment=#{comment},true_name=#{a.trueName},phone=#{a.phone},entry_year=#{a.entryYear},major=#{a.major},mail_addr=#{a.mailAddr},company=#{a.company},job=#{a.job}";
     String SELECT_KEYS = "out_trade_no AS outTradeNo,open_id AS openId,fund_item_id AS fundItemId,fund_item_name AS fundItemName,total_fee AS totalFee,origin,time_end AS timeEnd,state,`comment`,true_name AS trueName,entry_year AS entryYear,major,phone,company,job,mail_addr AS mailAddr";
 
-
     @Insert("INSERT INTO " + TB_NAME + "(" + INSERT_KEYS_DONATE_RECORD + ") VALUES(" + INSERT_VALUES_DONATE_RECORD + ")")
     int save(Map<String, Object> map);
 

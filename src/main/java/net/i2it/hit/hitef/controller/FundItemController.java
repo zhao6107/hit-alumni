@@ -21,7 +21,6 @@ import java.util.List;
 @RequestMapping("/hitef/wechat")
 public class FundItemController {
 
-    // TODO 证书分享页快速进入到捐助基金项目列表页
     // TODO 添加记录日志
     // TODO 我的捐助历史信息
 
@@ -40,23 +39,22 @@ public class FundItemController {
     public String showFundItemsByQueryType(@RequestParam(value = "q", required = false) String q,
                                            HttpServletRequest request, ModelMap map) {
         map.put("jsSdkConfig", commonService.getJsSdkConfig(request));//调用微信页面js sdk功能需要的配置信息
-        String name = request.getServletContext().getInitParameter("alumniDonateItemName");
+        String name = "校友年度捐赠";
+        String name_ = "爱心传递基金";
         if ("school".equals(q)) {//展示 特别推荐（校级基金）
             List<FundItemDO> fundItems = fundInfoService.getSchoolNormalFundItems();
-            filterAlumniDonateItem(fundItems, name);
+            rankFundItem(fundItems, name, name_);
             map.put("fundItems", fundItems);
             return "client/fundList";
         }
         if ("academy".equals(q)) {// 展示 院系基金
             List<FundItemDO> fundItems = fundInfoService.getAcademyNormalFundItems();
-            filterAlumniDonateItem(fundItems, name);
             map.put("fundItems", fundItems);
             return "client/fundList";
         }
         //展示 所有的正常状态的筹款基金项目页面，包括特别推荐（校级基金）和院系基金
         List<FundItemDO> fundItems = fundInfoService.getNormalFundItems();
-        FundItemDO fundItem = filterAlumniDonateItem(fundItems, name);
-        map.put("fundItem", fundItem);
+        rankFundItem(fundItems, name, name_);
         map.put("fundItems", fundItems);
         return "client/fundList";
     }
@@ -73,8 +71,7 @@ public class FundItemController {
         }
         //基金项目存在时，才执行更新
         //进入某一个筹款基金项目的页面
-        FundItemDO fundInfo = fundInfoService.getFundItemById(id);
-        map.put("item", fundInfo);//获取某个筹款项目的信息
+        map.put("item", fundItemDO);//获取某个筹款项目的信息
         map.put("redirectUrl", ConfigConsts.getPay_url());//对应着实际支付动作的url页面
         //拉取用户openid的url拼接
         map.put("targetUrl", WeChatApi.API_WEB_CODE.replace("APPID", ConfigConsts.getApp_id())
@@ -107,11 +104,10 @@ public class FundItemController {
 
     //管理后台：增加捐款项目的动作
     @PostMapping(value = "/items")
-    public String addFundItem(@RequestParam(value = "picture", required = false) MultipartFile file, FundItemDO fundItem,
-                              HttpServletRequest request) {
+    public String addFundItem(@RequestParam(value = "picture", required = false) MultipartFile file, FundItemDO fundItem) {
         long tmp = System.currentTimeMillis();
         if (file != null) {
-            String targetFileName = upload(file, request, tmp);
+            String targetFileName = upload(file, tmp);
             //上传成功后
             fundItem.setPictureName(targetFileName);
         }
@@ -145,8 +141,7 @@ public class FundItemController {
     //管理后台：更新捐款项目信息动作
     @PostMapping("/items/{id}")
     public String updateFundItem(@RequestParam(value = "picture", required = false) MultipartFile file,
-                                 @PathVariable("id") Integer id, FundItemDO fundItem,
-                                 HttpServletRequest request) {
+                                 @PathVariable("id") Integer id, FundItemDO fundItem) {
         //先判断该id的基金项目是否存在
         FundItemDO fundItemDO = fundInfoService.getFundItemById(id);
         if (fundItemDO == null) {//不存在
@@ -155,7 +150,7 @@ public class FundItemController {
         //上传图片
         long tmp = System.currentTimeMillis();
         if (file != null) {
-            String targetFileName = upload(file, request, tmp);
+            String targetFileName = upload(file, tmp);
             if (targetFileName == null) {//没有上传图片，还是用之前上传的图片
                 fundItem.setPictureName(fundItemDO.getPictureName());
             } else {
@@ -171,6 +166,7 @@ public class FundItemController {
         return DEFAULT_BACKEND_PAGE;
     }
 
+    // 如果*校友年度捐赠*存在，从 基金项目列表 将*校友年度捐赠*去除（删除）
     private FundItemDO filterAlumniDonateItem(List<FundItemDO> fundItems, String name) {
         Iterator<FundItemDO> iterator = fundItems.iterator();
         while (iterator.hasNext()) {
@@ -183,11 +179,24 @@ public class FundItemController {
         return null;
     }
 
-    private String upload(MultipartFile file, HttpServletRequest request, long timestamp) {
+    // 将*校友年度捐赠*放到*爱心传递基金*前面
+    private void rankFundItem(List<FundItemDO> fundItems, String name, String name_) {
+        FundItemDO fundItem = filterAlumniDonateItem(fundItems, name);
+        if (fundItem != null) {
+            for (int i = 0; i < fundItems.size(); i++) {
+                if (name_.equals(fundItems.get(i).getName())) {
+                    fundItems.add(i, fundItem);
+                }
+            }
+        }
+    }
+
+    // 上传图片
+    private String upload(MultipartFile file, long timestamp) {
         String fileName = file.getOriginalFilename();
         if (!"".equals(fileName)) {
             //上传路径
-            String targetPath = request.getServletContext().getRealPath("WEB-INF/upload");
+            String targetPath = ConfigConsts.getServer_file_path() + "/pictures";
             //构建上传后文件名
             StringBuilder targetFileName = new StringBuilder();
             targetFileName.append(timestamp);

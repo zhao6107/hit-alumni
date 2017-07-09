@@ -1,21 +1,17 @@
 package net.i2it.hit.hitef.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
-
+import net.i2it.hit.hitef.constant.ConfigConsts;
 import net.i2it.hit.hitef.util.EncryptionUtil;
-import org.apache.http.protocol.HTTP;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import net.i2it.hit.hitef.constant.ConfigConsts;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
 
 /**
  * 处理和微信服务器之间的网络交互操作

@@ -10,7 +10,7 @@
 <body>
 <div class="weui-loadmore bd-m-t">
     <i class="weui-loading"></i>
-    <span class="weui-loadmore__tips">正在跳转</span>
+    <span class="weui-loadmore__tips">正在跳转...</span>
 </div>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
@@ -46,10 +46,10 @@
             signType: '${requestScope.payInfo.signType}',
             paySign: '${requestScope.payInfo.paySign}',
             success: function () {
-                window.location.href = "${applicationScope.globalUrlPrefix}/hitef/wechat/donate/?action=getDonatorFormPage&outTradeNo=${out_trade_no}"
+                window.location.href = "${applicationScope.globalUrlPrefix}/hitef/wechat/test/?action=getDonatorFormPage&outTradeNo=${out_trade_no}"
             },
             cancel: function () {
-                window.location.href = "${applicationScope.globalUrlPrefix}/hitef/wechat/items/${fundItemId}?opt=getFundItemInfoAndDonateFormPage";
+                window.location.href = "${applicationScope.globalUrlPrefix}/hitef/wechat/items/${fundItemId}";
             }
         });
     }
