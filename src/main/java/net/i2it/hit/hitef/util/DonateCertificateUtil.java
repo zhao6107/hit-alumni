@@ -1,7 +1,5 @@
 package net.i2it.hit.hitef.util;
 
-import net.i2it.hit.hitef.constant.ConfigConsts;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,10 +19,12 @@ import java.util.Map;
  */
 public class DonateCertificateUtil {
 
+    private static String CER_FOLD_PATH;
     private static String IAMGE_FILE_PATH;
 
     static {
         try {
+            CER_FOLD_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("certifications/").getPath(), "utf-8");
             IAMGE_FILE_PATH = URLDecoder.decode(DonateCertificateUtil.class.getClassLoader().getResource("donate-cer.jpg").getPath(), "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class DonateCertificateUtil {
             graphics.drawString("哈尔滨工业大学校友总会", 903, 820);
             graphics.drawString("哈尔滨工业大学教育发展基金会", 830, 910);
             graphics.drawString(data.get("date"), 985, 1000);
-            ImageIO.write(image, "jpg", new File(ConfigConsts.getServer_file_path() + "/certifications/" + data.get("out_trade_no") + ".jpg"));
+            ImageIO.write(image, "jpg", new File(CER_FOLD_PATH + data.get("out_trade_no") + ".jpg"));
             graphics.dispose();
             image.flush();
         } catch (IOException e) {

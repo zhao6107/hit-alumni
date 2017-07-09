@@ -104,10 +104,11 @@ public class FundItemController {
 
     //管理后台：增加捐款项目的动作
     @PostMapping(value = "/items")
-    public String addFundItem(@RequestParam(value = "picture", required = false) MultipartFile file, FundItemDO fundItem) {
+    public String addFundItem(@RequestParam(value = "picture", required = false) MultipartFile file, FundItemDO fundItem,
+                              HttpServletRequest request) {
         long tmp = System.currentTimeMillis();
         if (file != null) {
-            String targetFileName = upload(file, tmp);
+            String targetFileName = upload(file, tmp, request);
             //上传成功后
             fundItem.setPictureName(targetFileName);
         }
@@ -141,7 +142,8 @@ public class FundItemController {
     //管理后台：更新捐款项目信息动作
     @PostMapping("/items/{id}")
     public String updateFundItem(@RequestParam(value = "picture", required = false) MultipartFile file,
-                                 @PathVariable("id") Integer id, FundItemDO fundItem) {
+                                 @PathVariable("id") Integer id, FundItemDO fundItem,
+                                 HttpServletRequest request) {
         //先判断该id的基金项目是否存在
         FundItemDO fundItemDO = fundInfoService.getFundItemById(id);
         if (fundItemDO == null) {//不存在
@@ -150,7 +152,7 @@ public class FundItemController {
         //上传图片
         long tmp = System.currentTimeMillis();
         if (file != null) {
-            String targetFileName = upload(file, tmp);
+            String targetFileName = upload(file, tmp, request);
             if (targetFileName == null) {//没有上传图片，还是用之前上传的图片
                 fundItem.setPictureName(fundItemDO.getPictureName());
             } else {
@@ -183,20 +185,23 @@ public class FundItemController {
     private void rankFundItem(List<FundItemDO> fundItems, String name, String name_) {
         FundItemDO fundItem = filterAlumniDonateItem(fundItems, name);
         if (fundItem != null) {
+            int targetIndex = 0;
             for (int i = 0; i < fundItems.size(); i++) {
                 if (name_.equals(fundItems.get(i).getName())) {
-                    fundItems.add(i, fundItem);
+                    targetIndex = i;
+                    break;
                 }
             }
+            fundItems.add(targetIndex, fundItem);
         }
     }
 
     // 上传图片
-    private String upload(MultipartFile file, long timestamp) {
+    private String upload(MultipartFile file, long timestamp, HttpServletRequest request) {
         String fileName = file.getOriginalFilename();
         if (!"".equals(fileName)) {
             //上传路径
-            String targetPath = ConfigConsts.getServer_file_path() + "/pictures";
+            String targetPath = request.getServletContext().getRealPath("WEB-INF/pictures");
             //构建上传后文件名
             StringBuilder targetFileName = new StringBuilder();
             targetFileName.append(timestamp);

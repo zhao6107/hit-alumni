@@ -4,7 +4,6 @@ import net.i2it.hit.hitef.constant.ConfigConsts;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -19,15 +18,6 @@ public class WebInitListener implements ServletContextListener {
             ConfigConsts.load();
             //将这个信息放到应用的上下文中
             servletContextEvent.getServletContext().setAttribute("globalUrlPrefix", ConfigConsts.getServer_domain_url());
-            //创建静态资源文件目录
-            File file = new File(ConfigConsts.getServer_file_path() + "/pictures");
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            file = new File(ConfigConsts.getServer_file_path() + "/certifications");
-            if (!file.exists()) {
-                file.mkdirs();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
