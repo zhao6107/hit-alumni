@@ -1,5 +1,7 @@
 package net.i2it.hit.hitef.util;
 
+import net.i2it.hit.hitef.constant.ConfigConsts;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -48,6 +50,7 @@ public class DonateCertificateUtil {
             graphics.drawString("哈尔滨工业大学教育发展基金会", 830, 910);
             graphics.drawString(data.get("date"), 985, 1000);
             ImageIO.write(image, "jpg", new File(CER_FOLD_PATH + data.get("out_trade_no") + ".jpg"));
+            ImageIO.write(image, "jpg", new File(ConfigConsts.getCertification_path() + "/" + data.get("out_trade_no") + ".jpg"));
             graphics.dispose();
             image.flush();
         } catch (IOException e) {

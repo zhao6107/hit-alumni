@@ -30,6 +30,9 @@ public class ConfigConsts {
     // 支付-统一下单处理对应的url
     private static String pay_url;
 
+    // 证书备份（不在应用目录下）
+    private static String certification_path;
+
     public static String getApp_id() {
         return app_id;
     }
@@ -64,6 +67,10 @@ public class ConfigConsts {
 
     public static String getPay_url() {
         return pay_url;
+    }
+
+    public static String getCertification_path() {
+        return certification_path;
     }
 
     /**
