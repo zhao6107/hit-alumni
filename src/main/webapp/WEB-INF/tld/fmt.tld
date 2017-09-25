@@ -6,7 +6,7 @@
         version="2.1">
 
     <tlib-version>1.0</tlib-version>
-    <short-name>??????????</short-name>
+    <short-name>my</short-name>
 
     <tag>
         <name>formatDate</name>
